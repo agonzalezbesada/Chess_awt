@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Modelo {
 
     public Peon peonB1;

@@ -1,3 +1,5 @@
+package Modelo;
+
 public abstract class Pieza implements IPieza {
 
     private int[] posicion;
