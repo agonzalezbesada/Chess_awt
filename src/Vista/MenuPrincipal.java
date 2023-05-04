@@ -3,10 +3,12 @@ package Vista;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MenuPrincipal {
 
-    public void GenerarMenu(){
+    public static void GenerarMenu(){
         JFrame MenuPrincipal = new JFrame();
         MenuPrincipal.setTitle("Ajedrez");
         MenuPrincipal.setBounds(0,0, 1400, 700);
@@ -18,6 +20,12 @@ public class MenuPrincipal {
         JButton IniciarSesion = new JButton("Iniciar sesión");
         JButton Estadisticas = new JButton("Consultar estadísticas");
         JButton Salir = new JButton("Salir");
+        Salir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
         panel.add(JugarPartida);
         panel.add(IniciarSesion);
@@ -32,4 +40,5 @@ public class MenuPrincipal {
 
         MenuPrincipal.setVisible(true);
     }
+
 }
