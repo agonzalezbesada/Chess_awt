@@ -29,6 +29,16 @@ public class Modelo {
     public Reina reinaN1;
     public Rey reyN;
 
+    public boolean iniciarPartida() {
+        crearPiezas();
+        return true;
+    }
+
+    public boolean terminarPartida() {
+        destruirPiezas();
+        return true;
+    }
+
     public boolean crearPiezas() {
 
         // Instanciamos peones blancos
@@ -72,14 +82,22 @@ public class Modelo {
         return true;
     }
 
-    public boolean iniciarPartida() {
+    public boolean destruirPiezas() {
 
         return true;
     }
 
-    public boolean terminarPartida() {
+    public boolean destruirPieza() {
 
         return true;
     }
+    // Añadir entradas (objeto pieza, posicionActual?)
+    public boolean moverPieza() {
+
+        // setPosicion
+        return true;
+    }
+
+
 
 }

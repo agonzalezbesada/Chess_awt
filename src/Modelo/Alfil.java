@@ -1,4 +1,8 @@
 package Modelo;
 
-public class Alfil {
+public class Alfil extends Pieza implements IPieza {
+    @Override
+    public int[] cambiarPosicion() {
+        return new int[0];
+    }
 }
