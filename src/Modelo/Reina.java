@@ -6,7 +6,10 @@ public class Reina extends Pieza implements IPieza {
 
     }
 
-    Reina(String color, int[] posicion) {
+    Reina(String color, int x, int y) {
+        int[] posicion = new int[2];
+        posicion[0] = x;
+        posicion[1] = y;
         setColor(color);
         setPosicion(posicion);
     }

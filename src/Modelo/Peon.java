@@ -6,7 +6,10 @@ public class Peon extends Pieza implements IPieza {
 
     }
 
-    Peon(String color, int[] posicion) {
+    Peon(String color, int x, int y) {
+        int[] posicion = new int[2];
+        posicion[0] = x;
+        posicion[1] = y;
         setColor(color);
         setPosicion(posicion);
     }

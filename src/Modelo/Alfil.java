@@ -6,7 +6,10 @@ public class Alfil extends Pieza implements IPieza {
 
     }
 
-    Alfil(String color, int[] posicion) {
+    Alfil(String color, int x, int y) {
+        int[] posicion = new int[2];
+        posicion[0] = x;
+        posicion[1] = y;
         setColor(color);
         setPosicion(posicion);
     }
