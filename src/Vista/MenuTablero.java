@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class MenuTablero {
 
-    public void generarPartida(){
+    public static void generarPartida(){
         JFrame Partida = new JFrame();
         Partida.setBounds(0,0,1400,1700);
 

@@ -30,7 +30,7 @@ public class MenuPrincipal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MenuPrincipal.setVisible(false);
-                MenuTablero.generarTablero();
+                MenuTablero.generarPartida();
             }
         });
 
