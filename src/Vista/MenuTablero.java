@@ -9,10 +9,9 @@ public class MenuTablero {
     public void generarPartida(){
         JFrame Partida = new JFrame();
         Partida.setBounds(0,0,1400,1700);
-        MenuTablero Tablero = new MenuTablero();
 
 
-        JPanel tablero = Tablero.generarTablero();
+        JPanel tablero = MenuTablero.generarTablero();
         JPanel informacionExtra = new JPanel(new GridLayout(2,1));
 
         //Aquí iría la funcionalidad de generar tablero
@@ -23,7 +22,7 @@ public class MenuTablero {
         informacionExtra.add(GuardarYSalir);
         Partida.add(informacionExtra, BorderLayout.EAST);
     }
-    public JPanel generarTablero() {
+    public static JPanel generarTablero() {
         JPanel tablero = new JPanel(new GridLayout(9, 9));
 
         // Agregamos las letras en la fila superior

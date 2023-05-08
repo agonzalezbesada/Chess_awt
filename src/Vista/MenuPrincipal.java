@@ -26,6 +26,13 @@ public class MenuPrincipal {
                 System.exit(0);
             }
         });
+        JugarPartida.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuPrincipal.setVisible(false);
+                MenuTablero.generarTablero();
+            }
+        });
 
         panel.add(JugarPartida);
         panel.add(IniciarSesion);
