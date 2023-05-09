@@ -2,6 +2,7 @@ package Modelo;
 
 public class Alfil extends Pieza implements IPieza {
 
+
     Alfil()  {
 
     }

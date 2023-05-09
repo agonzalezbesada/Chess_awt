@@ -2,6 +2,7 @@ package Modelo;
 
 public class Reina extends Pieza implements IPieza {
 
+
     Reina() {
 
     }

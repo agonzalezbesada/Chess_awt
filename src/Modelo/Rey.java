@@ -2,6 +2,7 @@ package Modelo;
 
 public class Rey extends Pieza implements IPieza {
 
+
     Rey() {
 
     }

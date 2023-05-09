@@ -2,6 +2,7 @@ package Modelo;
 
 public class Peon extends Pieza implements IPieza {
 
+
     Peon() {
 
     }
@@ -21,6 +22,10 @@ public class Peon extends Pieza implements IPieza {
         // Porceso lógico
 
         // if true setPosicon(nuevaPosicion);
+
+
+    @Override
+    public int[] cambiarPosicion() {
 
         return new int[0];
     }
