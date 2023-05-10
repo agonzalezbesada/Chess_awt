@@ -47,15 +47,6 @@ public class Modelo {
         return true;
     }
 
-    public boolean iniciarPartida() {
-        crearPiezas();
-        return true;
-    }
-
-    public boolean terminarPartida() {
-        destruirPiezas();
-        return true;
-    }
 
     public boolean crearPiezas() {
 
@@ -160,13 +151,10 @@ public class Modelo {
         return true;
     }
 
-
     public boolean destruirPieza(IPieza pieza) {
 
-        // Eliminamos la pieza
-        pieza = null;
-
-    public boolean destruirPieza() {
+            // Eliminamos la pieza
+            pieza = null;
 
         return true;
     }
@@ -175,15 +163,6 @@ public class Modelo {
     public boolean moverPieza() {
 
         // setPosicion
-        return true;
-    }
-
-
-
-    public boolean moverPieza(Pieza pieza, int[] posicionActual) {
-
-        pieza.cambiarPosicion();
-
         return true;
     }
 }

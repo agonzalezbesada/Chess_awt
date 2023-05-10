@@ -19,13 +19,9 @@ public class Peon extends Pieza implements IPieza {
     @Override
     public int[] cambiarPosicion() {
 
-        // Porceso lógico
+            // Porceso lógico
 
-        // if true setPosicon(nuevaPosicion);
-
-
-    @Override
-    public int[] cambiarPosicion() {
+            // if true setPosicon(nuevaPosicion);
 
         return new int[0];
     }
