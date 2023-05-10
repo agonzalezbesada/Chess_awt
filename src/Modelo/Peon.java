@@ -23,10 +23,6 @@ public class Peon extends Pieza implements IPieza {
 
         // if true setPosicon(nuevaPosicion);
 
-
-    @Override
-    public int[] cambiarPosicion() {
-
         return new int[0];
     }
 }

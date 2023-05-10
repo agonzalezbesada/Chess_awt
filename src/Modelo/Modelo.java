@@ -47,16 +47,6 @@ public class Modelo {
         return true;
     }
 
-    public boolean iniciarPartida() {
-        crearPiezas();
-        return true;
-    }
-
-    public boolean terminarPartida() {
-        destruirPiezas();
-        return true;
-    }
-
     public boolean crearPiezas() {
 
         // Instanciamos peones blancos
@@ -166,24 +156,15 @@ public class Modelo {
         // Eliminamos la pieza
         pieza = null;
 
-    public boolean destruirPieza() {
-
         return true;
     }
-      
+
     // Añadir entradas (objeto pieza, posicionActual?)
-    public boolean moverPieza() {
-
-        // setPosicion
-        return true;
-    }
-
-
-
     public boolean moverPieza(Pieza pieza, int[] posicionActual) {
 
         pieza.cambiarPosicion();
 
+        // setPosicion
         return true;
     }
 }
