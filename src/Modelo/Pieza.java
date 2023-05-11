@@ -2,7 +2,7 @@ package Modelo;
 
 public abstract class Pieza implements IPieza {
 
-    private int[] posicion;
+    private int[] posicion = new int[2];
     private int nMovimientos;
     private String color;
 
