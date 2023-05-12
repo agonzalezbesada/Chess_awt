@@ -1,4 +1,6 @@
 package Vista;
+import Controlador.Controlador;
+
 import java.awt.*;
 
 public class Vista {

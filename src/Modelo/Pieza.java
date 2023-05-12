@@ -2,12 +2,21 @@ package Modelo;
 
 public abstract class Pieza implements IPieza {
 
+    private String nombre;
     private int[] posicion = new int[2];
     private int nMovimientos;
     private String color;
 
     public boolean destruirPieza() {
         return true;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int[] getPosicion() {

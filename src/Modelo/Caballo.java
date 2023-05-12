@@ -2,15 +2,16 @@ package Modelo;
 
 public class Caballo extends Pieza implements IPieza {
 
-    Caballo() {
+    public Caballo() {
 
     }
 
-    Caballo(String color, int x, int y) {
+    public Caballo(String color, String nombre, int x, int y) {
+        setColor(color);
+        setNombre(nombre);
         int[] posicion = new int[2];
         posicion[0] = x;
         posicion[1] = y;
-        setColor(color);
         setPosicion(posicion);
     }
 

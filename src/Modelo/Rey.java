@@ -3,15 +3,16 @@ package Modelo;
 public class Rey extends Pieza implements IPieza {
 
 
-    Rey() {
+    public Rey() {
 
     }
 
-    Rey(String color, int x, int y) {
+    public Rey(String color, String nombre, int x, int y) {
+        setColor(color);
+        setNombre(nombre);
         int[] posicion = new int[2];
         posicion[0] = x;
         posicion[1] = y;
-        setColor(color);
         setPosicion(posicion);
     }
 

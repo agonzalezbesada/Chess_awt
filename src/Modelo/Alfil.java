@@ -3,15 +3,16 @@ package Modelo;
 public class Alfil extends Pieza implements IPieza {
 
 
-    Alfil()  {
+    public Alfil()  {
 
     }
 
-    Alfil(String color, int x, int y) {
+    public Alfil(String color, String nombre, int x, int y) {
+        setColor(color);
+        setNombre(nombre);
         int[] posicion = new int[2];
         posicion[0] = x;
         posicion[1] = y;
-        setColor(color);
         setPosicion(posicion);
     }
 
