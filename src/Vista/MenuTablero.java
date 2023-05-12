@@ -46,6 +46,7 @@ public class MenuTablero {
         for (int row = 0; row < 8; row++) {
             JLabel numero = new JLabel(String.valueOf(row+1), SwingConstants.CENTER);
             tablero.add(numero);
+
             for (int col = 0; col < 8; col++) {
                 JPanel celda = new JPanel();
                 if ((row + col) % 2 == 0) {
@@ -54,20 +55,20 @@ public class MenuTablero {
                     celda.setBackground(Color.BLACK);
                 }
                 Pieza pieza = matrizPiezas[row][col];
-                EleccionRaton eleccion = new EleccionRaton(pieza);
+
                 DesplazamientoRaton desplazamiento;
                 if (pieza != null) {
                     label[row][col] = new JLabel(pieza.getNombre(), SwingConstants.CENTER);
 
-                    label[row][col].addMouseListener(eleccion);
                     celda.add(label[row][col]);
                 } else {
                     label[row][col] = new JLabel();
-                    desplazamiento = new DesplazamientoRaton(label,label[row][col]);
-                    celda.addMouseListener(desplazamiento);
+
                     celda.add(label[row][col]);
                 }
 
+                EleccionRaton eleccion = new EleccionRaton(label,label[row][col]);
+                celda.addMouseListener(eleccion);
 
 
                 tablero.add(celda);

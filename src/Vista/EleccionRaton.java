@@ -9,12 +9,16 @@ import java.awt.event.MouseListener;
 
 public class EleccionRaton implements MouseListener {
 
-    public Pieza pieza;
     public int[] posicionActual;
-    public EleccionRaton(Pieza pieza) {
+    public JLabel[][] label;
+    public JLabel celdaVacia;
 
-        this.pieza = pieza;
+
+    public EleccionRaton(JLabel[][] label, JLabel celdaVacia) {
+        this.label = label;
+        this.celdaVacia = celdaVacia;
     }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -24,29 +28,42 @@ public class EleccionRaton implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
 
-        try {
+        int[] nuevaPosicion = new int[2];
 
-            this.posicionActual = pieza.getPosicion();
-            System.out.println(posicionActual[0]+" "+posicionActual[1]);
-
-        } catch (NullPointerException exception) {
-
-            if (this.posicionActual==null) {
-                System.out.println("Elija una casilla válida");
+        for (int i = 0; i < label.length; i++) {
+            for (int j = 0; j < label[i].length; j++) {
+                if (label[i][j] == celdaVacia) {
+                    nuevaPosicion[0] = j;
+                    nuevaPosicion[1] = i;
+                }
             }
-
         }
+
+        System.out.println(nuevaPosicion[0]+" "+nuevaPosicion[1]);
 
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
 
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
 
+        int[] nuevaPosicion = new int[2];
+
+        for (int i = 0; i < label.length; i++) {
+            for (int j = 0; j < label[i].length; j++) {
+                if (label[i][j] == celdaVacia) {
+                    nuevaPosicion[0] = j;
+                    nuevaPosicion[1] = i;
+                }
+            }
+        }
+
+        System.out.println(nuevaPosicion[0]+" "+nuevaPosicion[1]);
     }
 
     @Override
