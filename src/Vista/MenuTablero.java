@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 
+/**
+ * Ventana de la partida
+ */
 public class MenuTablero {
 
     public static Controlador controlador = new Controlador();
@@ -30,8 +33,12 @@ public class MenuTablero {
         Partida.setVisible(true);
     }
 
+    /**
+     * Genera el tablero
+     * @return Devuelve el tablero
+     */
     public static JPanel generarTablero() {
-        JPanel tablero = new JPanel(new GridLayout(9, 9));
+        JPanel tablero = new JPanel(new GridLayout(9, 9)); // Inicializa el tablero y un GridLayout
 
         // Agregamos las letras en la fila superior
         tablero.add(new JLabel(""));
@@ -40,38 +47,39 @@ public class MenuTablero {
             tablero.add(letra);
         }
 
-        Pieza[][] matrizPiezas = controlador.posicionesIniciales();
-        JLabel[][] label = new JLabel[8][8];
+        Pieza[][] matrizPiezas = controlador.posicionesIniciales(); // Matriz con las piezas
+        JLabel[][] label = new JLabel[8][8]; // Matriz con labels
 
         for (int row = 0; row < 8; row++) {
-            JLabel numero = new JLabel(String.valueOf(row+1), SwingConstants.CENTER);
+            JLabel numero = new JLabel(String.valueOf(row+1), SwingConstants.CENTER); // Crea los numeros en la primera fila
             tablero.add(numero);
 
             for (int col = 0; col < 8; col++) {
-                JPanel celda = new JPanel();
+                JPanel celda = new JPanel(); // Inicializa las celdas
                 if ((row + col) % 2 == 0) {
-                    celda.setBackground(Color.WHITE);
+                    celda.setBackground(Color.WHITE); // Atribuye colores a las casillas
                 } else {
-                    celda.setBackground(Color.BLACK);
+                    celda.setBackground(Color.BLACK); // Atribuye colores a las casillas
                 }
-                Pieza pieza = matrizPiezas[row][col];
+                Pieza pieza = matrizPiezas[row][col]; // Pieza correspondiente a la posicion de la cuadricula
 
-                DesplazamientoRaton desplazamiento;
                 if (pieza != null) {
-                    label[row][col] = new JLabel(pieza.getNombre(), SwingConstants.CENTER);
 
-                    celda.add(label[row][col]);
+                    label[row][col] = new JLabel(pieza.getNombre(), SwingConstants.CENTER); // Inicializa un label con la pieza correspondiente
+                    celda.add(label[row][col]); // Agrega el label a la celda
+
                 } else {
-                    label[row][col] = new JLabel();
 
-                    celda.add(label[row][col]);
+                    label[row][col] = new JLabel(); // Inicializa un label vacio
+                    celda.add(label[row][col]); // Agrega el label a la celda
+
                 }
 
-                EleccionRaton eleccion = new EleccionRaton(label,label[row][col]);
-                celda.addMouseListener(eleccion);
+                ManejadorRaton eleccion = new ManejadorRaton(label,label[row][col]); // Crea el manejador para el raton
+                celda.addMouseListener(eleccion); // Agrega el manejador a la celda
 
 
-                tablero.add(celda);
+                tablero.add(celda); // Agrega la celda al tablero
             }
         }
 

@@ -1,12 +1,25 @@
 package Modelo;
 
+/**
+ * Pieza alfil
+ */
 public class Alfil extends Pieza implements IPieza {
 
-
+    /**
+     * Constructor vacío
+     */
     public Alfil()  {
 
     }
 
+
+    /**
+     * Constructor parametrizado
+     * @param color Color de la pieza
+     * @param nombre Nombre de la pieza
+     * @param x Fila
+     * @param y Columna
+     */
     public Alfil(String color, String nombre, int x, int y) {
         setColor(color);
         setNombre(nombre);
