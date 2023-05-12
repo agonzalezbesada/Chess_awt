@@ -12,6 +12,7 @@ public class Alfil extends Pieza implements IPieza {
 
     }
 
+
     /**
      * Constructor parametrizado
      * @param color Color de la pieza

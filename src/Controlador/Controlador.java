@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.Modelo;
 import Modelo.Pieza;
 import Vista.Vista;
+import java.util.ArrayList;
 
 /**
  * Controlador
@@ -16,7 +17,6 @@ public class Controlador {
 
         vista.LlamadaMenuP();
 
-
     }
 
     public static Pieza[][] posicionesIniciales() {
@@ -26,6 +26,7 @@ public class Controlador {
     public static void moverPieza(Integer[] posicionActual, Integer[] posicionNueva) {
         // pieza = modelo.moverPieza(pieza, posicionActual);
         System.out.println("Mover pieza de la posición "+posicionActual[0]+" "+posicionActual[1]+ " a la posición "+posicionNueva[0]+" "+posicionNueva[1]);
+
     }
 
 }
