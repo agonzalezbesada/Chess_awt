@@ -1,18 +1,23 @@
 package Vista;
 
+import Controlador.Controlador;
+import Modelo.Pieza;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+import java.util.Scanner;
 
 public class MenuTablero {
 
-    public static void generarPartida(){
+    public static Controlador controlador = new Controlador();
+
+    public static void generarPartida() {
         JFrame Partida = new JFrame();
-        Partida.setBounds(0,0,1400,1700);
+        Partida.setBounds(0, 0, 1400, 1700);
 
 
         JPanel tablero = MenuTablero.generarTablero();
-        JPanel informacionExtra = new JPanel(new GridLayout(2,1));
+        JPanel informacionExtra = new JPanel(new GridLayout(2, 1));
 
         //Aquí iría la funcionalidad de generar tablero
         JLabel Temporizador = new JLabel("03:00");
@@ -21,7 +26,10 @@ public class MenuTablero {
         informacionExtra.add(Temporizador);
         informacionExtra.add(GuardarYSalir);
         Partida.add(informacionExtra, BorderLayout.EAST);
+        Partida.add(tablero);
+        Partida.setVisible(true);
     }
+
     public static JPanel generarTablero() {
         JPanel tablero = new JPanel(new GridLayout(9, 9));
 
@@ -32,20 +40,38 @@ public class MenuTablero {
             tablero.add(letra);
         }
 
-        // Agregamos las casillas del tablero
-        for (int i = 1; i <= 8; i++) {
-            // Agregamos los números en la columna izquierda
-            JLabel numero = new JLabel(String.valueOf(i), SwingConstants.CENTER);
+        Pieza[][] matrizPiezas = controlador.posicionesIniciales();
+        JLabel[][] label = new JLabel[8][8];
+
+        for (int row = 0; row < 8; row++) {
+            JLabel numero = new JLabel(String.valueOf(row+1), SwingConstants.CENTER);
             tablero.add(numero);
-            for (int j = 0; j < 8; j++) {
-                JPanel casilla = new JPanel();
-                if ((i + j) % 2 == 0) {
-                    casilla.setBackground(Color.WHITE);
+
+            for (int col = 0; col < 8; col++) {
+                JPanel celda = new JPanel();
+                if ((row + col) % 2 == 0) {
+                    celda.setBackground(Color.WHITE);
                 } else {
-                    casilla.setBackground(Color.BLACK);
+                    celda.setBackground(Color.BLACK);
                 }
-                casilla.setPreferredSize(new Dimension(100, 100));
-                tablero.add(casilla);
+                Pieza pieza = matrizPiezas[row][col];
+
+                DesplazamientoRaton desplazamiento;
+                if (pieza != null) {
+                    label[row][col] = new JLabel(pieza.getNombre(), SwingConstants.CENTER);
+
+                    celda.add(label[row][col]);
+                } else {
+                    label[row][col] = new JLabel();
+
+                    celda.add(label[row][col]);
+                }
+
+                EleccionRaton eleccion = new EleccionRaton(label,label[row][col]);
+                celda.addMouseListener(eleccion);
+
+
+                tablero.add(celda);
             }
         }
 
