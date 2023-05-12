@@ -3,8 +3,10 @@ package Controlador;
 import Modelo.Modelo;
 import Modelo.Pieza;
 import Vista.Vista;
-import java.util.ArrayList;
 
+/**
+ * Controlador
+ */
 public class Controlador {
 
     public static Modelo modelo = new Modelo();
@@ -21,20 +23,9 @@ public class Controlador {
         return modelo.iniciarPartida();
     }
 
-    public static Pieza moverPieza(Pieza pieza, int[] posicionActual) {
-        pieza = modelo.moverPieza(pieza, posicionActual);
-        System.out.println("Hola");
-        return pieza;
-    }
-
-    public static void selecionarDesplazamiento(int[] posicionActual, int[] nuevaPosicion) {
-
-        System.out.println(posicionActual);
-        System.out.println(nuevaPosicion);
-
-
-
-
+    public static void moverPieza(Integer[] posicionActual, Integer[] posicionNueva) {
+        // pieza = modelo.moverPieza(pieza, posicionActual);
+        System.out.println("Mover pieza de la posición "+posicionActual[0]+" "+posicionActual[1]+ " a la posición "+posicionNueva[0]+" "+posicionNueva[1]);
     }
 
 }

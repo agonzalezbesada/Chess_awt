@@ -1,7 +1,8 @@
 package Modelo;
 
-import java.util.ArrayList;
-
+/**
+ * Modelo
+ */
 public class Modelo {
 
     public Pieza peonB1;
@@ -39,16 +40,28 @@ public class Modelo {
     public Pieza reinaN;
     public Pieza reyN;
 
+    /**
+     *
+     * @return Matriz con las piezas
+     */
     public Pieza[][] iniciarPartida() {
         Pieza[][] matrizPiezas = crearPiezas();
         return matrizPiezas;
     }
 
+    /**
+     * Termina la partida
+     * @return
+     */
     public boolean terminarPartida() {
         destruirPiezas();
         return true;
     }
 
+    /**
+     * Crea las piezas
+     * @return Matriz con las piezas
+     */
     public Pieza[][] crearPiezas() {
 
         Pieza[][] matrizPiezas = new Pieza[8][8];
@@ -136,6 +149,10 @@ public class Modelo {
         return matrizPiezas;
     }
 
+    /**
+     * Destruye las piezas
+     * @return
+     */
     public boolean destruirPiezas() {
 
 
@@ -188,7 +205,11 @@ public class Modelo {
         return true;
     }
 
-
+    /**
+     * Destruye una pieza concreta
+     * @param pieza
+     * @return
+     */
     public boolean destruirPieza(IPieza pieza) {
 
         // Eliminamos la pieza
@@ -197,7 +218,12 @@ public class Modelo {
         return true;
     }
 
-    // Añadir entradas (objeto pieza, posicionActual?)
+    /**
+     * Mueve una pieza
+     * @param pieza Pieza a mover
+     * @param posicionActual Posición actual de la pieza
+     * @return Devuelve la pieza
+     */
     public Pieza moverPieza(Pieza pieza, int[] posicionActual) {
 
         pieza.cambiarPosicion();
