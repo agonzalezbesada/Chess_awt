@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 
 public class ManejadorRaton implements MouseListener {
 
-    public static Integer[] posicionActual = new Integer[2];
+    public static Integer[] posicionInicial = new Integer[2];
     public static Integer[] posicionNueva = new Integer[2];
     public JLabel[][] label;
     public JLabel celdaActual;
@@ -23,7 +23,6 @@ public class ManejadorRaton implements MouseListener {
         this.celdaActual = celdaActual;
     }
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -36,13 +35,13 @@ public class ManejadorRaton implements MouseListener {
         for (int i = 0; i < label.length; i++) {
             for (int j = 0; j < label[i].length; j++) {
                 if (label[i][j] == celdaActual) {
-                    posicionActual[0] = j;
-                    posicionActual[1] = i;
+                    posicionInicial[0] = j;
+                    posicionInicial[1] = i;
                 }
             }
         }
 
-        System.out.println(posicionActual[0]+" "+posicionActual[1]);
+        System.out.println(posicionInicial[0]+" "+ posicionInicial[1]+" Origen");
 
     }
 
@@ -51,7 +50,6 @@ public class ManejadorRaton implements MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
 
-        System.out.println("Testeo "+posicionNueva[0]+" "+posicionNueva[1]); // Prueba
 
         // Recorre la matriz en busqueda del label correspondiente
         for (int i = 0; i < label.length; i++) {
@@ -59,17 +57,17 @@ public class ManejadorRaton implements MouseListener {
                 if (label[i][j] == celdaActual) {
                     posicionNueva[0] = j;
                     posicionNueva[1] = i;
-                    // Prueba
-                    System.out.println("Guardado "+posicionNueva[0]+" "+posicionNueva[1]);
                 }
             }
         }
+
+        System.out.println(posicionNueva[0]+" "+posicionNueva[1]+" Destino");
 
     }
     @Override
     public void mouseReleased(MouseEvent e) {
         // Envía los datos recogidos
-        Controlador.moverPieza(posicionActual,posicionNueva);
+        Controlador.moverPieza(posicionInicial,posicionNueva);
 
     }
 

@@ -16,4 +16,8 @@ public class Vista {
         principal.GenerarMenu();
     }
 
+    public void actualizarTablero() {
+        MenuTablero.generarPartida(1);
+    }
+
 }

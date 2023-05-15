@@ -38,7 +38,7 @@ public class MenuPrincipal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MenuPrincipal.setVisible(false); // Cierra la ventana
-                MenuTablero.generarPartida(); // Genera la ventana de la partida
+                MenuTablero.generarPartida(0); // Genera la ventana de la partida
             }
         });
 

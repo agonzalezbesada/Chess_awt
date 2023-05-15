@@ -6,7 +6,7 @@ package Modelo;
 public abstract class Pieza implements IPieza {
 
     private String nombre;
-    private int[] posicion = new int[2];
+    private Integer[] posicion = new Integer[2];
     private int nMovimientos;
     private Integer color;
 
@@ -35,7 +35,7 @@ public abstract class Pieza implements IPieza {
      * Devuelve la posicion
      * @return Posicion de la pieza
      */
-    public int[] getPosicion() {
+    public Integer[] getPosicion() {
         return this.posicion;
     }
 
@@ -43,7 +43,7 @@ public abstract class Pieza implements IPieza {
      * Introduce la posicion
      * @param posicion Atributo de posicion
      */
-    public void setPosicion(int[] posicion) {
+    public void setPosicion(Integer[] posicion) {
         this.posicion = posicion;
     }
 

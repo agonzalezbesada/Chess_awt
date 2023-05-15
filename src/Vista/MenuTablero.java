@@ -11,17 +11,15 @@ import java.awt.*;
  */
 public class MenuTablero {
 
-    public static Controlador controlador = new Controlador();
-
     /**
      * Genera la interfaz de la partida
      */
-    public static void generarPartida() {
+    public static void generarPartida(int modo) {
         JFrame Partida = new JFrame();
         Partida.setBounds(0, 0, 1400, 1700);
 
 
-        JPanel tablero = MenuTablero.generarTablero();
+        JPanel tablero = MenuTablero.generarTablero(modo);
         JPanel informacionExtra = new JPanel(new GridLayout(2, 1));
 
         //Aquí iría la funcionalidad de generar tablero
@@ -39,7 +37,8 @@ public class MenuTablero {
      * Genera el tablero
      * @return Devuelve el tablero
      */
-    public static JPanel generarTablero() {
+    public static JPanel generarTablero(int modo) {
+
         JPanel tablero = new JPanel(new GridLayout(9, 9)); // Inicializa el tablero y un GridLayout
 
         // Agregamos las letras en la fila superior
@@ -49,7 +48,14 @@ public class MenuTablero {
             tablero.add(letra);
         }
 
-        Pieza[][] matrizPiezas = controlador.posicionesIniciales(); // Matriz con las piezas
+        Pieza[][] matrizPiezas = null;
+
+        if (modo == 0) {
+            matrizPiezas = Controlador.posicionesIniciales(); // Matriz con las piezas iniciales
+        } else if (modo == 1) {
+            matrizPiezas = Controlador.posicionesActuales(); // Matriz con las piezas actuales
+        }
+
         JLabel[][] label = new JLabel[8][8]; // Matriz con labels
 
         for (int row = 0; row < 8; row++) {
@@ -63,7 +69,7 @@ public class MenuTablero {
                 } else {
                     celda.setBackground(Color.BLACK); // Atribuye colores a las casillas
                 }
-                Pieza pieza = matrizPiezas[row][col]; // Pieza correspondiente a la posicion de la cuadricula
+                Pieza pieza = matrizPiezas[col][row]; // Pieza correspondiente a la posicion de la cuadricula
 
                 if (pieza != null) {
 

@@ -19,35 +19,33 @@ public class Reina extends Pieza implements IPieza {
      * @param x Fila
      * @param y Columna
      */
-    public Reina(Integer color, String nombre, int x, int y) {
+    public Reina(Integer color, String nombre, Integer x, Integer y) {
         setColor(color);
         setNombre(nombre);
-        int[] posicion = new int[2];
+        Integer[] posicion = new Integer[2];
         posicion[0] = x;
         posicion[1] = y;
         setPosicion(posicion);
     }
 
     @Override
-    public int[] cambiarPosicion() {
+    public Integer[] cambiarPosicion(Integer[] posicionNueva) {
 
         boolean isValido;
-        int [] nuevaPosicion = new int[2];
-        // nuevaPosicion[0]
-        // nuevaPosicion[1]
+        Integer[] posicionFinal = new Integer[2];
 
-        if (nuevaPosicion[0] > getPosicion()[0] && nuevaPosicion[1] == getPosicion()[1]) {
+        if (posicionNueva[0] > getPosicion()[0] && posicionNueva[1] == getPosicion()[1]) {
             isValido = true;
-        } else if (nuevaPosicion[0] < getPosicion()[0] && nuevaPosicion[1] == getPosicion()[1]) {
+        } else if (posicionNueva[0] < getPosicion()[0] && posicionNueva[1] == getPosicion()[1]) {
             isValido = true;
-        } else if (nuevaPosicion[1] > getPosicion()[1] && nuevaPosicion[0] == getPosicion()[0]) {
+        } else if (posicionNueva[1] > getPosicion()[1] && posicionNueva[0] == getPosicion()[0]) {
             isValido = true;
-        } else if (nuevaPosicion[1] < getPosicion()[1] && nuevaPosicion[0] == getPosicion()[0]) {
+        } else if (posicionNueva[1] < getPosicion()[1] && posicionNueva[0] == getPosicion()[0]) {
             isValido = true;
         }
 
         // Falta diagonal
 
-        return new int[0];
+        return posicionFinal;
     }
 }

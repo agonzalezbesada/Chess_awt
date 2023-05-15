@@ -19,10 +19,10 @@ public class Alfil extends Pieza implements IPieza {
      * @param x Fila
      * @param y Columna
      */
-    public Alfil(Integer color, String nombre, int x, int y) {
+    public Alfil(Integer color, String nombre, Integer x, Integer y) {
         setColor(color);
         setNombre(nombre);
-        int[] posicion = new int[2];
+        Integer[] posicion = new Integer[2];
         posicion[0] = x;
         posicion[1] = y;
         setPosicion(posicion);
@@ -30,7 +30,12 @@ public class Alfil extends Pieza implements IPieza {
 
 
     @Override
-    public int[] cambiarPosicion() {
-        return new int[0];
+    public Integer[] cambiarPosicion(Integer[] posicionNueva) {
+
+        boolean isValido;
+        Integer[] posicionFinal = new Integer[2];
+
+
+        return posicionFinal;
     }
 }

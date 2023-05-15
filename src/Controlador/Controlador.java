@@ -23,9 +23,20 @@ public class Controlador {
         return modelo.iniciarPartida();
     }
 
-    public static void moverPieza(Integer[] posicionActual, Integer[] posicionNueva) {
-        // pieza = modelo.moverPieza(pieza, posicionActual);
-        System.out.println("Mover pieza de la posición "+posicionActual[0]+" "+posicionActual[1]+ " a la posición "+posicionNueva[0]+" "+posicionNueva[1]);
+    public static Pieza[][] posicionesActuales() {
+        return modelo.asignarMatriz();
+    }
+
+    public static void moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
+        // pieza = modelo.moverPieza(pieza, posicionInicial);
+        System.out.println("Mover pieza de la posición "+posicionInicial[0]+" "+posicionInicial[1]+ " a la posición "+posicionNueva[0]+" "+posicionNueva[1]);
+
+        Pieza[][] matrizPiezas = modelo.moverPieza(posicionInicial, posicionNueva);
+
+        System.out.println(matrizPiezas[0][1]+" "+matrizPiezas[0][2]);
+
+        vista.actualizarTablero();
+
     }
 
 }
