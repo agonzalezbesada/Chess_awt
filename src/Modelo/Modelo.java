@@ -39,7 +39,7 @@ public class Modelo {
     public Pieza alfilN2;
     public Pieza reinaN;
     public Pieza reyN;
-    public static Pieza[][] matrizPiezas = new Pieza[8][8];
+    public Pieza[][] matrizPiezas = new Pieza[8][8];
 
     /**
      *

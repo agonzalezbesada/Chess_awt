@@ -28,6 +28,10 @@ public class ManejadorRaton implements MouseListener {
 
     }
 
+    /**
+     * Guarda la casilla de origen
+     * @param e the event to be processed
+     */
     @Override
     public void mousePressed(MouseEvent e) {
 
@@ -46,7 +50,10 @@ public class ManejadorRaton implements MouseListener {
     }
 
 
-
+    /**
+     * Marca la casilla de destino
+     * @param e the event to be processed
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
 
@@ -64,6 +71,11 @@ public class ManejadorRaton implements MouseListener {
         System.out.println(posicionNueva[0]+" "+posicionNueva[1]+" Destino");
 
     }
+
+    /**
+     * Envia la posicion de origen y destino
+     * @param e the event to be processed
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         // Envía los datos recogidos
