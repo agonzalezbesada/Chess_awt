@@ -19,14 +19,27 @@ public class Controlador {
 
     }
 
+    /**
+     * Proporciona las posiciones iniciales
+     * @return Matriz con las posiciones iniciales
+     */
     public static Pieza[][] posicionesIniciales() {
         return modelo.iniciarPartida();
     }
 
+    /**
+     * Proporciona las posiciones actuales
+     * @return Matriz con las posiciones actuales
+     */
     public static Pieza[][] posicionesActuales() {
         return modelo.asignarMatriz();
     }
 
+    /**
+     * Lammada para mover las piezas
+     * @param posicionInicial Posicion de la pieza a mover
+     * @param posicionNueva Posicion deseada a la que desplazarse
+     */
     public static void moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
         // pieza = modelo.moverPieza(pieza, posicionInicial);
         System.out.println("Mover pieza de la posición "+posicionInicial[0]+" "+posicionInicial[1]+ " a la posición "+posicionNueva[0]+" "+posicionNueva[1]);

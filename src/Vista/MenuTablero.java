@@ -50,6 +50,7 @@ public class MenuTablero {
 
         Pieza[][] matrizPiezas = null;
 
+        // Dependiendo de si se desea crear o actualizar
         if (modo == 0) {
             matrizPiezas = Controlador.posicionesIniciales(); // Matriz con las piezas iniciales
         } else if (modo == 1) {
@@ -57,33 +58,37 @@ public class MenuTablero {
         }
 
         JLabel[][] label = new JLabel[8][8]; // Matriz con labels
+        int numeros = 8;
 
-        for (int row = 0; row < 8; row++) {
-            JLabel numero = new JLabel(String.valueOf(row+1), SwingConstants.CENTER); // Crea los numeros en la primera fila
+        for (int col = 0; col < 8; col++) {
+
+            JLabel numero = new JLabel(String.valueOf(numeros), SwingConstants.CENTER); // Crea los numeros en la primera fila
             tablero.add(numero);
+            numeros--;
 
-            for (int col = 0; col < 8; col++) {
+
+            for (int row = 0; row < 8; row++) {
                 JPanel celda = new JPanel(); // Inicializa las celdas
-                if ((row + col) % 2 == 0) {
+                if ((col + row) % 2 == 0) {
                     celda.setBackground(Color.WHITE); // Atribuye colores a las casillas
                 } else {
                     celda.setBackground(Color.BLACK); // Atribuye colores a las casillas
                 }
-                Pieza pieza = matrizPiezas[col][row]; // Pieza correspondiente a la posicion de la cuadricula
+                Pieza pieza = matrizPiezas[row][col]; // Pieza correspondiente a la posicion de la cuadricula
 
                 if (pieza != null) {
 
-                    label[row][col] = new JLabel(pieza.getNombre(), SwingConstants.CENTER); // Inicializa un label con la pieza correspondiente
-                    celda.add(label[row][col]); // Agrega el label a la celda
+                    label[col][row] = new JLabel(pieza.getNombre(), SwingConstants.CENTER); // Inicializa un label con la pieza correspondiente
+                    celda.add(label[col][row]); // Agrega el label a la celda
 
                 } else {
 
-                    label[row][col] = new JLabel(); // Inicializa un label vacio
-                    celda.add(label[row][col]); // Agrega el label a la celda
+                    label[col][row] = new JLabel(); // Inicializa un label vacio
+                    celda.add(label[col][row]); // Agrega el label a la celda
 
                 }
 
-                ManejadorRaton eleccion = new ManejadorRaton(label,label[row][col]); // Crea el manejador para el raton
+                ManejadorRaton eleccion = new ManejadorRaton(label,label[col][row]); // Crea el manejador para el raton
                 celda.addMouseListener(eleccion); // Agrega el manejador a la celda
 
 

@@ -39,7 +39,7 @@ public class Modelo {
     public Pieza alfilN2;
     public Pieza reinaN;
     public Pieza reyN;
-    Pieza[][] matrizPiezas = new Pieza[8][8];
+    public static Pieza[][] matrizPiezas = new Pieza[8][8];
 
     /**
      *
@@ -234,16 +234,13 @@ public class Modelo {
      */
     public Pieza[][] moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
 
-        // Creamos una pieza auxiliar para el cambio
 
-        Integer[] posicionFinal =  ((Peon)matrizPiezas[posicionInicial[0]][posicionInicial[1]]).cambiarPosicion(posicionNueva);
+        Integer[] posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva);
 
-        Pieza piezaAux = matrizPiezas[posicionFinal[0]][posicionFinal[1]];
+        this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = this.matrizPiezas[posicionInicial[0]][posicionInicial[1]];
 
-        matrizPiezas[posicionFinal[0]][posicionFinal[1]] = matrizPiezas[posicionInicial[0]][posicionInicial[1]];
+        this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
 
-        matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
-
-        return matrizPiezas;
+        return this.matrizPiezas;
     }
 }
