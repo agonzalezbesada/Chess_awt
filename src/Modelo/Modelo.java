@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.util.ArrayList;
-
 /**
  * Modelo
  */
@@ -42,13 +40,16 @@ public class Modelo {
     public Pieza reinaN;
     public Pieza reyN;
 
+    public Pieza[][] matrizPiezas = new Pieza[8][8];
+
     /**
      *
      * @return Matriz con las piezas
      */
     public Pieza[][] iniciarPartida() {
-        Pieza[][] matrizPiezas = crearPiezas();
-        return matrizPiezas;
+        crearPiezas();
+
+        return asignarMatriz();
     }
 
     /**
@@ -64,89 +65,91 @@ public class Modelo {
      * Crea las piezas
      * @return Matriz con las piezas
      */
-    public Pieza[][] crearPiezas() {
-
-        Pieza[][] matrizPiezas = new Pieza[8][8];
+    public void crearPiezas() {
 
         // Instanciamos peones blancos
-        this.peonB1 = new Peon("blanco","PB1",6,0);
-        this.peonB2 = new Peon("blanco", "PB2", 6,1);
-        this.peonB3 = new Peon("blanco", "PB3", 6,2);
-        this.peonB4 = new Peon("blanco", "PB4", 6,3);
-        this.peonB5 = new Peon("blanco", "PB5", 6,4);
-        this.peonB6 = new Peon("blanco", "PB6", 6,5);
-        this.peonB7 = new Peon("blanco", "PB7", 6,6);
-        this.peonB8 = new Peon("blanco", "PB8", 6,7);
+        this.peonB1 = new Peon(0,"PB1",0,6);
+        this.peonB2 = new Peon(0, "PB2", 1,6);
+        this.peonB3 = new Peon(0, "PB3", 2,6);
+        this.peonB4 = new Peon(0, "PB4", 3,6);
+        this.peonB5 = new Peon(0, "PB5", 4,6);
+        this.peonB6 = new Peon(0, "PB6", 5,6);
+        this.peonB7 = new Peon(0, "PB7", 6,6);
+        this.peonB8 = new Peon(0, "PB8", 7,6);
         // Instanciamos torres blancas
-        this.torreB1 = new Torre("blanco","TB1",7,0);
-        this.torreB2 = new Torre("blanco","TB2",7,7);
+        this.torreB1 = new Torre(0,"TB1",0,7);
+        this.torreB2 = new Torre(0,"TB2",7,7);
         // Instanciamos caballos blancos
-        this.caballoB1 = new Caballo("blanco","CB1",7,1);
-        this.caballoB2 = new Caballo("blanco","CB2",7,6);
+        this.caballoB1 = new Caballo(0,"CB1",1,7);
+        this.caballoB2 = new Caballo(0,"CB2",6,7);
         // Instanciamos alfiles blancos
-        this.alfilB1 = new Alfil("blanco","AB1",7,2);
-        this.alfilB2 = new Alfil("blanco","AB2",7,5);
+        this.alfilB1 = new Alfil(0,"AB1",2,7);
+        this.alfilB2 = new Alfil(0,"AB2",5,7);
         // Instanciamos reina blanca
-        this.reinaB = new Reina("blanco","ReinaB",7,4);
+        this.reinaB = new Reina(0,"ReinaB",4,7);
         // Instanciamos rey blanco
-        this.reyB = new Rey("blanco","ReyB",7,3);
+        this.reyB = new Rey(0,"ReyB",3,7);
 
         // Instanciamos peones negros
-        this.peonN1 = new Peon("negro","PN1",1,0);
-        this.peonN2 = new Peon("negro", "PN2",1,1);
-        this.peonN3 = new Peon("negro", "PN3",1,2);
-        this.peonN4 = new Peon("negro", "PN4",1,3);
-        this.peonN5 = new Peon("negro", "PN5",1,4);
-        this.peonN6 = new Peon("negro", "PN6",1,5);
-        this.peonN7 = new Peon("negro", "PN7",1,6);
-        this.peonN8 = new Peon("negro", "PN8",1,7);
+        this.peonN1 = new Peon(1,"PN1",0,1);
+        this.peonN2 = new Peon(1, "PN2",1,1);
+        this.peonN3 = new Peon(1, "PN3",2,1);
+        this.peonN4 = new Peon(1, "PN4",3,1);
+        this.peonN5 = new Peon(1, "PN5",4,1);
+        this.peonN6 = new Peon(1, "PN6",5,1);
+        this.peonN7 = new Peon(1, "PN7",6,1);
+        this.peonN8 = new Peon(1, "PN8",7,1);
         // Instanciamos torres negras
-        this.torreN1 = new Torre("negro","TN1",0,0);
-        this.torreN2 = new Torre("negro","TN2",0,7);
+        this.torreN1 = new Torre(1,"TN1",0,0);
+        this.torreN2 = new Torre(1,"TN2",7,0);
         // Instanciamos caballos negros
-        this.caballoN1 = new Caballo("negro","CN1",0,1);
-        this.caballoN2 = new Caballo("negro","CN2",0,6);
+        this.caballoN1 = new Caballo(1,"CN1",1,0);
+        this.caballoN2 = new Caballo(1,"CN2",6,0);
         // Instanciamos alfiles negros
-        this.alfilN1 = new Alfil("negro","AN1",0,2);
-        this.alfilN2 = new Alfil("negro","AN2",0,5);
+        this.alfilN1 = new Alfil(1,"AN1",2,0);
+        this.alfilN2 = new Alfil(1,"AN2",5,0);
         // Instanciamos reina negra
-        this.reinaN = new Reina("negro","ReinaN",0,4);
+        this.reinaN = new Reina(1,"ReinaN",4,0);
         // Instanciamos rey negro
-        this.reyN = new Rey("negro","ReyN",0,3);
+        this.reyN = new Rey(1,"ReyN",3,0);
 
-        matrizPiezas[6][0] = peonB1;
-        matrizPiezas[6][1] = peonB2;
-        matrizPiezas[6][2] = peonB3;
-        matrizPiezas[6][3] = peonB4;
-        matrizPiezas[6][4] = peonB5;
-        matrizPiezas[6][5] = peonB6;
-        matrizPiezas[6][6] = peonB7;
-        matrizPiezas[6][7] = peonB8;
-        matrizPiezas[7][0] = torreB1;
-        matrizPiezas[7][7] = torreB2;
-        matrizPiezas[7][1] = caballoB1;
-        matrizPiezas[7][6] = caballoB2;
-        matrizPiezas[7][2] = alfilB1;
-        matrizPiezas[7][5] = alfilB2;
-        matrizPiezas[7][4] = reinaB;
-        matrizPiezas[7][3] = reyB;
+    }
 
-        matrizPiezas[1][0] = peonN1;
-        matrizPiezas[1][1] = peonN2;
-        matrizPiezas[1][2] = peonN3;
-        matrizPiezas[1][3] = peonN4;
-        matrizPiezas[1][4] = peonN5;
-        matrizPiezas[1][5] = peonN6;
-        matrizPiezas[1][6] = peonN7;
-        matrizPiezas[1][7] = peonN8;
-        matrizPiezas[0][0] = torreN1;
-        matrizPiezas[0][7] = torreN2;
-        matrizPiezas[0][1] = caballoN1;
-        matrizPiezas[0][6] = caballoN2;
-        matrizPiezas[0][2] = alfilN1;
-        matrizPiezas[0][5] = alfilN2;
-        matrizPiezas[0][4] = reinaN;
-        matrizPiezas[0][3] = reyN;
+    public Pieza[][] asignarMatriz() {
+
+        this.matrizPiezas[peonB1.getPosicion()[0]][peonB1.getPosicion()[1]] = peonB1;
+        this.matrizPiezas[peonB2.getPosicion()[0]][peonB2.getPosicion()[1]] = peonB2;
+        this.matrizPiezas[peonB3.getPosicion()[0]][peonB3.getPosicion()[1]] = peonB3;
+        this.matrizPiezas[peonB4.getPosicion()[0]][peonB4.getPosicion()[1]] = peonB4;
+        this.matrizPiezas[peonB5.getPosicion()[0]][peonB5.getPosicion()[1]] = peonB5;
+        this.matrizPiezas[peonB6.getPosicion()[0]][peonB6.getPosicion()[1]] = peonB6;
+        this.matrizPiezas[peonB7.getPosicion()[0]][peonB7.getPosicion()[1]] = peonB7;
+        this.matrizPiezas[peonB8.getPosicion()[0]][peonB8.getPosicion()[1]] = peonB8;
+        this.matrizPiezas[torreB1.getPosicion()[0]][torreB1.getPosicion()[1]] = torreB1;
+        this.matrizPiezas[torreB1.getPosicion()[0]][torreB1.getPosicion()[1]] = torreB2;
+        this.matrizPiezas[caballoB1.getPosicion()[0]][caballoB1.getPosicion()[1]] = caballoB1;
+        this.matrizPiezas[caballoB2.getPosicion()[0]][caballoB2.getPosicion()[1]] = caballoB2;
+        this.matrizPiezas[alfilB1.getPosicion()[0]][alfilB1.getPosicion()[1]] = alfilB1;
+        this.matrizPiezas[alfilB2.getPosicion()[0]][alfilB2.getPosicion()[1]] = alfilB2;
+        this.matrizPiezas[reinaB.getPosicion()[0]][reinaB.getPosicion()[1]] = reinaB;
+        this.matrizPiezas[reyB.getPosicion()[0]][reyB.getPosicion()[1]] = reyB;
+
+        this.matrizPiezas[peonN1.getPosicion()[0]][peonN1.getPosicion()[1]] = peonN1;
+        this.matrizPiezas[peonN2.getPosicion()[0]][peonN2.getPosicion()[1]] = peonN2;
+        this.matrizPiezas[peonN3.getPosicion()[0]][peonN3.getPosicion()[1]] = peonN3;
+        this.matrizPiezas[peonN4.getPosicion()[0]][peonN4.getPosicion()[1]] = peonN4;
+        this.matrizPiezas[peonN5.getPosicion()[0]][peonN5.getPosicion()[1]] = peonN5;
+        this.matrizPiezas[peonN6.getPosicion()[0]][peonN6.getPosicion()[1]] = peonN6;
+        this.matrizPiezas[peonN7.getPosicion()[0]][peonN7.getPosicion()[1]] = peonN7;
+        this.matrizPiezas[peonN8.getPosicion()[0]][peonN8.getPosicion()[1]] = peonN8;
+        this.matrizPiezas[torreN1.getPosicion()[0]][torreN1.getPosicion()[1]] = torreN1;
+        this.matrizPiezas[torreN1.getPosicion()[0]][torreN1.getPosicion()[1]] = torreN2;
+        this.matrizPiezas[caballoN1.getPosicion()[0]][caballoN1.getPosicion()[1]] = caballoN1;
+        this.matrizPiezas[caballoN2.getPosicion()[0]][caballoN2.getPosicion()[1]] = caballoN2;
+        this.matrizPiezas[alfilN1.getPosicion()[0]][alfilN1.getPosicion()[1]] = alfilN1;
+        this.matrizPiezas[alfilN2.getPosicion()[0]][alfilN2.getPosicion()[1]] = alfilN2;
+        this.matrizPiezas[reinaN.getPosicion()[0]][reinaN.getPosicion()[1]] = reinaN;
+        this.matrizPiezas[reyN.getPosicion()[0]][reyN.getPosicion()[1]] = reyN;
 
         return matrizPiezas;
     }
@@ -207,6 +210,10 @@ public class Modelo {
         return true;
     }
 
+    public Pieza[][] obtenerPiezas() {
+        return matrizPiezas;
+    }
+
     /**
      * Destruye una pieza concreta
      * @param pieza
@@ -221,15 +228,20 @@ public class Modelo {
     }
 
     /**
-     * Mueve una pieza
-     * @param pieza Pieza a mover
-     * @param posicionActual Posición actual de la pieza
+     * Cambia la posicion de una pieza
+     * @param posicionInicial Posicion actual de la pieza
+     * @param posicionNueva Posicion final de la pieza
      * @return Devuelve la pieza
      */
-    public Pieza moverPieza(Pieza pieza, int[] posicionActual) {
+    public Pieza[][] moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
 
-        pieza.cambiarPosicion();
 
-        return pieza;
+        Integer[] posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva);
+
+        this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = this.matrizPiezas[posicionInicial[0]][posicionInicial[1]];
+
+        this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
+
+        return this.matrizPiezas;
     }
 }
