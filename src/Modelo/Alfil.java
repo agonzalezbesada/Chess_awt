@@ -19,7 +19,7 @@ public class Alfil extends Pieza implements IPieza {
      * @param x Fila
      * @param y Columna
      */
-    public Alfil(String color, String nombre, int x, int y) {
+    public Alfil(Integer color, String nombre, int x, int y) {
         setColor(color);
         setNombre(nombre);
         int[] posicion = new int[2];

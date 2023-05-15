@@ -11,4 +11,7 @@ public interface IPieza {
     // Quizás innecesario
     boolean destruirPieza();
 
+    final Integer BLANCO = 0;
+    final Integer NEGRO = 1;
+
 }

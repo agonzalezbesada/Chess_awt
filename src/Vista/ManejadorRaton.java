@@ -8,19 +8,19 @@ import java.awt.event.MouseListener;
 
 public class ManejadorRaton implements MouseListener {
 
-    Integer[] posicionActual = new Integer[2];
-    Integer[] posicionNueva = new Integer[2];
+    public static Integer[] posicionActual = new Integer[2];
+    public static Integer[] posicionNueva = new Integer[2];
     public JLabel[][] label;
-    public JLabel celdaVacia;
+    public JLabel celdaActual;
 
     /**
      * Constructor parametrizado que inicializa atributos
      * @param label Matriz con los JLabel
-     * @param celdaVacia JLabel desencadenante
+     * @param celdaActual JLabel desencadenante
      */
-    public ManejadorRaton(JLabel[][] label, JLabel celdaVacia) {
+    public ManejadorRaton(JLabel[][] label, JLabel celdaActual) {
         this.label = label;
-        this.celdaVacia = celdaVacia;
+        this.celdaActual = celdaActual;
     }
 
 
@@ -35,7 +35,7 @@ public class ManejadorRaton implements MouseListener {
         // Recorre la matriz en busqueda del label correspondiente
         for (int i = 0; i < label.length; i++) {
             for (int j = 0; j < label[i].length; j++) {
-                if (label[i][j] == celdaVacia) {
+                if (label[i][j] == celdaActual) {
                     posicionActual[0] = j;
                     posicionActual[1] = i;
                 }
@@ -56,7 +56,7 @@ public class ManejadorRaton implements MouseListener {
         // Recorre la matriz en busqueda del label correspondiente
         for (int i = 0; i < label.length; i++) {
             for (int j = 0; j < label[i].length; j++) {
-                if (label[i][j] == celdaVacia) {
+                if (label[i][j] == celdaActual) {
                     posicionNueva[0] = j;
                     posicionNueva[1] = i;
                     // Prueba

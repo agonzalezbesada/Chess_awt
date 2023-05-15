@@ -8,7 +8,7 @@ public abstract class Pieza implements IPieza {
     private String nombre;
     private int[] posicion = new int[2];
     private int nMovimientos;
-    private String color;
+    private Integer color;
 
 
     public boolean destruirPieza() {
@@ -67,7 +67,7 @@ public abstract class Pieza implements IPieza {
      * Devuelve el color
      * @return Devuelve el color
      */
-    public String getColor() {
+    public Integer getColor() {
         return this.color;
     }
 
@@ -75,7 +75,7 @@ public abstract class Pieza implements IPieza {
      * Introduce el color
      * @param color Color de la pieza
      */
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 }

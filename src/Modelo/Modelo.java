@@ -67,50 +67,50 @@ public class Modelo {
         Pieza[][] matrizPiezas = new Pieza[8][8];
 
         // Instanciamos peones blancos
-        this.peonB1 = new Peon("blanco","PB1",6,0);
-        this.peonB2 = new Peon("blanco", "PB2", 6,1);
-        this.peonB3 = new Peon("blanco", "PB3", 6,2);
-        this.peonB4 = new Peon("blanco", "PB4", 6,3);
-        this.peonB5 = new Peon("blanco", "PB5", 6,4);
-        this.peonB6 = new Peon("blanco", "PB6", 6,5);
-        this.peonB7 = new Peon("blanco", "PB7", 6,6);
-        this.peonB8 = new Peon("blanco", "PB8", 6,7);
+        this.peonB1 = new Peon(0,"PB1",6,0);
+        this.peonB2 = new Peon(0, "PB2", 6,1);
+        this.peonB3 = new Peon(0, "PB3", 6,2);
+        this.peonB4 = new Peon(0, "PB4", 6,3);
+        this.peonB5 = new Peon(0, "PB5", 6,4);
+        this.peonB6 = new Peon(0, "PB6", 6,5);
+        this.peonB7 = new Peon(0, "PB7", 6,6);
+        this.peonB8 = new Peon(0, "PB8", 6,7);
         // Instanciamos torres blancas
-        this.torreB1 = new Torre("blanco","TB1",7,0);
-        this.torreB2 = new Torre("blanco","TB2",7,7);
+        this.torreB1 = new Torre(0,"TB1",7,0);
+        this.torreB2 = new Torre(0,"TB2",7,7);
         // Instanciamos caballos blancos
-        this.caballoB1 = new Caballo("blanco","CB1",7,1);
-        this.caballoB2 = new Caballo("blanco","CB2",7,6);
+        this.caballoB1 = new Caballo(0,"CB1",7,1);
+        this.caballoB2 = new Caballo(0,"CB2",7,6);
         // Instanciamos alfiles blancos
-        this.alfilB1 = new Alfil("blanco","AB1",7,2);
-        this.alfilB2 = new Alfil("blanco","AB2",7,5);
+        this.alfilB1 = new Alfil(0,"AB1",7,2);
+        this.alfilB2 = new Alfil(0,"AB2",7,5);
         // Instanciamos reina blanca
-        this.reinaB = new Reina("blanco","ReinaB",7,4);
+        this.reinaB = new Reina(0,"ReinaB",7,4);
         // Instanciamos rey blanco
-        this.reyB = new Rey("blanco","ReyB",7,3);
+        this.reyB = new Rey(0,"ReyB",7,3);
 
         // Instanciamos peones negros
-        this.peonN1 = new Peon("negro","PN1",1,0);
-        this.peonN2 = new Peon("negro", "PN2",1,1);
-        this.peonN3 = new Peon("negro", "PN3",1,2);
-        this.peonN4 = new Peon("negro", "PN4",1,3);
-        this.peonN5 = new Peon("negro", "PN5",1,4);
-        this.peonN6 = new Peon("negro", "PN6",1,5);
-        this.peonN7 = new Peon("negro", "PN7",1,6);
-        this.peonN8 = new Peon("negro", "PN8",1,7);
+        this.peonN1 = new Peon(1,"PN1",1,0);
+        this.peonN2 = new Peon(1, "PN2",1,1);
+        this.peonN3 = new Peon(1, "PN3",1,2);
+        this.peonN4 = new Peon(1, "PN4",1,3);
+        this.peonN5 = new Peon(1, "PN5",1,4);
+        this.peonN6 = new Peon(1, "PN6",1,5);
+        this.peonN7 = new Peon(1, "PN7",1,6);
+        this.peonN8 = new Peon(1, "PN8",1,7);
         // Instanciamos torres negras
-        this.torreN1 = new Torre("negro","TN1",0,0);
-        this.torreN2 = new Torre("negro","TN2",0,7);
+        this.torreN1 = new Torre(1,"TN1",0,0);
+        this.torreN2 = new Torre(1,"TN2",0,7);
         // Instanciamos caballos negros
-        this.caballoN1 = new Caballo("negro","CN1",0,1);
-        this.caballoN2 = new Caballo("negro","CN2",0,6);
+        this.caballoN1 = new Caballo(1,"CN1",0,1);
+        this.caballoN2 = new Caballo(1,"CN2",0,6);
         // Instanciamos alfiles negros
-        this.alfilN1 = new Alfil("negro","AN1",0,2);
-        this.alfilN2 = new Alfil("negro","AN2",0,5);
+        this.alfilN1 = new Alfil(1,"AN1",0,2);
+        this.alfilN2 = new Alfil(1,"AN2",0,5);
         // Instanciamos reina negra
-        this.reinaN = new Reina("negro","ReinaN",0,4);
+        this.reinaN = new Reina(1,"ReinaN",0,4);
         // Instanciamos rey negro
-        this.reyN = new Rey("negro","ReyN",0,3);
+        this.reyN = new Rey(1,"ReyN",0,3);
 
         matrizPiezas[6][0] = peonB1;
         matrizPiezas[6][1] = peonB2;

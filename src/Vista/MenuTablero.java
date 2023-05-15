@@ -13,6 +13,9 @@ public class MenuTablero {
 
     public static Controlador controlador = new Controlador();
 
+    /**
+     * Genera la interfaz de la partida
+     */
     public static void generarPartida() {
         JFrame Partida = new JFrame();
         Partida.setBounds(0, 0, 1400, 1700);
