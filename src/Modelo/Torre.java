@@ -36,10 +36,14 @@ public class Torre extends Pieza implements IPieza {
 
         // || nuevaPosicion[0] > 9 && nuevaPosicion[1] > 9 ...
 
-        if (posicionNueva[0] < getPosicion()[0] && posicionNueva[1] == getPosicion()[1]) {
+        if (posicionNueva[0] == getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
             isValido = true;
-        } else if (posicionNueva[0] == getPosicion()[0] && posicionNueva[1] > getPosicion()[1]) {
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[1] == getPosicion()[1] && posicionNueva[0] != getPosicion()[0]) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         }
 
         return posicionFinal;

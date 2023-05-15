@@ -48,6 +48,8 @@ public class Controlador {
 
         System.out.println(matrizPiezas[0][1]+" "+matrizPiezas[0][2]);
 
+        modelo.asignarMatriz();
+
         vista.actualizarTablero();
 
     }
