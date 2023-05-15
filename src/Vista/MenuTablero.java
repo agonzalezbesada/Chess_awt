@@ -5,6 +5,7 @@ import Modelo.Pieza;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 
 /**
  * Ventana de la partida

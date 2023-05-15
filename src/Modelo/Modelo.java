@@ -39,6 +39,7 @@ public class Modelo {
     public Pieza alfilN2;
     public Pieza reinaN;
     public Pieza reyN;
+
     public Pieza[][] matrizPiezas = new Pieza[8][8];
 
     /**

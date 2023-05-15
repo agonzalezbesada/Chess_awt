@@ -16,7 +16,6 @@ public class Controlador {
 
         vista.LlamadaMenuP();
 
-
     }
 
     /**
@@ -51,5 +50,4 @@ public class Controlador {
         vista.actualizarTablero();
 
     }
-
 }

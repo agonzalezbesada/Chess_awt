@@ -11,6 +11,7 @@ public abstract class Pieza implements IPieza {
     private Integer color;
 
 
+
     public boolean destruirPieza() {
         return true;
     }

@@ -57,7 +57,6 @@ public class ManejadorRaton implements MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
 
-
         // Recorre la matriz en busqueda del label correspondiente
         for (int i = 0; i < label.length; i++) {
             for (int j = 0; j < label[i].length; j++) {
