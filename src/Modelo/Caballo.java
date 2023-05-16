@@ -1,22 +1,75 @@
 package Modelo;
 
+/**
+ * Pieza Caballo
+ */
 public class Caballo extends Pieza implements IPieza {
 
-    Caballo() {
+    /**
+     * Constructor vacío
+     */
+    public Caballo() {
 
     }
 
-    Caballo(String color, int x, int y) {
-        int[] posicion = new int[2];
+    /**
+     * Constructor parametrizado
+     * @param color Color de la pieza
+     * @param nombre Nombre de la pieza
+     * @param x Fila
+     * @param y Columna
+     */
+    public Caballo(Integer color, String nombre, Integer x, Integer y) {
+        setColor(color);
+        setNombre(nombre);
+        Integer[] posicion = new Integer[2];
         posicion[0] = x;
         posicion[1] = y;
-        setColor(color);
         setPosicion(posicion);
     }
 
 
     @Override
-    public int[] cambiarPosicion() {
-        return new int[0];
+    public Integer[] cambiarPosicion(Integer[] posicionNueva) {
+
+        boolean isValido;
+        Integer[] posicionFinal = new Integer[2];
+
+        if (posicionNueva[0] == getPosicion()[0]+1 && posicionNueva[1] == getPosicion()[1]+2) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[0] == getPosicion()[0]+1 && posicionNueva[1] == getPosicion()[1]-2) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[0] == getPosicion()[0]+2 && posicionNueva[1] == getPosicion()[1]+1) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[0] == getPosicion()[0]+2 && posicionNueva[1] == getPosicion()[1]-1) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[0] == getPosicion()[0]-1 && posicionNueva[1] == getPosicion()[1]+2) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[0] == getPosicion()[0]-1 && posicionNueva[1] == getPosicion()[1]-2) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[0] == getPosicion()[0]-2 && posicionNueva[1] == getPosicion()[1]+1) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        } else if (posicionNueva[0] == getPosicion()[0]-2 && posicionNueva[1] == getPosicion()[1]-1) {
+            isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
+        }
+
+
+        return posicionFinal;
     }
 }
