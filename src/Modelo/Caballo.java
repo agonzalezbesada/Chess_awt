@@ -37,20 +37,36 @@ public class Caballo extends Pieza implements IPieza {
 
         if (posicionNueva[0] == getPosicion()[0]+1 && posicionNueva[1] == getPosicion()[1]+2) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         } else if (posicionNueva[0] == getPosicion()[0]+1 && posicionNueva[1] == getPosicion()[1]-2) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         } else if (posicionNueva[0] == getPosicion()[0]+2 && posicionNueva[1] == getPosicion()[1]+1) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         } else if (posicionNueva[0] == getPosicion()[0]+2 && posicionNueva[1] == getPosicion()[1]-1) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         } else if (posicionNueva[0] == getPosicion()[0]-1 && posicionNueva[1] == getPosicion()[1]+2) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         } else if (posicionNueva[0] == getPosicion()[0]-1 && posicionNueva[1] == getPosicion()[1]-2) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         } else if (posicionNueva[0] == getPosicion()[0]-2 && posicionNueva[1] == getPosicion()[1]+1) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         } else if (posicionNueva[0] == getPosicion()[0]-2 && posicionNueva[1] == getPosicion()[1]-1) {
             isValido = true;
+            posicionFinal = posicionNueva;
+            setPosicion(posicionFinal);
         }
 
 

@@ -126,7 +126,7 @@ public class Modelo {
         this.matrizPiezas[peonB7.getPosicion()[0]][peonB7.getPosicion()[1]] = peonB7;
         this.matrizPiezas[peonB8.getPosicion()[0]][peonB8.getPosicion()[1]] = peonB8;
         this.matrizPiezas[torreB1.getPosicion()[0]][torreB1.getPosicion()[1]] = torreB1;
-        this.matrizPiezas[torreB1.getPosicion()[0]][torreB1.getPosicion()[1]] = torreB2;
+        this.matrizPiezas[torreB2.getPosicion()[0]][torreB2.getPosicion()[1]] = torreB2;
         this.matrizPiezas[caballoB1.getPosicion()[0]][caballoB1.getPosicion()[1]] = caballoB1;
         this.matrizPiezas[caballoB2.getPosicion()[0]][caballoB2.getPosicion()[1]] = caballoB2;
         this.matrizPiezas[alfilB1.getPosicion()[0]][alfilB1.getPosicion()[1]] = alfilB1;
@@ -143,7 +143,7 @@ public class Modelo {
         this.matrizPiezas[peonN7.getPosicion()[0]][peonN7.getPosicion()[1]] = peonN7;
         this.matrizPiezas[peonN8.getPosicion()[0]][peonN8.getPosicion()[1]] = peonN8;
         this.matrizPiezas[torreN1.getPosicion()[0]][torreN1.getPosicion()[1]] = torreN1;
-        this.matrizPiezas[torreN1.getPosicion()[0]][torreN1.getPosicion()[1]] = torreN2;
+        this.matrizPiezas[torreN2.getPosicion()[0]][torreN2.getPosicion()[1]] = torreN2;
         this.matrizPiezas[caballoN1.getPosicion()[0]][caballoN1.getPosicion()[1]] = caballoN1;
         this.matrizPiezas[caballoN2.getPosicion()[0]][caballoN2.getPosicion()[1]] = caballoN2;
         this.matrizPiezas[alfilN1.getPosicion()[0]][alfilN1.getPosicion()[1]] = alfilN1;
@@ -235,10 +235,14 @@ public class Modelo {
      */
     public Pieza[][] moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
 
+        System.out.println("Posicion inicial 0 "+posicionInicial[0]);
+        System.out.println("Posicion inicial 1 "+posicionInicial[1]);
 
         Integer[] posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva);
 
         this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = this.matrizPiezas[posicionInicial[0]][posicionInicial[1]];
+
+        System.out.println("Despues del =\n"+posicionFinal[0]+" "+posicionFinal[1]);
 
         this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
 

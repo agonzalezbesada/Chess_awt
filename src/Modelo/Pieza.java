@@ -10,8 +10,6 @@ public abstract class Pieza implements IPieza {
     private int nMovimientos;
     private Integer color;
 
-
-
     public boolean destruirPieza() {
         return true;
     }
@@ -45,7 +43,8 @@ public abstract class Pieza implements IPieza {
      * @param posicion Atributo de posicion
      */
     public void setPosicion(Integer[] posicion) {
-        this.posicion = posicion;
+        this.posicion[0] = posicion[0];
+        this.posicion[1] = posicion[1];
     }
 
     /**
