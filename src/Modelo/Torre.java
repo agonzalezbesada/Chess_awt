@@ -34,8 +34,6 @@ public class Torre extends Pieza implements IPieza {
         boolean isValido;
         Integer[] posicionFinal = new Integer[2];
 
-        // || nuevaPosicion[0] > 9 && nuevaPosicion[1] > 9 ...
-
         if (posicionNueva[0] == getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
             isValido = true;
             posicionFinal = posicionNueva;

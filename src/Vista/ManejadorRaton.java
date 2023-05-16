@@ -1,7 +1,5 @@
 package Vista;
 
-import Controlador.Controlador;
-
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -56,7 +54,6 @@ public class ManejadorRaton implements MouseListener {
      */
     @Override
     public void mouseEntered(MouseEvent e) {
-
 
         // Recorre la matriz en busqueda del label correspondiente
         for (int i = 0; i < label.length; i++) {

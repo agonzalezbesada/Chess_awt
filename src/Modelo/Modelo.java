@@ -39,6 +39,7 @@ public class Modelo {
     public Pieza alfilN2;
     public Pieza reinaN;
     public Pieza reyN;
+
     public Pieza[][] matrizPiezas = new Pieza[8][8];
 
     /**
@@ -233,7 +234,6 @@ public class Modelo {
      * @return Devuelve la pieza
      */
     public Pieza[][] moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
-
 
         System.out.println("Posicion inicial 0 "+posicionInicial[0]);
         System.out.println("Posicion inicial 1 "+posicionInicial[1]);

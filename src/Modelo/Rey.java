@@ -52,7 +52,6 @@ public class Rey extends Pieza implements IPieza {
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
             }
-
         }
 
 

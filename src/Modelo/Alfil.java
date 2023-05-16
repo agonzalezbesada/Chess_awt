@@ -37,12 +37,10 @@ public class Alfil extends Pieza implements IPieza {
 
         if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
             if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
-                // FALTA IMPEDIR QUE SEA TOTALMENTE LIBRE
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
             } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
-                // FALTA IMPEDIR QUE SEA TOTALMENTE LIBRE
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
