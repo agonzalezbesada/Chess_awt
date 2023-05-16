@@ -1,4 +1,5 @@
 package Vista;
+
 import Controlador.Controlador;
 
 import java.awt.*;
@@ -19,5 +20,4 @@ public class Vista {
     public void actualizarTablero() {
         MenuTablero.generarPartida(1);
     }
-
 }
