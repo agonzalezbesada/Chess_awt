@@ -154,6 +154,10 @@ public class Modelo {
         return matrizPiezas;
     }
 
+    public Pieza[][] obtenerMatriz() {
+        return matrizPiezas;
+    }
+
     /**
      * Destruye las piezas
      * @return
@@ -238,13 +242,20 @@ public class Modelo {
         System.out.println("Posicion inicial 0 "+posicionInicial[0]);
         System.out.println("Posicion inicial 1 "+posicionInicial[1]);
 
-        Integer[] posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva);
+        Integer[] posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
 
-        this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = this.matrizPiezas[posicionInicial[0]][posicionInicial[1]];
+        if (posicionFinal != null) {
 
-        System.out.println("Despues del =\n"+posicionFinal[0]+" "+posicionFinal[1]);
+            this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = null;
 
-        this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
+            this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = this.matrizPiezas[posicionInicial[0]][posicionInicial[1]];
+
+            System.out.println("Despues del =\n"+posicionFinal[0]+" "+posicionFinal[1]);
+
+            this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
+        }
+
+
 
         return this.matrizPiezas;
     }

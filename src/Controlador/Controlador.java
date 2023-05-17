@@ -33,7 +33,7 @@ public class Controlador {
      * @return Matriz con las posiciones actuales
      */
     public static Pieza[][] posicionesActuales() {
-        return modelo.asignarMatriz();
+        return modelo.obtenerMatriz();
     }
 
     /**
