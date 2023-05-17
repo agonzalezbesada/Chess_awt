@@ -47,6 +47,7 @@ public class MenuPrincipal {
         panel.add(IniciarSesion);
         panel.add(Estadisticas);
         panel.add(Salir);
+
         // Añadimos los botones al panel, y le ponemos una especie de padding con unos límites para separar estos del frame
         // Add an EmptyBorder with a 50-pixel margin around the panel
         panel.setBorder(new EmptyBorder(150, 200, 150, 200));

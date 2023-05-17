@@ -1,4 +1,5 @@
 package Vista;
+
 import Controlador.Controlador;
 
 import javax.swing.*;
@@ -20,5 +21,4 @@ public class Vista {
     public void actualizarTablero() {
         MenuTablero.actualizarTablero(1);
     }
-
 }

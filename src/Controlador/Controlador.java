@@ -48,5 +48,4 @@ public class Controlador {
         vista.actualizarTablero();
 
     }
-
 }
