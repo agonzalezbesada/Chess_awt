@@ -12,15 +12,23 @@ public class MenuTablero {
 
 
         JPanel tablero = MenuTablero.generarTablero();
-        JPanel informacionExtra = new JPanel(new GridLayout(2,1));
+        JPanel informacionExtra = new JPanel(new GridLayout(5,1));
 
         //Aquí iría la funcionalidad de generar tablero
         JLabel Temporizador = new JLabel("03:00");
+        JButton CambiarTurno = new JButton("Cambiar turno");
+        JTextField CasillaInicial = new JTextField("Casilla inicial");
+        JTextField CasillaFinal = new JTextField("Casilla final");
         JButton GuardarYSalir = new JButton("Guardar y salir");
 
         informacionExtra.add(Temporizador);
+        informacionExtra.add(CambiarTurno);
+        informacionExtra.add(CasillaInicial);
+        informacionExtra.add(CasillaFinal);
         informacionExtra.add(GuardarYSalir);
+
         Partida.add(informacionExtra, BorderLayout.EAST);
+        Partida.setVisible(true);
     }
     public static JPanel generarTablero() {
         JPanel tablero = new JPanel(new GridLayout(9, 9));
@@ -50,5 +58,12 @@ public class MenuTablero {
         }
 
         return tablero;
+    }
+
+    public Timer Temporizador (){
+        Timer temporizador;
+        JTimer
+
+        return temporizador;
     }
 }
