@@ -30,23 +30,45 @@ public class Alfil extends Pieza implements IPieza {
 
 
     @Override
-    public Integer[] cambiarPosicion(Integer[] posicionNueva) {
+    public Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas) {
 
         boolean isValido;
         Integer[] posicionFinal = new Integer[2];
 
-        if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
-            if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
-                isValido = true;
-                posicionFinal = posicionNueva;
-                setPosicion(posicionFinal);
-            } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
-                isValido = true;
-                posicionFinal = posicionNueva;
-                setPosicion(posicionFinal);
+        if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) {
+
+            if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
+
+                if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
+                    isValido = true;
+                    posicionFinal = posicionNueva;
+                    setPosicion(posicionFinal);
+                } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
+                    isValido = true;
+                    posicionFinal = posicionNueva;
+                    setPosicion(posicionFinal);
+                }
+
+            }
+
+        } else {
+
+            if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
+
+                if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
+                    isValido = true;
+                    posicionFinal = posicionNueva;
+                    setPosicion(posicionFinal);
+                } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
+                    isValido = true;
+                    posicionFinal = posicionNueva;
+                    setPosicion(posicionFinal);
+                }
+
             }
 
         }
+
 
         return posicionFinal;
     }
