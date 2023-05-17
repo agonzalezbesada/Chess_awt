@@ -16,17 +16,22 @@ import java.util.TimerTask;
 public class MenuTablero {
     private static JLabel EtiquetaTemporizador;
 
+    public static JPanel tablero;
+    public static JFrame Partida;
+    public static JLabel[][] label;
+
     /**
      * Genera la interfaz de la partida
      */
     public static void generarPartida(int modo) {
-        JFrame Partida = new JFrame();
+        Partida = new JFrame();
         Partida.setBounds(0, 0, 1400, 1700);
-
 
 
         JPanel tablero = MenuTablero.generarTablero(0);
         JPanel informacionExtra = new JPanel(new GridLayout(6,1));
+        tablero = MenuTablero.generarTablero(modo);
+        informacionExtra = new JPanel(new GridLayout(2, 1));
 
         //Aquí iría la funcionalidad de generar tablero
         EtiquetaTemporizador = new JLabel();
@@ -61,7 +66,7 @@ public class MenuTablero {
      */
     public static JPanel generarTablero(int modo) {
 
-        JPanel tablero = new JPanel(new GridLayout(9, 9)); // Inicializa el tablero y un GridLayout
+        tablero = new JPanel(new GridLayout(9, 9)); // Inicializa el tablero y un GridLayout
 
         // Agregamos las letras en la fila superior
         tablero.add(new JLabel(""));
@@ -79,7 +84,7 @@ public class MenuTablero {
             matrizPiezas = Controlador.posicionesActuales(); // Matriz con las piezas actuales
         }
 
-        JLabel[][] label = new JLabel[8][8]; // Matriz con labels
+        label = new JLabel[8][8]; // Matriz con labels
         int numeros = 8;
 
         for (int col = 0; col < 8; col++) {
@@ -121,10 +126,15 @@ public class MenuTablero {
         return tablero;
     }
 
+/** Añadimos la funcionalidad para el temporizador**/
     public static void Temporizador (int minutos){
+        //declaramos segundos y un contador (debe ser final para que pueda usarse en el método
+        //anónimo)
         int segundos = minutos * 60;
         final int[] contador = {minutos * 60};
         Timer temporizador = new Timer(1000, new ActionListener() {
+           //Creamos el temporizador, y vamos restando el contador con un delay determinado para
+            //poder restar de segundo en segundo,
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (contador[0] > 0){
@@ -138,9 +148,24 @@ public class MenuTablero {
         });
         temporizador.start();
     }
+    //Modificar visual lo único que realiza es el cambio en Timer, pero en GUI
+    //Para ello, necesitamos configurar el formato de la String (02d para saber cuántos dígitos
+    //son e incluir un 0 a la derecha, como formato de hora, y pasarle los minutos y segundos
+    //restantes. El resto de la división entre los segundos y 60 nos sirve para representar
+    //visualmnente cuántos segundos quedan de cada minuto.
     public static String ModificarVisual(int segundos){
         int minutos = segundos/60;
         int segundosRestantes = segundos % 60;
         return String.format("%02d:%02d", minutos, segundosRestantes);
     }
+
+    public static void actualizarTablero(int modo) {
+
+        tablero = generarTablero(modo);
+
+        Partida.add(tablero);
+        Partida.setVisible(true);
+
+    }
 }
+
