@@ -4,6 +4,8 @@ import Modelo.Modelo;
 import Modelo.Pieza;
 import Vista.Vista;
 
+import javax.swing.*;
+
 /**
  * Controlador
  */
@@ -40,14 +42,8 @@ public class Controlador {
      * @param posicionNueva Posicion deseada a la que desplazarse
      */
     public static void moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
-        // pieza = modelo.moverPieza(pieza, posicionInicial);
-        System.out.println("Mover pieza de la posición "+posicionInicial[0]+" "+posicionInicial[1]+ " a la posición "+posicionNueva[0]+" "+posicionNueva[1]);
 
-        Pieza[][] matrizPiezas = modelo.moverPieza(posicionInicial, posicionNueva);
-
-        System.out.println(matrizPiezas[0][1]+" "+matrizPiezas[0][2]);
-
-        modelo.asignarMatriz();
+        modelo.moverPieza(posicionInicial, posicionNueva);
 
         vista.actualizarTablero();
 

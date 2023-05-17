@@ -5,22 +5,25 @@ import Modelo.Pieza;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Scanner;
 
 /**
  * Ventana de la partida
  */
 public class MenuTablero {
 
+    public static JPanel tablero;
+    public static JFrame Partida;
+    public static JLabel[][] label;
+
     /**
      * Genera la interfaz de la partida
      */
     public static void generarPartida(int modo) {
-        JFrame Partida = new JFrame();
+        Partida = new JFrame();
         Partida.setBounds(0, 0, 1400, 1700);
 
 
-        JPanel tablero = MenuTablero.generarTablero(modo);
+        tablero = MenuTablero.generarTablero(modo);
         JPanel informacionExtra = new JPanel(new GridLayout(2, 1));
 
         //Aquí iría la funcionalidad de generar tablero
@@ -40,7 +43,7 @@ public class MenuTablero {
      */
     public static JPanel generarTablero(int modo) {
 
-        JPanel tablero = new JPanel(new GridLayout(9, 9)); // Inicializa el tablero y un GridLayout
+        tablero = new JPanel(new GridLayout(9, 9)); // Inicializa el tablero y un GridLayout
 
         // Agregamos las letras en la fila superior
         tablero.add(new JLabel(""));
@@ -58,7 +61,7 @@ public class MenuTablero {
             matrizPiezas = Controlador.posicionesActuales(); // Matriz con las piezas actuales
         }
 
-        JLabel[][] label = new JLabel[8][8]; // Matriz con labels
+        label = new JLabel[8][8]; // Matriz con labels
         int numeros = 8;
 
         for (int col = 0; col < 8; col++) {
@@ -98,5 +101,14 @@ public class MenuTablero {
         }
 
         return tablero;
+    }
+
+    public static void actualizarTablero(int modo) {
+
+        tablero = generarTablero(modo);
+
+        Partida.add(tablero);
+        Partida.setVisible(true);
+
     }
 }
