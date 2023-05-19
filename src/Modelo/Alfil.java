@@ -35,15 +35,15 @@ public class Alfil extends Pieza implements IPieza {
         boolean isValido;
         Integer[] posicionFinal = new Integer[2];
 
-        if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) {
+        if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) { // Si en la posicion final existe una pieza
 
-            if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
+            if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) { // Si son diferentes tanto la fila como la columna
 
-                if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
+                if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal \
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
-                } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
+                } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal /
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
@@ -51,15 +51,15 @@ public class Alfil extends Pieza implements IPieza {
 
             }
 
-        } else {
+        } else { // Si en la posicion final no existe una pieza
 
-            if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
+            if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) { // Si son diferentes tanto la fila como la columna
 
-                if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
+                if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal \
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
-                } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
+                } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal /
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
