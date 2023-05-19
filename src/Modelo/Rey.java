@@ -81,6 +81,7 @@ public class Rey extends Pieza implements IPieza {
 
         }
 
+
         return posicionFinal;
     }
 }

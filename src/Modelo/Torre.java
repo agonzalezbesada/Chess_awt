@@ -61,6 +61,7 @@ public class Torre extends Pieza implements IPieza {
 
         }
 
+
         return posicionFinal;
     }
 }
