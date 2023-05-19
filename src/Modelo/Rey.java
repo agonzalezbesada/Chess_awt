@@ -29,7 +29,7 @@ public class Rey extends Pieza implements IPieza {
     }
 
     @Override
-    public Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas) { // Si en la posicion final existe una pieza
+    public Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas) {
 
         boolean isValido;
         Integer[] posicionFinal = new Integer[2];
