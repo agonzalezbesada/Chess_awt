@@ -37,7 +37,7 @@ public class Controlador {
     }
 
     /**
-     * Lammada para mover las piezas
+     * Llamada para mover las piezas
      * @param posicionInicial Posicion de la pieza a mover
      * @param posicionNueva Posicion deseada a la que desplazarse
      */
