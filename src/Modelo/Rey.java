@@ -35,44 +35,44 @@ public class Rey extends Pieza implements IPieza {
         Integer[] posicionFinal = new Integer[2];
 
 
-        if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) {
+        if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) { // Si en la posicion final existe una pieza
 
-            if (posicionNueva[1] == getPosicion()[1]) {
-                if (posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2){
+            if (posicionNueva[1] == getPosicion()[1]) { // Si el movimiento es horizontal
+                if (posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2){ // Si sólo se mueve una posición en ese sentido
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
                 }
-            } else if (posicionNueva[0] == getPosicion()[0]) {
-                if (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2) {
+            } else if (posicionNueva[0] == getPosicion()[0]) { // Si el movimiento es vertical
+                if (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2) { // Si sólo se mueve una posición en ese sentido
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
                 }
-            } else if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
-                if ((posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2) && (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2)) {
+            } else if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) { // Si se mueve diagonalmente
+                if ((posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2) && (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2)) { // Si se mueve sólo una posición
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
                 }
             }
 
-        } else {
+        } else { // Si en la posicion final no existe una pieza
 
-            if (posicionNueva[1] == getPosicion()[1]) {
-                if (posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2){
+            if (posicionNueva[1] == getPosicion()[1]) { // Si el movimiento es horizontal
+                if (posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2){ // Si sólo se mueve una posición en ese sentido
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
                 }
-            } else if (posicionNueva[0] == getPosicion()[0]) {
-                if (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2) {
+            } else if (posicionNueva[0] == getPosicion()[0]) { // Si el movimiento es vertical
+                if (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2) { // Si sólo se mueve una posición en ese sentido
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
                 }
-            } else if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) {
-                if ((posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2) && (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2)) {
+            } else if (posicionNueva[0] != getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) { // Si se mueve diagonalmente
+                if ((posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2) && (posicionNueva[1] < getPosicion()[1]+2 && posicionNueva[1] > getPosicion()[1]-2)) { // Si se mueve sólo una posición
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
@@ -80,7 +80,6 @@ public class Rey extends Pieza implements IPieza {
             }
 
         }
-
 
 
         return posicionFinal;

@@ -35,41 +35,41 @@ public class Reina extends Pieza implements IPieza {
         Integer[] posicionFinal = new Integer[2];
 
 
-        if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) {
+        if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) { // Si en la posicion final existe una pieza
 
-            if (posicionNueva[1] == getPosicion()[1]) {
+            if (posicionNueva[1] == getPosicion()[1]) { // Si el movimiento es horizontal
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
-            } else if (posicionNueva[0] == getPosicion()[0]) {
+            } else if (posicionNueva[0] == getPosicion()[0]) { // Si el movimiento es vertical
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
-            } else if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
+            } else if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal \
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
-            } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
+            } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal /
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
             }
 
-        } else {
+        } else { // Si en la posicion final no existe una pieza
 
-            if (posicionNueva[1] == getPosicion()[1]) {
+            if (posicionNueva[1] == getPosicion()[1]) { // Si el movimiento es horizontal
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
-            } else if (posicionNueva[0] == getPosicion()[0]) {
+            } else if (posicionNueva[0] == getPosicion()[0]) { // Si el movimiento es vertical
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
-            } else if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) {
+            } else if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal \
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
-            } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) {
+            } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal /
                 isValido = true;
                 posicionFinal = posicionNueva;
                 setPosicion(posicionFinal);
