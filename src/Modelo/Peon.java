@@ -45,7 +45,7 @@ public class Peon extends Pieza implements IPieza {
 
                 if (getColor().equals(IPieza.BLANCO)) { // Si la pieza es blanca
 
-                    if (posicionNueva[0] != getPosicion()[0] && posicionNueva[0] > getPosicion()[0]-2 && posicionNueva[0] < getPosicion()[0]+2) { // Solo puede alejarse una casilla en diagonal
+                    if (posicionNueva[0] != getPosicion()[0] && posicionNueva[0] > getPosicion()[0]-2) { // Solo puede alejarse una casilla en diagonal
                         if (posicionNueva[1] < getPosicion()[1] && posicionNueva[1] > getPosicion()[1]-2) { // Solo puede ser hacia adelante
                             isValido = true;
                             posicionFinal = posicionNueva;
@@ -55,7 +55,7 @@ public class Peon extends Pieza implements IPieza {
 
                 } else if (getColor().equals(IPieza.NEGRO)) { // Si la pieza es negra
 
-                    if (posicionNueva[0] != getPosicion()[0] && posicionNueva[0] > getPosicion()[0]-2 && posicionNueva[0] > getPosicion()[0]-2) { // Solo puede alejarse una casilla en diagonal
+                    if (posicionNueva[0] != getPosicion()[0] && posicionNueva[0] > getPosicion()[0]-2) { // Solo puede alejarse una casilla en diagonal
                         if (posicionNueva[1] > getPosicion()[1] && posicionNueva[1] < getPosicion()[1]+2) { // Solo puede ser hacia adelante
                             isValido = true;
                             posicionFinal = posicionNueva;
