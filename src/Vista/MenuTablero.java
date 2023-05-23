@@ -17,15 +17,16 @@ public class MenuTablero {
     private static JLabel EtiquetaTemporizador;
 
     public static JPanel tablero;
-    public static JFrame Partida;
+    public static JFrame partida;
     public static JLabel[][] label;
 
     /**
      * Genera la interfaz de la partida
      */
     public static void generarPartida(int modo) {
-        Partida = new JFrame();
-        Partida.setBounds(0, 0, 1400, 1700);
+        partida = new JFrame();
+        partida.setBounds(0, 0, 1920, 1050);
+        partida.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
         JPanel tablero = MenuTablero.generarTablero(0);
@@ -169,8 +170,8 @@ public class MenuTablero {
 
         tablero = generarTablero(modo);
 
-        Partida.add(tablero);
-        Partida.setVisible(true);
+        partida.add(tablero);
+        partida.setVisible(true);
 
     }
 }

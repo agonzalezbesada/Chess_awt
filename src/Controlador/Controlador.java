@@ -33,11 +33,11 @@ public class Controlador {
      * @return Matriz con las posiciones actuales
      */
     public static Pieza[][] posicionesActuales() {
-        return modelo.asignarMatriz();
+        return modelo.obtenerMatriz();
     }
 
     /**
-     * Lammada para mover las piezas
+     * Llamada para mover las piezas
      * @param posicionInicial Posicion de la pieza a mover
      * @param posicionNueva Posicion deseada a la que desplazarse
      */
