@@ -77,6 +77,7 @@ public class MenuTablero {
         Pieza[][] matrizPiezas = null;
 
         // Dependiendo de si se desea crear o actualizar
+        // TODO Literales
         if (modo == 0) {
             matrizPiezas = Controlador.posicionesIniciales(); // Matriz con las piezas iniciales
         } else if (modo == 1) {

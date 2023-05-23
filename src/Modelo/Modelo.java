@@ -253,6 +253,8 @@ public class Modelo {
             System.out.println("Despues del =\n"+posicionFinal[0]+" "+posicionFinal[1]);
 
             this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
+
+            // TODO observable
         }
 
 

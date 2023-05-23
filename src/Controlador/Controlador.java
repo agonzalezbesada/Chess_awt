@@ -48,4 +48,10 @@ public class Controlador {
         vista.actualizarTablero();
 
     }
+
+    public static void actualizarTablero() {
+
+        vista.actualizarTablero(); // TODO pasar esto a observador
+
+    }
 }
