@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
+import java.util.TimerTask;
 
 /**
  * Ventana de la partida
@@ -53,10 +55,10 @@ public class MenuTablero {
         informacionExtra.add(CasillaFinal);
         informacionExtra.add(GuardarYSalir);
 
-        partida.add(informacionExtra, BorderLayout.EAST);
+        Partida.add(informacionExtra, BorderLayout.EAST);
 
-        partida.add(tablero);
-        partida.setVisible(true);
+        Partida.add(tablero);
+        Partida.setVisible(true);
     }
 
     /**
@@ -148,11 +150,17 @@ public class MenuTablero {
         });
         temporizador.start();
     }
-    //Modificar visual lo único que realiza es el cambio en Timer, pero en GUI
-    //Para ello, necesitamos configurar el formato de la String (02d para saber cuántos dígitos
-    //son e incluir un 0 a la derecha, como formato de hora, y pasarle los minutos y segundos
-    //restantes. El resto de la división entre los segundos y 60 nos sirve para representar
-    //visualmnente cuántos segundos quedan de cada minuto.
+
+    /**
+     * Modificar visual lo único que realiza es el cambio en Timer, pero en GUI
+     *     Para ello, necesitamos configurar el formato de la String (02d para saber cuántos dígitos
+     *     son e incluir un 0 a la derecha, como formato de hora, y pasarle los minutos y segundos
+     *     restantes. El resto de la división entre los segundos y 60 nos sirve para representar
+     *     visualmnente cuántos segundos quedan de cada minuto.
+     *
+     * @param segundos
+     * @return
+     */
     public static String ModificarVisual(int segundos){
         int minutos = segundos/60;
         int segundosRestantes = segundos % 60;
