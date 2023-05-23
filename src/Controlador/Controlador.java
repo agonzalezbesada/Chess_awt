@@ -4,8 +4,6 @@ import Modelo.Modelo;
 import Modelo.Pieza;
 import Vista.Vista;
 
-import javax.swing.*;
-
 /**
  * Controlador
  */
