@@ -18,7 +18,8 @@ public class MenuPrincipal {
 
         JFrame MenuPrincipal = new JFrame(); // Pantalla del menu principal
         MenuPrincipal.setTitle("Ajedrez"); // Nombre de la pantalla
-        MenuPrincipal.setBounds(0,0, 1400, 700); // Proporciones
+        MenuPrincipal.setBounds(0,0, 1920, 1050); // Proporciones
+        MenuPrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         // Tras crear el menú principal, generamos un panel donde introducimos un GridLayout con 4 filas y 1 columna
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4, 1));
@@ -47,6 +48,9 @@ public class MenuPrincipal {
         panel.add(IniciarSesion);
         panel.add(Estadisticas);
         panel.add(Salir);
+
+        /** Añadimos los botones al panel, y le ponemos una especie de padding con unos límites para separar estos del
+         * frame **/
 
         // Añadimos los botones al panel, y le ponemos una especie de padding con unos límites para separar estos del frame
         // Add an EmptyBorder with a 50-pixel margin around the panel

@@ -6,7 +6,7 @@ package Modelo;
 public interface IPieza {
 
     // Quizás innecesario
-    Integer[] cambiarPosicion(Integer[] posicionNueva);
+    Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas);
 
     // Quizás innecesario
     boolean destruirPieza();
