@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
+import java.util.TimerTask;
 
 /**
  * Ventana de la partida
@@ -53,10 +55,10 @@ public class MenuTablero {
         informacionExtra.add(CasillaFinal);
         informacionExtra.add(GuardarYSalir);
 
-        partida.add(informacionExtra, BorderLayout.EAST);
+        Partida.add(informacionExtra, BorderLayout.EAST);
 
-        partida.add(tablero);
-        partida.setVisible(true);
+        Partida.add(tablero);
+        Partida.setVisible(true);
     }
 
     /**
@@ -183,4 +185,3 @@ public class MenuTablero {
 
     }
 }
-
