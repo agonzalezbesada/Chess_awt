@@ -135,8 +135,12 @@ public class MenuTablero {
         int segundos = minutos * 60;
         final int[] contador = {minutos * 60};
         Timer temporizador = new Timer(1000, new ActionListener() {
-           //Creamos el temporizador, y vamos restando el contador con un delay determinado para
-            //poder restar de segundo en segundo,
+
+            /**
+             * Creamos el temporizador, y vamos restando el contador con un delay determinado para
+             * poder restar de segundo en segundo
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (contador[0] > 0){
@@ -152,22 +156,27 @@ public class MenuTablero {
     }
 
     /**
-     * Modificar visual lo único que realiza es el cambio en Timer, pero en GUI
-     *     Para ello, necesitamos configurar el formato de la String (02d para saber cuántos dígitos
-     *     son e incluir un 0 a la derecha, como formato de hora, y pasarle los minutos y segundos
-     *     restantes. El resto de la división entre los segundos y 60 nos sirve para representar
-     *     visualmnente cuántos segundos quedan de cada minuto.
-     *
+     * Realiza el cambio en Timer, pero en GUI.
      * @param segundos
      * @return
      */
     public static String ModificarVisual(int segundos){
+        /*
+         El resto de la división entre los segundos y 60 nos sirve para representar
+         visualmnente cuántos segundos quedan de cada minuto.
+         */
         int minutos = segundos/60;
         int segundosRestantes = segundos % 60;
+        /*
+         Configura el formato de la String (02d) para saber cuántos dígitos son
+         e incluir un 0 a la derecha, como formato de hora, y pasarle los minutos y segundos restantes.
+         */
         return String.format("%02d:%02d", minutos, segundosRestantes);
     }
 
     public static void actualizarTablero(int modo) {
+
+        partida.remove(tablero);
 
         tablero = generarTablero(modo);
 
