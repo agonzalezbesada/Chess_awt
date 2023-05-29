@@ -50,19 +50,20 @@ public class Alfil extends Pieza implements IPieza {
                         if (matrizPiezas[i][comprobacionFila] != null) {
 
                             isValido = false;
-                            break;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
 
                         }
 
-
                     }
 
+                    comprobacionFila = getPosicion()[1];
                     for (int i = getPosicion()[0]-1; i > posicionNueva[0]; i--) {
 
-                        if (matrizPiezas[i][i] != null) {
+                        comprobacionFila--;
+                        if (matrizPiezas[i][comprobacionFila] != null) {
 
                             isValido = false;
-                            break;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
 
                         }
 
@@ -76,8 +77,40 @@ public class Alfil extends Pieza implements IPieza {
 
                 } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal /
                     isValido = true;
-                    posicionFinal = posicionNueva;
-                    setPosicion(posicionFinal);
+
+                    int comprobacionFila = getPosicion()[1]; // Variable para poder recorrer la matriz en diagonal
+
+                    for (int i = getPosicion()[0]+1; i < posicionNueva[0]; i++) {
+
+                        comprobacionFila--;
+                        if (matrizPiezas[i][comprobacionFila] != null) {
+
+                            isValido = false;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
+
+                        }
+
+                    }
+
+                    comprobacionFila = getPosicion()[1];
+                    for (int i = getPosicion()[0]-1; i > posicionNueva[0]; i--) {
+
+                        comprobacionFila++;
+                        if (matrizPiezas[i][comprobacionFila] != null) {
+
+                            isValido = false;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
+
+                        }
+
+                    }
+
+                    if (isValido) { // Si no hay ninguna pieza en su camino y por tanto es valido
+                        posicionFinal = posicionNueva;
+                        setPosicion(posicionFinal);
+                        setNMovimientos();
+                    }
+
                 }
 
             }
@@ -88,17 +121,82 @@ public class Alfil extends Pieza implements IPieza {
 
                 if ((posicionNueva[0] - getPosicion()[0]) == (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal \
                     isValido = true;
-                    posicionFinal = posicionNueva;
-                    setPosicion(posicionFinal);
+
+                    int comprobacionFila = getPosicion()[1]; // Variable para poder recorrer la matriz en diagonal
+
+                    for (int i = getPosicion()[0]+1; i < posicionNueva[0]; i++) {
+
+                        comprobacionFila++;
+                        if (matrizPiezas[i][comprobacionFila] != null) {
+
+                            isValido = false;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
+
+                        }
+
+                    }
+
+                    comprobacionFila = getPosicion()[1];
+                    for (int i = getPosicion()[0]-1; i > posicionNueva[0]; i--) {
+
+                        comprobacionFila--;
+                        if (matrizPiezas[i][comprobacionFila] != null) {
+
+                            isValido = false;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
+
+                        }
+
+                    }
+
+                    if (isValido) { // Si no hay ninguna pieza en su camino y por tanto es valido
+                        posicionFinal = posicionNueva;
+                        setPosicion(posicionFinal);
+                        setNMovimientos();
+                    }
+
                 } else if (posicionNueva[0] == getPosicion()[0] - (posicionNueva[1] - getPosicion()[1])) { // Si se mueve en la diagonal /
                     isValido = true;
-                    posicionFinal = posicionNueva;
-                    setPosicion(posicionFinal);
+
+                    int comprobacionFila = getPosicion()[1]; // Variable para poder recorrer la matriz en diagonal
+
+                    for (int i = getPosicion()[0]+1; i < posicionNueva[0]; i++) {
+
+                        comprobacionFila--;
+                        if (matrizPiezas[i][comprobacionFila] != null) {
+
+                            isValido = false;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
+
+                        }
+
+                    }
+
+                    comprobacionFila = getPosicion()[1];
+                    for (int i = getPosicion()[0]-1; i > posicionNueva[0]; i--) {
+
+                        comprobacionFila++;
+                        if (matrizPiezas[i][comprobacionFila] != null) {
+
+                            isValido = false;
+                            i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
+
+                        }
+
+                    }
+
+                    if (isValido) { // Si no hay ninguna pieza en su camino y por tanto es valido
+                        posicionFinal = posicionNueva;
+                        setPosicion(posicionFinal);
+                        setNMovimientos();
+                    }
+
                 }
 
             }
 
         }
+
 
         return posicionFinal;
     }
