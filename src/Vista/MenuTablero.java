@@ -55,10 +55,10 @@ public class MenuTablero {
         informacionExtra.add(CasillaFinal);
         informacionExtra.add(GuardarYSalir);
 
-        Partida.add(informacionExtra, BorderLayout.EAST);
+        partida.add(informacionExtra, BorderLayout.EAST);
 
-        Partida.add(tablero);
-        Partida.setVisible(true);
+        partida.add(tablero);
+        partida.setVisible(true);
     }
 
     /**
