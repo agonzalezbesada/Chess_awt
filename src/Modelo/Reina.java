@@ -37,7 +37,7 @@ public class Reina extends Pieza implements IPieza {
 
         if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) { // Si en la posicion final existe una pieza
 
-            if (posicionNueva[0] == getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) { // Si el movimiento es vertical
+            if (posicionNueva[0] == getPosicion()[0] && posicionNueva[1] != getPosicion()[1]) { // Si el movimiento es vertical |
                 isValido = true;
 
                 for (int i = getPosicion()[1]-1; i > posicionNueva[1]; i--) { // Recorre las posiciones del desplazamiento en busca de una pieza que lo impida
@@ -60,7 +60,7 @@ public class Reina extends Pieza implements IPieza {
                     setNMovimientos();
                 }
 
-            } else if (posicionNueva[1] == getPosicion()[1] && posicionNueva[0] != getPosicion()[0]) { // Si el movimiento es horizontal
+            } else if (posicionNueva[1] == getPosicion()[1] && posicionNueva[0] != getPosicion()[0]) { // Si el movimiento es horizontal -
                 isValido = true;
 
                 for (int i = getPosicion()[0]-1; i > posicionNueva[0]; i--) { // Recorre las posiciones del desplazamiento en busca de una pieza que lo impida
@@ -159,7 +159,7 @@ public class Reina extends Pieza implements IPieza {
 
         } else { // Si en la posicion final no existe una pieza
 
-            if (posicionNueva[0] == getPosicion()[0]) { // Si el movimiento es vertical
+            if (posicionNueva[0] == getPosicion()[0]) { // Si el movimiento es vertical |
                 isValido = true;
 
                 for (int i = getPosicion()[1]-1; i >= posicionNueva[1]; i--) { // Recorre las posiciones del desplazamiento en busca de una pieza que lo impida
@@ -182,7 +182,7 @@ public class Reina extends Pieza implements IPieza {
                     setNMovimientos();
                 }
 
-            } else if (posicionNueva[1] == getPosicion()[1]) { // Si el movimiento es horizontal
+            } else if (posicionNueva[1] == getPosicion()[1]) { // Si el movimiento es horizontal -
                 isValido = true;
 
                 for (int i = getPosicion()[0]-1; i >= posicionNueva[0]; i--) { // Recorre las posiciones del desplazamiento en busca de una pieza que lo impida
