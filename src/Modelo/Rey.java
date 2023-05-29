@@ -38,7 +38,7 @@ public class Rey extends Pieza implements IPieza {
         if (matrizPiezas[posicionNueva[0]][posicionNueva[1]] != null) { // Si en la posicion final existe una pieza
 
             if (posicionNueva[1] == getPosicion()[1]) { // Si el movimiento es horizontal
-                if (posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2){ // Si sólo se mueve una posición en ese sentido
+                if (posicionNueva[0] < getPosicion()[0]+2 && posicionNueva[0] > getPosicion()[0]-2 && posicionNueva[0] > getPosicion()[0]){ // Si sólo se mueve una posición en ese sentido
                     isValido = true;
                     posicionFinal = posicionNueva;
                     setPosicion(posicionFinal);
