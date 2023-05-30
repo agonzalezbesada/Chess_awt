@@ -11,8 +11,11 @@ public class Controlador {
 
     public static Modelo modelo = new Modelo();
     public static Vista vista = new Vista();
+    public static ObserverMovimientos observerMovimientos = new ObserverMovimientos();
 
     public static void main(String[] args) {
+
+        modelo.addObserver(observerMovimientos);
 
         vista.LlamadaMenuP();
       
@@ -43,13 +46,11 @@ public class Controlador {
 
         modelo.moverPieza(posicionInicial, posicionNueva);
 
-        vista.actualizarTablero();
-
     }
 
     public static void actualizarTablero() {
 
-        vista.actualizarTablero(); // TODO pasar esto a observador
+        vista.actualizarTablero();
 
     }
 }
