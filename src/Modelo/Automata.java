@@ -345,7 +345,3 @@ public class Automata {
     }
 
 }
-
-
-}
-
