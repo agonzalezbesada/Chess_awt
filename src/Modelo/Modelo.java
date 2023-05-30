@@ -1,9 +1,11 @@
 package Modelo;
 
+import java.util.Observable;
+
 /**
  * Modelo
  */
-public class Modelo {
+public class Modelo extends Observable {
 
     public Pieza peonB1;
     public Pieza peonB2;
@@ -237,7 +239,7 @@ public class Modelo {
      * @param posicionNueva Posicion final de la pieza
      * @return Devuelve la pieza
      */
-    public Pieza[][] moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
+    public boolean moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
 
         System.out.println("Posicion inicial 0 "+posicionInicial[0]);
         System.out.println("Posicion inicial 1 "+posicionInicial[1]);
@@ -253,10 +255,14 @@ public class Modelo {
             System.out.println("Despues del =\n"+posicionFinal[0]+" "+posicionFinal[1]);
 
             this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
+
+            setChanged();
+
+            notifyObservers();
+
         }
 
 
-
-        return this.matrizPiezas;
+        return true;
     }
 }

@@ -4,8 +4,6 @@ import Modelo.Modelo;
 import Modelo.Pieza;
 import Vista.Vista;
 
-import javax.swing.*;
-
 /**
  * Controlador
  */
@@ -13,8 +11,11 @@ public class Controlador {
 
     public static Modelo modelo = new Modelo();
     public static Vista vista = new Vista();
+    public static ObserverMovimientos observerMovimientos = new ObserverMovimientos();
 
     public static void main(String[] args) {
+
+        modelo.addObserver(observerMovimientos);
 
         vista.LlamadaMenuP();
       
@@ -44,6 +45,10 @@ public class Controlador {
     public static void moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
 
         modelo.moverPieza(posicionInicial, posicionNueva);
+
+    }
+
+    public static void actualizarTablero() {
 
         vista.actualizarTablero();
 

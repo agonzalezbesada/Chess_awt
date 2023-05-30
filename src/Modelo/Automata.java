@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Automata {
     private static Pieza [][] EstadoTablero;
+    private int profundidad = 3;
+    private int puntuacion = 0;
+    int alfa = Integer.MIN_VALUE;
+    int beta = Integer.MAX_VALUE;
 
 
     /**
@@ -23,6 +27,7 @@ public class Automata {
     public int EvaluarTablero(Pieza[][] TableroActual){
         int puntuacion = 0;
         puntuacion = EvaluarPiezas(TableroActual);
+
         puntuacion += EvaluarPosicionesCentrales(TableroActual);
         puntuacion += DefensaRey(TableroActual);
         puntuacion += EstructuraPeones(TableroActual);
@@ -70,10 +75,12 @@ public class Automata {
                 puntuacion = Minimax(profundidad - 1, nuevoTablero, alfa, beta, true);
 
                 mejorPuntuacion = Math.min(mejorPuntuacion,puntuacion);
+
                 if (puntuacion > mejorPuntuacion){
                     mejorPuntuacion = puntuacion;
                     Movimiento mejorMovimiento = movimiento;
                 }
+
                 if (beta <= alfa){
                     break;
                 }
@@ -89,6 +96,7 @@ public class Automata {
         for (int fila = 0; fila < filas; fila++){
             for (int columna = 0; columna < columnas; columna++){
                 if (TableroACopiar[fila][columna] != null){
+
                     Pieza pieza = TableroACopiar[fila][columna];
                     if(pieza instanceof Peon){
                         pieza = new Peon();
@@ -243,6 +251,7 @@ public class Automata {
         }
         return PuntuacionDefensaRey;
     }
+
     public int EstructuraPeones(Pieza[][] Tablero){
         int EstructuraPeones = 0;
         //Al valorar la estructura de peones, debemos tener en consideración dos cosas: una de ellas es la puntuación en otrno a las filas (que no co
@@ -337,4 +346,7 @@ public class Automata {
 
 }
 
+
+=======
+}
 

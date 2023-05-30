@@ -43,7 +43,10 @@ public class Movimiento {
                 movimientosPosibles.add(MovimientoPeon);
             }
             //De ahora en adelante, los movimientos llamados "PuedeComer" van a ser aquellos cuyo boolean "PuedeComer" sea true, para indicarle a la IA,
+
             // concretamente en evaluar tablero, si puede comer o no a la pieza rival (con el correspondiente ajuste de puntos).
+
+
             if (Tablero[fila + 1][columna + 1] != null && pieza.getColor() == IPieza.BLANCO) {
                 Movimiento PuedeComer = new Movimiento(fila + 1, columna + 1, fila, columna, true);
                 movimientosPosibles.add(PuedeComer);
@@ -148,6 +151,7 @@ public class Movimiento {
                 }
 
             }
+
             if (pieza instanceof Rey){
                 int [][] DesplazamientosRey ={{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
                 for (int [] Desplazamiento : DesplazamientosRey){
@@ -159,6 +163,7 @@ public class Movimiento {
 
                 }
             }
+
         return movimientosPosibles;
     }
 
@@ -201,7 +206,6 @@ public class Movimiento {
 
         return Tablero;
     }
-
     public int getColumnaDestino() {
         return columnaDestino;
     }
@@ -290,6 +294,7 @@ public class Movimiento {
         }
         return JaqueMate;
     }
+
 }
 
 

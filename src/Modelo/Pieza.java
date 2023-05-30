@@ -56,11 +56,10 @@ public abstract class Pieza implements IPieza {
     }
 
     /**
-     * Introduce el numero de movimientos
-     * @param nMovimientos Contador de movimientos
+     * Aumenta el numero de movimientos
      */
-    public void setNMovimientos(int nMovimientos) {
-        this.nMovimientos = nMovimientos;
+    public void setNMovimientos() {
+        this.nMovimientos++;
     }
 
     /**
