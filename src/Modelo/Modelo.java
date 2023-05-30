@@ -7,6 +7,8 @@ import java.util.Observable;
  */
 public class Modelo extends Observable {
 
+    public BD bd = new BD();
+    public Jugador jugador;
     public Integer turno;
 
     public Pieza peonB1;
