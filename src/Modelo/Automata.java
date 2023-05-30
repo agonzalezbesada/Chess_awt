@@ -6,10 +6,7 @@ import java.util.List;
 
 public class Automata {
     private static Pieza [][] EstadoTablero;
-    private int profundidad = 3;
-    private int puntuacion = 0;
-    int alfa = Integer.MIN_VALUE;
-    int beta = Integer.MAX_VALUE;
+
 
     /**
      * Este es uno de los métodos más importantes para la IA. Aquí se valora la situación de ta
@@ -26,6 +23,16 @@ public class Automata {
     public int EvaluarTablero(Pieza[][] TableroActual){
         int puntuacion = 0;
         puntuacion = EvaluarPiezas(TableroActual);
+        puntuacion += EvaluarPosicionesCentrales(TableroActual);
+        puntuacion += DefensaRey(TableroActual);
+        puntuacion += EstructuraPeones(TableroActual);
+        if (esJaqueMaquina(TableroActual) == true){
+            puntuacion += 70;
+        }
+        if(esJaqueMateMaquina(TableroActual) == true){
+            puntuacion += 10000;
+        }
+
 
         return puntuacion;
     }
@@ -63,6 +70,10 @@ public class Automata {
                 puntuacion = Minimax(profundidad - 1, nuevoTablero, alfa, beta, true);
 
                 mejorPuntuacion = Math.min(mejorPuntuacion,puntuacion);
+                if (puntuacion > mejorPuntuacion){
+                    mejorPuntuacion = puntuacion;
+                    Movimiento mejorMovimiento = movimiento;
+                }
                 if (beta <= alfa){
                     break;
                 }
@@ -78,7 +89,31 @@ public class Automata {
         for (int fila = 0; fila < filas; fila++){
             for (int columna = 0; columna < columnas; columna++){
                 if (TableroACopiar[fila][columna] != null){
-                    nuevoTablero[fila][columna] = new Pieza ();
+                    Pieza pieza = TableroACopiar[fila][columna];
+                    if(pieza instanceof Peon){
+                        pieza = new Peon();
+                        nuevoTablero[fila][columna] = pieza;
+                    }
+                    if(pieza instanceof Caballo){
+                        pieza = new Caballo();
+                        nuevoTablero[fila][columna] = pieza;
+                    }
+                    if(pieza instanceof Alfil){
+                        pieza = new Alfil();
+                        nuevoTablero[fila][columna] = pieza;
+                    }
+                    if(pieza instanceof Torre){
+                        pieza = new Torre();
+                        nuevoTablero[fila][columna] = pieza;
+                    }
+                    if(pieza instanceof Reina){
+                        pieza = new Reina();
+                        nuevoTablero[fila][columna] = pieza;
+                    }
+                    if(pieza instanceof Rey){
+                        pieza = new Rey();
+                        nuevoTablero[fila][columna] = pieza;
+                    }
                 }
             }
         }
@@ -208,5 +243,98 @@ public class Automata {
         }
         return PuntuacionDefensaRey;
     }
+    public int EstructuraPeones(Pieza[][] Tablero){
+        int EstructuraPeones = 0;
+        //Al valorar la estructura de peones, debemos tener en consideración dos cosas: una de ellas es la puntuación en otrno a las filas (que no co
+        //lumnas) centrales. Necesitamos puntuar positivamente las filas centrales, pues son aquellas que darán un sostén mayor a la estructura de peones.
+        // Por otro lado, debemos comprobar que esas filas están ocupadas por peones, y no por otra pieza, para darle una puntuación.
+
+        //Para empezar, declaramos dos arrays de enteros que representen la puntuación de las filas y la de las columjas
+        int [] filaEstructura = {1,2,3,4,4,3,2,1};
+        int [] columnaEstructura = {0,0,0,0,0,0,0,0};
+        for (int fila = 0; fila < 8; fila ++){
+            for (int columna = 0; columna < 8; columna++){
+                Pieza pieza = Tablero[fila][columna];
+                if (pieza instanceof Peon){
+                    EstructuraPeones += filaEstructura[fila] + columnaEstructura[columna];
+                }
+            }
+        }
+
+        return EstructuraPeones;
+    }
+
+    /**
+     * Vamos a realizar la lógica del jaque. Es, en cierto modo, sencillo, puesto que solo necesitamos el tablero como parámetro y recoger los movimientos
+     * posibles de las piezas, para saber si hay alguna pieza enemiga que pueda amenazar al rey.
+     * @param Tablero
+     * @return
+     */
+    public boolean esJaqueMaquina(Pieza[][] Tablero){
+        Movimiento movimiento = new Movimiento();
+        boolean Jaque = false;
+        int FilaRey = 0;
+        int ColumnaRey = 0;
+        List<Movimiento> movimientos = movimiento.MovimientosCompletos(Tablero);
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                if(Tablero[i][j] instanceof Rey && Tablero[i][j].getColor() == IPieza.BLANCO ){
+                    Pieza pieza = Tablero[i][j];
+                        FilaRey = i;
+                        ColumnaRey = j;
+
+                }
+            }
+        }
+        for (Movimiento movimiento1 : movimientos){
+            if(FilaRey == movimiento1.getFilaDestino() && ColumnaRey == movimiento1.getColumnaDestino()){
+                Jaque = true;
+            }
+        }
+
+        return Jaque;
+
+    }
+
+    /**
+     * Para la lógica del jaque mate, debemos tener en cuenta la posibilidad de jaque (pero lo haremos desde fuera del método, para mayor comodidad.
+     * Una vez sepamos que jaque es true, deberemos recorrer los movimientos del rey, para saber si es definitivo o no. El contador "NoEsJaqueMate"
+     * recoge la cantidad de movimientos que puede hacer el rey donde jaque es false, de manera que si es mayor a 0, el jaque mate no sea posible (puesto
+     * que el rey puede moverse a esa posición).
+     * @param Tablero
+     * @return
+     */
+    public boolean esJaqueMateMaquina(Pieza [][] Tablero){
+        Automata automata = new Automata();
+        Movimiento movimientoAuxiliar = new Movimiento();
+        int NoEsJaqueMate = 0;
+        boolean JaqueMate = false;
+        for(int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                if (Tablero[i][j] instanceof Rey && Tablero[i][j].getColor() == IPieza.BLANCO){
+                    List <Movimiento> MovimientosRey = movimientoAuxiliar.MovimientoPieza(Tablero,i,j);
+                    Pieza [][] TableroCopiado = automata.copiarTablero(Tablero);
+                    for(Movimiento movimiento : MovimientosRey){
+                        TableroCopiado = movimientoAuxiliar.realizarMovimiento(TableroCopiado,movimiento);
+                        boolean jaque = esJaqueMaquina(TableroCopiado);
+                        if(jaque == false){
+                            NoEsJaqueMate++;
+                        }
+
+
+                    }
+
+                }
+            }
+        }
+        if(NoEsJaqueMate != 0){
+            JaqueMate = false;
+        } else{
+            JaqueMate = true;
+        }
+        return JaqueMate;
+    }
+
 }
+
 

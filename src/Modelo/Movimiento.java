@@ -43,7 +43,7 @@ public class Movimiento {
                 movimientosPosibles.add(MovimientoPeon);
             }
             //De ahora en adelante, los movimientos llamados "PuedeComer" van a ser aquellos cuyo boolean "PuedeComer" sea true, para indicarle a la IA,
-            // concretamente en evaluar tablero, si puede comer o no a la pieza rival (con el correspondiente ajuste de puntos.
+            // concretamente en evaluar tablero, si puede comer o no a la pieza rival (con el correspondiente ajuste de puntos).
             if (Tablero[fila + 1][columna + 1] != null && pieza.getColor() == IPieza.BLANCO) {
                 Movimiento PuedeComer = new Movimiento(fila + 1, columna + 1, fila, columna, true);
                 movimientosPosibles.add(PuedeComer);
@@ -148,6 +148,17 @@ public class Movimiento {
                 }
 
             }
+            if (pieza instanceof Rey){
+                int [][] DesplazamientosRey ={{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
+                for (int [] Desplazamiento : DesplazamientosRey){
+                    int NuevaFila = Desplazamiento[0];
+                    int NuevaColumna = Desplazamiento[1];
+                    if(Tablero[NuevaFila][NuevaColumna] == null){
+                        Movimiento DesplazamientoRey = new Movimiento(NuevaFila, NuevaColumna, fila, columna, false);
+                    }
+
+                }
+            }
         return movimientosPosibles;
     }
 
@@ -185,6 +196,12 @@ public class Movimiento {
         return nuevoTablero;
     }
 
+    public Pieza[][] MovimientoFinal(Pieza[][] Tablero, Movimiento movimiento){
+        Tablero[movimiento.getFilaOrigen()][movimiento.columnaOrigen] = Tablero[movimiento.getFilaDestino()][movimiento.getColumnaDestino()];
+
+        return Tablero;
+    }
+
     public int getColumnaDestino() {
         return columnaDestino;
     }
@@ -215,6 +232,63 @@ public class Movimiento {
 
     public void setFilaOrigen(int filaOrigen) {
         this.filaOrigen = filaOrigen;
+    }
+
+    public boolean esJaqueJugador(Pieza[][] Tablero){
+        Movimiento movimiento = new Movimiento();
+        boolean Jaque = false;
+        int FilaRey = 0;
+        int ColumnaRey = 0;
+        List<Movimiento> movimientos = movimiento.MovimientosCompletos(Tablero);
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                if(Tablero[i][j] instanceof Rey){
+                    Pieza pieza = Tablero[i][j];
+                    if(pieza.getColor() == IPieza.NEGRO){
+                        FilaRey = i;
+                        ColumnaRey = j;
+                    }
+                }
+            }
+        }
+        for (Movimiento movimiento1 : movimientos){
+            if(FilaRey == movimiento1.getFilaDestino() && ColumnaRey == movimiento1.getColumnaDestino()){
+                Jaque = true;
+            }
+        }
+
+        return Jaque;
+    }
+
+    public boolean JaqueMateJugador(Pieza [][] Tablero, boolean jaque){
+        Automata automata = new Automata();
+        int contador = 0;
+        int NoEsJaqueMate = 0;
+        boolean JaqueMate = false;
+        for(int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                if (Tablero[i][j] instanceof Rey && Tablero[i][j].getColor() == IPieza.NEGRO){
+                        List <Movimiento> MovimientosRey = MovimientoPieza(Tablero,i,j);
+                        Pieza [][] TableroCopiado = automata.copiarTablero(Tablero);
+                        for(Movimiento movimiento : MovimientosRey){
+                            TableroCopiado = realizarMovimiento(TableroCopiado,movimiento);
+                            jaque = esJaqueJugador(TableroCopiado);
+                            if(jaque == false){
+                                NoEsJaqueMate++;
+                            }
+
+
+                    }
+
+                }
+            }
+        }
+        if(NoEsJaqueMate != 0){
+            JaqueMate = false;
+        } else{
+            JaqueMate = true;
+        }
+        return JaqueMate;
     }
 }
 
