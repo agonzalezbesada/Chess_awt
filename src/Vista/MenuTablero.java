@@ -23,7 +23,9 @@ public class MenuTablero {
      */
     public static void generarPartida(int modo) {
         partida = new JFrame();
-        partida.setBounds(0, 0, 1400, 1700);
+        partida.setBounds(0, 0, 1920, 1050);
+        partida.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
 
 
         JPanel tablero = MenuTablero.generarTablero(0);
