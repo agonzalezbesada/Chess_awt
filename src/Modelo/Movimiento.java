@@ -206,6 +206,7 @@ public class Movimiento {
 
         return Tablero;
     }
+  
     public int getColumnaDestino() {
         return columnaDestino;
     }

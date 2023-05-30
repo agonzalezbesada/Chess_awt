@@ -50,7 +50,7 @@ public class Controlador {
 
     public static void actualizarTablero() {
 
-        vista.actualizarTablero();
+        vista.actualizarTablero(); // TODO pasar esto a observador
 
     }
 }

@@ -347,6 +347,5 @@ public class Automata {
 }
 
 
-=======
 }
 
