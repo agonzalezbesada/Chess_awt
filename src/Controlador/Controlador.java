@@ -11,8 +11,11 @@ public class Controlador {
 
     public static Modelo modelo = new Modelo();
     public static Vista vista = new Vista();
+    public static ObserverMovimientos observerMovimientos = new ObserverMovimientos();
 
     public static void main(String[] args) {
+
+        modelo.addObserver(observerMovimientos);
 
         vista.LlamadaMenuP();
       
@@ -22,8 +25,8 @@ public class Controlador {
      * Proporciona las posiciones iniciales
      * @return Matriz con las posiciones iniciales
      */
-    public static Pieza[][] posicionesIniciales() {
-        return modelo.iniciarPartida();
+    public static Pieza[][] iniciarPartida() {
+        return modelo.posicionesIniciales();
     }
 
     /**
@@ -42,8 +45,6 @@ public class Controlador {
     public static void moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
 
         modelo.moverPieza(posicionInicial, posicionNueva);
-
-        vista.actualizarTablero();
 
     }
 

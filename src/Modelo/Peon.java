@@ -81,7 +81,7 @@ public class Peon extends Pieza implements IPieza {
                         for (int i = getPosicion()[1]-1; i >= posicionNueva[1]; i--) { // Recorre las posiciones del desplazamiento en busca de una pieza que lo impida
                             if (matrizPiezas[getPosicion()[0]][i] != null) {
                                 isValido = false;
-                                break;
+                                i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
                             }
                         }
 
@@ -109,7 +109,7 @@ public class Peon extends Pieza implements IPieza {
                         for (int i = getPosicion()[1]+1; i <= posicionNueva[1]; i++) { // Recorre las posiciones del desplazamiento en busca de una pieza que lo impida
                             if (matrizPiezas[getPosicion()[0]][i] != null) {
                                 isValido = false;
-                                break;
+                                i = posicionNueva[0]; // Igualamos el iterador al final del for para finalizarlo
                             }
                         }
 
