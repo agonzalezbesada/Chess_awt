@@ -25,8 +25,8 @@ public class Controlador {
      * Proporciona las posiciones iniciales
      * @return Matriz con las posiciones iniciales
      */
-    public static Pieza[][] posicionesIniciales() {
-        return modelo.iniciarPartida();
+    public static Pieza[][] iniciarPartida() {
+        return modelo.posicionesIniciales();
     }
 
     /**

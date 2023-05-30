@@ -7,6 +7,10 @@ import java.util.Observable;
  */
 public class Modelo extends Observable {
 
+    public BD bd = new BD();
+    public Jugador jugador;
+    public Integer turno;
+
     public Pieza peonB1;
     public Pieza peonB2;
     public Pieza peonB3;
@@ -48,8 +52,10 @@ public class Modelo extends Observable {
      *
      * @return Matriz con las piezas
      */
-    public Pieza[][] iniciarPartida() {
+    public Pieza[][] posicionesIniciales() {
         crearPiezas();
+
+        this.turno = 0;
 
         return asignarMatriz();
     }
@@ -65,7 +71,6 @@ public class Modelo extends Observable {
 
     /**
      * Crea las piezas
-     * @return Matriz con las piezas
      */
     public void crearPiezas() {
 
@@ -244,9 +249,18 @@ public class Modelo extends Observable {
         System.out.println("Posicion inicial 0 "+posicionInicial[0]);
         System.out.println("Posicion inicial 1 "+posicionInicial[1]);
 
-        Integer[] posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
+        Integer[] posicionFinal = null;
 
-        if (posicionFinal != null) {
+        if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && this.turno % 2 == 0) {
+            posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
+            this.turno ++;
+        } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && this.turno % 2 != 0) {
+            posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
+            this.turno ++;
+        }
+
+
+        if (posicionFinal != null ) {
 
             this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = null;
 

@@ -82,7 +82,7 @@ public class MenuTablero {
         // Dependiendo de si se desea crear o actualizar
         // TODO Literales
         if (modo == 0) {
-            matrizPiezas = Controlador.posicionesIniciales(); // Matriz con las piezas iniciales
+            matrizPiezas = Controlador.iniciarPartida(); // Matriz con las piezas iniciales
         } else if (modo == 1) {
             matrizPiezas = Controlador.posicionesActuales(); // Matriz con las piezas actuales
         }
