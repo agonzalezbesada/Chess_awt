@@ -21,6 +21,10 @@ public class Controlador {
       
     }
 
+    public static void iniciarSesion(String nickName) {
+        modelo.iniciarSesion(nickName);
+    }
+
     /**
      * Proporciona las posiciones iniciales
      * @return Matriz con las posiciones iniciales
@@ -46,6 +50,14 @@ public class Controlador {
 
         modelo.moverPieza(posicionInicial, posicionNueva);
 
+        if (modelo.turno % 2 != 0) {
+            turnoAutomata();
+        }
+    }
+
+    public static void turnoAutomata() {
+        modelo.turnoMaquina();
+        actualizarTablero();
     }
 
     public static void actualizarTablero() {
