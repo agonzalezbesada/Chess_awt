@@ -10,6 +10,8 @@ public class Modelo extends Observable {
     public BD bd = new BD();
     public Jugador jugador;
     public Integer turno;
+    public Partida partida = null;
+    public Guardado guardado = new Guardado();
     public Automata automata = new Automata();
     public Movimiento movimiento = new Movimiento();
 
@@ -48,13 +50,14 @@ public class Modelo extends Observable {
     public Pieza reinaN;
     public Pieza reyN;
 
-    public Pieza[][] matrizPiezas = new Pieza[8][8];
+    public Pieza[][] matrizPiezas;
 
     /**
      *
      * @return Matriz con las piezas
      */
     public Pieza[][] posicionesIniciales() {
+        matrizPiezas = null;
         crearPiezas();
 
         this.turno = 0;
@@ -125,6 +128,8 @@ public class Modelo extends Observable {
     }
 
     public Pieza[][] asignarMatriz() {
+
+        matrizPiezas = new Pieza[8][8];
 
         this.matrizPiezas[peonB1.getPosicion()[0]][peonB1.getPosicion()[1]] = peonB1;
         this.matrizPiezas[peonB2.getPosicion()[0]][peonB2.getPosicion()[1]] = peonB2;
@@ -291,10 +296,27 @@ public class Modelo extends Observable {
 
     public void iniciarSesion(String nickName) {
         bd.conectar();
-        String[] sesionIniciada = new String[5];
-        sesionIniciada = bd.consultar("SELECT * FROM jugadores WHERE nombre = '"+nickName+"';");
+        String[] sesionIniciada;
+        sesionIniciada = bd.consultar("SELECT * FROM jugadores WHERE nickName = '"+nickName+"';");
         jugador = new Jugador(sesionIniciada[0]);
 
         System.out.println(jugador.nickName);
+    }
+
+    public void guardarPartida() {
+        partida = new Partida();
+
+        partida.nickName = jugador.nickName;
+        partida.estadoPartida = matrizPiezas;
+        partida.turno = turno;
+
+        guardado.guardarPartida(partida);
+
+        partida = null;
+    }
+
+    public void cargarPartida() {
+        partida = guardado.cargarPartida(jugador.nickName);
+        matrizPiezas = partida.estadoPartida;
     }
 }

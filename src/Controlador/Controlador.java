@@ -60,6 +60,14 @@ public class Controlador {
         actualizarTablero();
     }
 
+    public static void guardarPartida() {
+        modelo.guardarPartida();
+    }
+
+    public static void cargarPartida() {
+        modelo.cargarPartida();
+    }
+
     public static void actualizarTablero() {
 
         vista.actualizarTablero(); // TODO pasar esto a observador

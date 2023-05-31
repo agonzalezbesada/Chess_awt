@@ -18,7 +18,7 @@ public class Guardado {
 
         try {
 
-            escritorFichero = new FileWriter("src\\PartidaGuardada"+partida.nickName+".json");
+            escritorFichero = new FileWriter("src\\Modelo\\PartidasGuardadas\\PartidaGuardada"+partida.nickName+".json",false);
             escritorFichero.write(jsonPartida);
             escritorFichero.close();
 
@@ -37,7 +37,7 @@ public class Guardado {
 
         try {
 
-            lectorFichero = new FileReader("src\\PartidaGuardada"+jugador+".json");
+            lectorFichero = new FileReader("src\\Modelo\\PartidasGuardadas\\PartidaGuardada"+jugador+".json");
             int caracter = lectorFichero.read();
 
             while (caracter!=-1) {
@@ -53,7 +53,7 @@ public class Guardado {
             System.out.println(e.toString());
         }
 
-        Partida partidaCargada = gson.fromJson(jsonRecuperado, Partida.class);
+        Partida partidaCargada = gson.fromJson(jsonRecuperado, Partida.class); // No se puede desreializar las Pieza[] porque es una clase abstracta
 
         return partidaCargada;
     }

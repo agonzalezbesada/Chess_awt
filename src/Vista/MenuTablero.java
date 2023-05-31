@@ -33,28 +33,31 @@ public class MenuTablero {
         JPanel tablero = MenuTablero.generarTablero(0);
         JPanel informacionExtra = new JPanel(new GridLayout(6,1));
         tablero = MenuTablero.generarTablero(modo);
-        informacionExtra = new JPanel(new GridLayout(2, 1));
+        informacionExtra = new JPanel(new GridLayout(3, 1));
 
         //Aquí iría la funcionalidad de generar tablero
         EtiquetaTemporizador = new JLabel();
-        JButton IniciarTemporizador = new JButton("Iniciar tiempo");
-        IniciarTemporizador.addActionListener(new ActionListener() {
+        JButton iniciarTemporizador = new JButton("Iniciar tiempo");
+        iniciarTemporizador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MenuTablero.Temporizador(3);
             }
         });
-        JButton CambiarTurno = new JButton("Cambiar turno");
-        JTextField CasillaInicial = new JTextField("Casilla inicial");
-        JTextField CasillaFinal = new JTextField("Casilla final");
-        JButton GuardarYSalir = new JButton("Guardar y salir");
+
+        JButton guardarYSalir = new JButton("Guardar y salir");
+        guardarYSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controlador.guardarPartida();
+                partida.setVisible(false);
+                MenuPrincipal.GenerarMenu();
+            }
+        });
 
         informacionExtra.add(EtiquetaTemporizador);
-        informacionExtra.add(IniciarTemporizador);
-        informacionExtra.add(CambiarTurno);
-        informacionExtra.add(CasillaInicial);
-        informacionExtra.add(CasillaFinal);
-        informacionExtra.add(GuardarYSalir);
+        informacionExtra.add(iniciarTemporizador);
+        informacionExtra.add(guardarYSalir);
 
         partida.add(informacionExtra, BorderLayout.EAST);
 

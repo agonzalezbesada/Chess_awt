@@ -6,7 +6,7 @@ public class BD {
     public String bd = "chess";
     public String tabla = "jugadores";
     public Connection conexion = null;
-    public String url = "jdbc:mysql://localhost:3306/bd_prueba";
+    public String url = "jdbc:mysql://localhost:3306/chess";
     public String user = "root";
     public String password = "root";
     public Statement consulta = null;
