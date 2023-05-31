@@ -10,6 +10,8 @@ public class Modelo extends Observable {
     public BD bd = new BD();
     public Jugador jugador;
     public Integer turno;
+    public Automata automata = new Automata();
+    public Movimiento movimiento = new Movimiento();
 
     public Pieza peonB1;
     public Pieza peonB2;
@@ -253,10 +255,10 @@ public class Modelo extends Observable {
 
         if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && this.turno % 2 == 0) {
             posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
-            this.turno ++;
+
         } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && this.turno % 2 != 0) {
             posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
-            this.turno ++;
+
         }
 
 
@@ -274,9 +276,25 @@ public class Modelo extends Observable {
 
             notifyObservers();
 
+            this.turno ++;
+
         }
 
-
         return true;
+    }
+
+    public void turnoMaquina() {
+        int alfa = Integer.MAX_VALUE;
+        int beta = Integer.MIN_VALUE;
+        automata.Minimax(turno,matrizPiezas,alfa,beta,true);
+    }
+
+    public void iniciarSesion(String nickName) {
+        bd.conectar();
+        String[] sesionIniciada = new String[5];
+        sesionIniciada = bd.consultar("SELECT * FROM jugadores WHERE nombre = '"+nickName+"';");
+        jugador = new Jugador(sesionIniciada[0]);
+
+        System.out.println(jugador.nickName);
     }
 }

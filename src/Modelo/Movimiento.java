@@ -47,11 +47,11 @@ public class Movimiento {
             // concretamente en evaluar tablero, si puede comer o no a la pieza rival (con el correspondiente ajuste de puntos).
 
 
-            if (Tablero[fila + 1][columna + 1] != null && pieza.getColor() == IPieza.BLANCO) {
+            if (fila + 1 >= 0 && fila + 1 < 8 && columna + 1 >= 0 && columna + 1 < 8 && Tablero[fila + 1][columna + 1] != null && pieza.getColor() == IPieza.BLANCO) {
                 Movimiento PuedeComer = new Movimiento(fila + 1, columna + 1, fila, columna, true);
                 movimientosPosibles.add(PuedeComer);
             }
-            if (Tablero[fila + 1][columna - 1] != null && pieza.getColor() == IPieza.BLANCO) {
+            if (fila + 1 >= 0 && fila + 1 < 8 && columna + 1 >= 0 && columna + 1 < 8 && Tablero[fila + 1][columna - 1] != null && pieza.getColor() == IPieza.BLANCO) {
                 Movimiento PuedeComer = new Movimiento(fila + 1, columna - 1,fila, columna, true);
                 movimientosPosibles.add(PuedeComer);
             }
@@ -73,11 +73,11 @@ public class Movimiento {
                 for (int[] Desplazamiento : Posibilidades) {
                     int nuevaFila = fila + Desplazamiento[0];
                     int nuevaColumna = columna + Desplazamiento[1];
-                    if (Tablero[nuevaFila][nuevaColumna] == null) {
+                    if (nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] == null) {
                         Movimiento MovimientoCaballo = new Movimiento(nuevaFila, nuevaColumna,fila, columna, false);
                         movimientosPosibles.add(MovimientoCaballo);
                     }
-                    if (Tablero[nuevaFila][nuevaColumna] != null && Tablero[nuevaFila][nuevaColumna].getColor() == IPieza.BLANCO) {
+                    if (nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] != null && Tablero[nuevaFila][nuevaColumna].getColor() == IPieza.BLANCO) {
                         Movimiento PuedeComer = new Movimiento(nuevaFila, nuevaColumna,fila, columna, true);
                         movimientosPosibles.add(PuedeComer);
                     }
@@ -93,18 +93,18 @@ public class Movimiento {
                 // El bucle for recorre los posibles desplazamientos, para saber exactamente hasta dónde puede moverse (y, dicho sea de paso, cuál es el
                 // movimiento que más puntúa).
                 for (int[] Desplazamiento : DesplazamientosAlfil) {
-                    int NuevaFila = fila + Desplazamiento[0];
-                    int NuevaColumna = columna + Desplazamiento[1];
-                    while(NuevaFila >= 0 && NuevaFila < 8 && NuevaColumna >= 0 && NuevaColumna < 8 && Tablero[NuevaFila][NuevaColumna] == null){
-                            Movimiento MovimientoAlfil = new Movimiento(NuevaFila, NuevaColumna,fila, columna, false);
+                    int nuevaFila = fila + Desplazamiento[0];
+                    int nuevaColumna = columna + Desplazamiento[1];
+                    while(nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] == null){
+                            Movimiento MovimientoAlfil = new Movimiento(nuevaFila, nuevaColumna,fila, columna, false);
                             movimientosPosibles.add(MovimientoAlfil);
                             //Nuevamente, además de si la casilla está vacía, se creará un nuevo movimiento si se puede comer una pieza rival.
-                        if (Tablero[NuevaFila][NuevaColumna] != null && Tablero[NuevaFila][NuevaColumna].getColor() == IPieza.BLANCO) {
-                            Movimiento PuedeComer = new Movimiento(NuevaFila, NuevaColumna, fila, columna,true);
+                        if (nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] != null && Tablero[nuevaFila][nuevaColumna].getColor() == IPieza.BLANCO) {
+                            Movimiento PuedeComer = new Movimiento(nuevaFila, nuevaColumna, fila, columna,true);
                             movimientosPosibles.add(PuedeComer);
                         }
-                        NuevaFila += Desplazamiento[0];
-                        NuevaColumna += Desplazamiento[1];
+                        nuevaFila += Desplazamiento[0];
+                        nuevaColumna += Desplazamiento[1];
                     }
 
                 }
@@ -114,18 +114,18 @@ public class Movimiento {
             if (pieza instanceof Torre) {
                 int[][] DesplazamientosTorre = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
                 for (int[] Desplazamiento : DesplazamientosTorre) {
-                    int NuevaFila = Desplazamiento[0];
-                    int NuevaColumna = Desplazamiento[1];
-                    while(NuevaFila >= 0 && NuevaFila < 8 && NuevaColumna >= 0 && NuevaColumna < 8 && Tablero[NuevaFila][NuevaColumna] == null) {
-                        Movimiento MovimientoTorre = new Movimiento(NuevaFila, NuevaColumna, fila, columna, false);
+                    int nuevaFila = Desplazamiento[0];
+                    int nuevaColumna = Desplazamiento[1];
+                    while(nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] == null) {
+                        Movimiento MovimientoTorre = new Movimiento(nuevaFila, nuevaColumna, fila, columna, false);
                         movimientosPosibles.add(MovimientoTorre);
 
-                        if (Tablero[NuevaFila][NuevaColumna] == null && Tablero[NuevaFila][NuevaColumna].getColor() == IPieza.BLANCO) {
-                            Movimiento PuedeComer = new Movimiento(NuevaFila, NuevaColumna,fila, columna, true);
+                        if (nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] == null && Tablero[nuevaFila][nuevaColumna].getColor() == IPieza.BLANCO) {
+                            Movimiento PuedeComer = new Movimiento(nuevaFila, nuevaColumna,fila, columna, true);
                             movimientosPosibles.add(PuedeComer);
                         }
-                        NuevaFila += Desplazamiento[0];
-                        NuevaColumna += Desplazamiento[1];
+                        nuevaFila += Desplazamiento[0];
+                        nuevaColumna += Desplazamiento[1];
                     }
                 }
             }
@@ -134,19 +134,19 @@ public class Movimiento {
             if(pieza instanceof Reina){
                 int [][] DesplazamientosReina = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
                 for (int [] Desplazamiento : DesplazamientosReina){
-                    int NuevaFila = Desplazamiento[0];
-                    int NuevaColumna = Desplazamiento[1];
-                    while (NuevaFila >= 0 && NuevaFila < 8 && NuevaColumna >= 0 && NuevaColumna < 8 && Tablero[NuevaFila][NuevaColumna] == null){
-                        Movimiento DesplazamientoReina = new Movimiento(NuevaFila,NuevaColumna, fila, columna,false);
+                    int nuevaFila = Desplazamiento[0];
+                    int nuevaColumna = Desplazamiento[1];
+                    while (nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] == null){
+                        Movimiento DesplazamientoReina = new Movimiento(nuevaFila,nuevaColumna, fila, columna,false);
                         movimientosPosibles.add(DesplazamientoReina);
-                        if (Tablero[NuevaFila][NuevaColumna].getColor() == IPieza.BLANCO){
-                            Movimiento PuedeComer = new Movimiento(NuevaFila,NuevaColumna, fila, columna, true);
-                            NuevaFila += Desplazamiento[0];
-                            NuevaColumna += Desplazamiento[1];
+                        if (nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 &&Tablero[nuevaFila][nuevaColumna].getColor() == IPieza.BLANCO){
+                            Movimiento PuedeComer = new Movimiento(nuevaFila,nuevaColumna, fila, columna, true);
+                            nuevaFila += Desplazamiento[0];
+                            nuevaColumna += Desplazamiento[1];
                             movimientosPosibles.add(PuedeComer);
                         }
-                        NuevaFila += Desplazamiento[0];
-                        NuevaColumna += Desplazamiento[1];
+                        nuevaFila += Desplazamiento[0];
+                        nuevaColumna += Desplazamiento[1];
                     }
                 }
 
@@ -155,10 +155,11 @@ public class Movimiento {
             if (pieza instanceof Rey){
                 int [][] DesplazamientosRey ={{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
                 for (int [] Desplazamiento : DesplazamientosRey){
-                    int NuevaFila = Desplazamiento[0];
-                    int NuevaColumna = Desplazamiento[1];
-                    if(Tablero[NuevaFila][NuevaColumna] == null){
-                        Movimiento DesplazamientoRey = new Movimiento(NuevaFila, NuevaColumna, fila, columna, false);
+                    int nuevaFila = fila + Desplazamiento[0];
+                    int nuevaColumna = columna + Desplazamiento[1];
+                    if(nuevaFila >= 0 && nuevaFila < 8 && nuevaColumna >= 0 && nuevaColumna < 8 && Tablero[nuevaFila][nuevaColumna] == null){
+                        Movimiento DesplazamientoRey = new Movimiento(nuevaFila, nuevaColumna, fila, columna, false);
+                        movimientosPosibles.add(DesplazamientoRey);
                     }
 
                 }
