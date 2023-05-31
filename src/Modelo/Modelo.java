@@ -258,10 +258,14 @@ public class Modelo extends Observable {
 
         Integer[] posicionFinal = null;
 
-        if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && this.turno % 2 == 0) {
+        /*
+        Comprueba que la pieza seleccionada coincide con las piezas de ese jugador basandose en el color de la pieza y en el turno.
+        Y a su vez comprueba que no se está intentando comer una pieza propia
+         */
+        if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.BLANCO) && this.turno % 2 == 0) {
             posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
 
-        } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && this.turno % 2 != 0) {
+        } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.NEGRO) && this.turno % 2 != 0) {
             posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
 
         }
