@@ -10,10 +10,6 @@ public abstract class Pieza implements IPieza {
     private int nMovimientos = 0;
     private Integer color;
 
-    public boolean destruirPieza() {
-        return true;
-    }
-
     /**
      * Devuelve el nombre
      * @return Nombre de la pieza
