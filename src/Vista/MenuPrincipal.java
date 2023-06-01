@@ -16,7 +16,7 @@ public class MenuPrincipal {
     /**
      * Genera el menu
      */
-    public static void GenerarMenu(){
+    public static void GenerarMenu(String usuarioConectado){
 
         JFrame menuPrincipal = new JFrame(); // Pantalla del menu principal
         menuPrincipal.setTitle("Ajedrez"); // Nombre de la pantalla
@@ -24,10 +24,12 @@ public class MenuPrincipal {
         menuPrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         // Tras crear el menú principal, generamos un panel donde introducimos un GridLayout con 4 filas y 1 columna
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 1));
+        panel.setLayout(new GridLayout(6, 1));
 
+        JLabel conexionActual = new JLabel("USUARIO ACTUAL:    "+usuarioConectado);
+        conexionActual.setHorizontalAlignment(JLabel.CENTER);
         JButton jugarPartida = new JButton("Jugar partida"); // Boton para jugar la partida
-        JButton iniciarSesion = new JButton("Iniciar sesión"); // Boton para iniciar sesion
+        JButton iniciarSesion = new JButton("Iniciar sesión / Registrarse"); // Boton para iniciar sesion
         JButton cargarPartida = new JButton("Cargar Partida");
         JButton estadisticas = new JButton("Consultar estadísticas"); // Boton de estadisticas
         JButton salir = new JButton("Salir"); // Boton para salir
@@ -35,11 +37,16 @@ public class MenuPrincipal {
         jugarPartida.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuPrincipal.setVisible(false); // Cierra la ventana
-                if (Controlador.modelo.partida==null) {
-                    MenuTablero.generarPartida(0); // Genera la ventana de la partida
+
+                if (usuarioConectado.equals("Ninguno")) {
+
                 } else {
-                    MenuTablero.generarPartida(1); // Genera la ventana de la partida
+                    menuPrincipal.setVisible(false); // Cierra la ventana
+                    if (Controlador.modelo.partida==null) {
+                        MenuTablero.generarPartida(0); // Genera la ventana de la partida
+                    } else {
+                        MenuTablero.generarPartida(1); // Genera la ventana de la partida
+                    }
                 }
 
             }
@@ -48,11 +55,12 @@ public class MenuPrincipal {
         iniciarSesion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controlador.iniciarSesion("Adrian");
                 /*
-                menuPrincipal.setVisible(false);
-                IniciarSesion.GenerarMenu();
+                Controlador.iniciarSesion("Adrian");
                  */
+
+                menuPrincipal.setVisible(false);
+                IniciarSesion.inciarSesion();
 
             }
         });
@@ -60,7 +68,7 @@ public class MenuPrincipal {
         cargarPartida.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controlador.cargarPartida();
+                Controlador.cargarPartida(); // Carga una partida guardada en formato JSON
             }
         });
 
@@ -72,10 +80,8 @@ public class MenuPrincipal {
         });
 
 
-
-
-
         // Añade los botones
+        panel.add(conexionActual);
         panel.add(jugarPartida);
         panel.add(iniciarSesion);
         panel.add(cargarPartida);

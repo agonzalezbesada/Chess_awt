@@ -53,7 +53,7 @@ public class Guardado {
             System.out.println(e.toString());
         }
 
-        Partida partidaCargada = gson.fromJson(jsonRecuperado, Partida.class); // No se puede desreializar las Pieza[] porque es una clase abstracta
+        Partida partidaCargada = gson.fromJson(jsonRecuperado, Partida.class); // TODO No se puede desreializar las Pieza[] porque es una clase abstracta
 
         return partidaCargada;
     }

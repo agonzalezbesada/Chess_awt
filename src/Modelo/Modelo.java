@@ -1,5 +1,6 @@
 package Modelo;
 
+import javax.swing.*;
 import java.util.Observable;
 
 /**
@@ -233,19 +234,6 @@ public class Modelo extends Observable {
     }
 
     /**
-     * Destruye una pieza concreta
-     * @param pieza
-     * @return
-     */
-    public boolean destruirPieza(IPieza pieza) {
-
-        // Eliminamos la pieza
-        pieza = null;
-
-        return true;
-    }
-
-    /**
      * Cambia la posicion de una pieza
      * @param posicionInicial Posicion actual de la pieza
      * @param posicionNueva Posicion final de la pieza
@@ -289,7 +277,43 @@ public class Modelo extends Observable {
 
         }
 
+        // Recorre el tablero en busqueda de los reyes para determinar el fin de la partida
+
+        boolean isReyN = false;
+        for (int col = 0; col < 8; col++) {
+            for (int row = 0; row < 8; row++) {
+
+                if (matrizPiezas[col][row]!=null && matrizPiezas[col][row].getNombre().equals("ReyN")) {
+                    isReyN = true;
+                }
+
+            }
+        }
+
+        if (!isReyN) {
+            JOptionPane.showMessageDialog(null,"Gana el jugador blanco");
+        }
+
+        boolean isReyB = false;
+        for (int col = 0; col < 8; col++) {
+            for (int row = 0; row < 8; row++) {
+
+                if (matrizPiezas[col][row]!=null && matrizPiezas[col][row].getNombre().equals("ReyB")) {
+                    isReyB = true;
+                }
+
+            }
+        }
+
+        if (!isReyB) {
+            JOptionPane.showMessageDialog(null,"Gana el jugador negro");
+        }
+
         return true;
+    }
+
+    public void cambiarTurno() {
+        turno ++;
     }
 
     public void turnoMaquina() {
@@ -298,19 +322,32 @@ public class Modelo extends Observable {
         automata.Minimax(turno,matrizPiezas,alfa,beta,true);
     }
 
-    public void iniciarSesion(String nickName) {
-        bd.conectar();
-        String[] sesionIniciada;
-        sesionIniciada = bd.consultar("SELECT * FROM jugadores WHERE nickName = '"+nickName+"';");
-        jugador = new Jugador(sesionIniciada[0]);
+    public boolean iniciarSesion(String nickName) {
 
-        System.out.println(jugador.nickName);
+        String[] sesionIniciada = new String[5];
+        sesionIniciada = bd.consultar("SELECT * FROM jugadores WHERE nickName = '"+nickName+"';");
+        jugador = new Jugador(sesionIniciada[0],sesionIniciada[1],sesionIniciada[2],sesionIniciada[3],sesionIniciada[4]);
+
+        if (sesionIniciada[0]==null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean registrarUsuario(String nickName) {
+
+        return bd.registrar("INSERT INTO jugadores (NickName) VALUES ('"+nickName+"');");
+    }
+
+    public String[] obtenerDatos() {
+        return jugador.obtenerDatos();
     }
 
     public void guardarPartida() {
         partida = new Partida();
 
-        partida.nickName = jugador.nickName;
+        partida.nickName = jugador.getNickName();
         partida.estadoPartida = matrizPiezas;
         partida.turno = turno;
 
@@ -320,7 +357,7 @@ public class Modelo extends Observable {
     }
 
     public void cargarPartida() {
-        partida = guardado.cargarPartida(jugador.nickName);
+        partida = guardado.cargarPartida(jugador.getNickName());
         matrizPiezas = partida.estadoPartida;
     }
 }

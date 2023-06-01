@@ -17,12 +17,22 @@ public class Controlador {
 
         modelo.addObserver(observerMovimientos);
 
-        vista.LlamadaMenuP();
+        vista.LlamadaMenuP("Ninguno");
       
     }
 
-    public static void iniciarSesion(String nickName) {
-        modelo.iniciarSesion(nickName);
+    public static boolean iniciarSesion(String nickName) {
+
+        return modelo.iniciarSesion(nickName);
+    }
+
+    public static boolean registrarUsuario(String nickName) {
+
+        return modelo.registrarUsuario(nickName);
+    }
+
+    public static String[] usuarioConectado() {
+        return modelo.obtenerDatos();
     }
 
     /**
@@ -53,6 +63,10 @@ public class Controlador {
         if (modelo.turno % 2 != 0) {
             turnoAutomata();
         }
+    }
+
+    public static void cambiarTurno() {
+        modelo.cambiarTurno();
     }
 
     public static void turnoAutomata() {

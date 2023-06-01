@@ -48,17 +48,18 @@ public class BD {
 
     }
 
-    public String[] consultar(String texto) {
+    public String[] consultar(String textoConsulta) {
+
+        conectar();
 
         seleccion = null;
-        String textoSeleccion = texto;
         ResultSet resultado = null;
         String[] resultadoConsulta = new String[5];
 
         try {
 
             seleccion = conexion.createStatement();
-            resultado = seleccion.executeQuery(textoSeleccion);
+            resultado = seleccion.executeQuery(textoConsulta);
 
             while (resultado.next()) {
 
@@ -79,8 +80,34 @@ public class BD {
 
         }
 
+        cerrar();
+
         return resultadoConsulta;
 
+    }
+
+    public boolean registrar(String textoModificacion) {
+
+        conectar();
+
+        Statement consulta = null; // Objeto que permite hacer las consultas
+
+        try {
+
+            consulta = conexion.createStatement();
+            consulta.executeUpdate(textoModificacion); // Método para realizar la consulta
+            System.out.println("Consulta exitosa");
+
+        } catch (SQLException e) {
+
+            System.out.println("Error en la consulta");
+            System.out.println(e.getLocalizedMessage());
+            cerrar();
+            return false;
+        }
+
+        cerrar();
+        return true;
     }
 
     public void cerrar() {

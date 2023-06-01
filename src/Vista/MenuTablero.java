@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
-import java.util.TimerTask;
 
 /**
  * Ventana de la partida
@@ -38,12 +36,7 @@ public class MenuTablero {
         //Aquí iría la funcionalidad de generar tablero
         EtiquetaTemporizador = new JLabel();
         JButton iniciarTemporizador = new JButton("Iniciar tiempo");
-        iniciarTemporizador.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MenuTablero.Temporizador(3);
-            }
-        });
+        MenuTablero.temporizador(1);
 
         JButton guardarYSalir = new JButton("Guardar y salir");
         guardarYSalir.addActionListener(new ActionListener() {
@@ -51,7 +44,7 @@ public class MenuTablero {
             public void actionPerformed(ActionEvent e) {
                 Controlador.guardarPartida();
                 partida.setVisible(false);
-                MenuPrincipal.GenerarMenu();
+                MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);
             }
         });
 
@@ -133,9 +126,8 @@ public class MenuTablero {
     }
 
 /** Añadimos la funcionalidad para el temporizador**/
-    public static void Temporizador (int minutos){
-        //declaramos segundos y un contador (debe ser final para que pueda usarse en el método
-        //anónimo)
+    public static void temporizador(int minutos){
+        // declaramos segundos y un contador (debe ser final para que pueda usarse en el métodoanónimo)
         int segundos = minutos * 60;
         final int[] contador = {minutos * 60};
         Timer temporizador = new Timer(1000, new ActionListener() {
@@ -153,6 +145,8 @@ public class MenuTablero {
                     contador[0]--;
                 }else{
                     EtiquetaTemporizador.setText("Siguiente turno");
+                    Controlador.cambiarTurno();
+                    contador[0] = minutos * 60;
                 }
             }
         });
@@ -167,7 +161,7 @@ public class MenuTablero {
      *     visualmnente cuántos segundos quedan de cada minuto.
      *
      * @param segundos
-     * @return
+     * @return TODO Que retorna
      */
     public static String ModificarVisual(int segundos){
         /*
