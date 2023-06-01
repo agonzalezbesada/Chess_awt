@@ -24,7 +24,7 @@ public class Estadisticas {
 
         String[] datos = Controlador.usuarioConectado();
 
-        String[] campos = {"NickName", "partidasJugadas", "victorias", "derrotas", "tablas"};
+        String[] campos = {"NickName", "Partidas Jugadas", "Victorias", "Derrotas", "Tablas"};
 
         Object[][] registros = {{datos[0], datos[1], datos[2], datos[3], datos[4]}};
 

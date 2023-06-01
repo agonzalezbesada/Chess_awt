@@ -28,24 +28,28 @@ public class BD {
 
     }
 
-    public void modificar(String texto) {
+    public boolean modificar(String textoModificacion) {
+
+        conectar();
 
         consulta = null;
-        String textoConsulta = texto;
 
         try {
 
             consulta = conexion.createStatement();
-            consulta.executeUpdate(textoConsulta);
+            consulta.executeUpdate(textoModificacion);
             System.out.println("Consulta exitosa");
 
         } catch (SQLException e) {
 
             System.out.println("Error en la consulta");
             System.out.println(e.getLocalizedMessage());
-
+            cerrar();
+            return false;
         }
 
+        cerrar();
+        return true;
     }
 
     public String[] consultar(String textoConsulta) {
@@ -84,30 +88,6 @@ public class BD {
 
         return resultadoConsulta;
 
-    }
-
-    public boolean registrar(String textoModificacion) {
-
-        conectar();
-
-        Statement consulta = null; // Objeto que permite hacer las consultas
-
-        try {
-
-            consulta = conexion.createStatement();
-            consulta.executeUpdate(textoModificacion); // Método para realizar la consulta
-            System.out.println("Consulta exitosa");
-
-        } catch (SQLException e) {
-
-            System.out.println("Error en la consulta");
-            System.out.println(e.getLocalizedMessage());
-            cerrar();
-            return false;
-        }
-
-        cerrar();
-        return true;
     }
 
     public void cerrar() {

@@ -1,5 +1,7 @@
 package Modelo;
 
+import Controlador.Controlador;
+
 import javax.swing.*;
 import java.util.Observable;
 
@@ -280,33 +282,31 @@ public class Modelo extends Observable {
         // Recorre el tablero en busqueda de los reyes para determinar el fin de la partida
 
         boolean isReyN = false;
+        boolean isReyB = false;
         for (int col = 0; col < 8; col++) {
             for (int row = 0; row < 8; row++) {
 
                 if (matrizPiezas[col][row]!=null && matrizPiezas[col][row].getNombre().equals("ReyN")) {
                     isReyN = true;
-                }
-
-            }
-        }
-
-        if (!isReyN) {
-            JOptionPane.showMessageDialog(null,"Gana el jugador blanco");
-        }
-
-        boolean isReyB = false;
-        for (int col = 0; col < 8; col++) {
-            for (int row = 0; row < 8; row++) {
-
-                if (matrizPiezas[col][row]!=null && matrizPiezas[col][row].getNombre().equals("ReyB")) {
+                } else if (matrizPiezas[col][row]!=null && matrizPiezas[col][row].getNombre().equals("ReyB")) {
                     isReyB = true;
                 }
 
             }
         }
 
-        if (!isReyB) {
-            JOptionPane.showMessageDialog(null,"Gana el jugador negro");
+        if (!isReyN) {
+            JOptionPane.showMessageDialog(null,"VICTORIA!");
+            modificarEstadisticas(1);
+            modificarEstadisticas(2);
+            Controlador.terminarPartida();
+
+
+        } else if (!isReyB) {
+            JOptionPane.showMessageDialog(null,"DERROTA");
+            modificarEstadisticas(1);
+            modificarEstadisticas(3);
+            Controlador.terminarPartida();
         }
 
         return true;
@@ -337,11 +337,38 @@ public class Modelo extends Observable {
 
     public boolean registrarUsuario(String nickName) {
 
-        return bd.registrar("INSERT INTO jugadores (NickName) VALUES ('"+nickName+"');");
+        return bd.modificar("INSERT INTO jugadores (NickName) VALUES ('"+nickName+"');");
     }
 
     public String[] obtenerDatos() {
+        iniciarSesion(jugador.getNickName());
         return jugador.obtenerDatos();
+    }
+
+    public void modificarEstadisticas(int modificacion) {
+
+        switch (modificacion) {
+
+            case 1:
+                bd.modificar("UPDATE jugadores SET PartidasJugadas = PartidasJugadas +1 WHERE nickName = '"+jugador.getNickName()+"';");
+                break;
+
+            case 2:
+                bd.modificar("UPDATE jugadores SET Victorias = Victorias +1 WHERE nickName = '"+jugador.getNickName()+"';");
+                break;
+
+            case 3:
+                bd.modificar("UPDATE jugadores SET Derrotas = Derrotas +1 WHERE nickName = '"+jugador.getNickName()+"';");
+                break;
+
+            case 4:
+                bd.modificar("UPDATE jugadores SET Tablas = Tablas +1 WHERE nickName = '"+jugador.getNickName()+"';");
+                break;
+
+            default:
+                break;
+        }
+
     }
 
     public void guardarPartida() {

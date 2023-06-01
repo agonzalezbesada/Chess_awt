@@ -1,9 +1,5 @@
 package Vista;
 
-import Controlador.Controlador;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * Vista
@@ -22,7 +18,8 @@ public class Vista {
         MenuTablero.actualizarTablero(1);
     }
 
-    public void volverMenuPrincipal() {
-
+    public void terminarPartida() {
+        MenuTablero.terminarPartida();
     }
+
 }

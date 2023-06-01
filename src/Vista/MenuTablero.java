@@ -187,4 +187,9 @@ public class MenuTablero {
         partida.setVisible(true);
 
     }
+
+    public static void terminarPartida() {
+        partida.setVisible(false);
+        MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);
+    }
 }

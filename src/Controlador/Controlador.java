@@ -43,6 +43,10 @@ public class Controlador {
         return modelo.posicionesIniciales();
     }
 
+    public static void terminarPartida() {
+        vista.terminarPartida();
+    }
+
     /**
      * Proporciona las posiciones actuales
      * @return Matriz con las posiciones actuales
