@@ -1,5 +1,6 @@
 package Modelo;
 
+import javax.swing.*;
 import java.util.Observable;
 
 /**
@@ -10,6 +11,8 @@ public class Modelo extends Observable {
     public BD bd = new BD();
     public Jugador jugador;
     public Integer turno;
+    public Partida partida = null;
+    public Guardado guardado = new Guardado();
     public Automata automata = new Automata();
     public Movimiento movimiento = new Movimiento();
 
@@ -48,13 +51,14 @@ public class Modelo extends Observable {
     public Pieza reinaN;
     public Pieza reyN;
 
-    public Pieza[][] matrizPiezas = new Pieza[8][8];
+    public Pieza[][] matrizPiezas;
 
     /**
      *
      * @return Matriz con las piezas
      */
     public Pieza[][] posicionesIniciales() {
+        matrizPiezas = null;
         crearPiezas();
 
         this.turno = 0;
@@ -125,6 +129,8 @@ public class Modelo extends Observable {
     }
 
     public Pieza[][] asignarMatriz() {
+
+        matrizPiezas = new Pieza[8][8];
 
         this.matrizPiezas[peonB1.getPosicion()[0]][peonB1.getPosicion()[1]] = peonB1;
         this.matrizPiezas[peonB2.getPosicion()[0]][peonB2.getPosicion()[1]] = peonB2;
@@ -228,19 +234,6 @@ public class Modelo extends Observable {
     }
 
     /**
-     * Destruye una pieza concreta
-     * @param pieza
-     * @return
-     */
-    public boolean destruirPieza(IPieza pieza) {
-
-        // Eliminamos la pieza
-        pieza = null;
-
-        return true;
-    }
-
-    /**
      * Cambia la posicion de una pieza
      * @param posicionInicial Posicion actual de la pieza
      * @param posicionNueva Posicion final de la pieza
@@ -253,10 +246,14 @@ public class Modelo extends Observable {
 
         Integer[] posicionFinal = null;
 
-        if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && this.turno % 2 == 0) {
+        /*
+        Comprueba que la pieza seleccionada coincide con las piezas de ese jugador basandose en el color de la pieza y en el turno.
+        Y a su vez comprueba que no se está intentando comer una pieza propia
+         */
+        if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.BLANCO) && this.turno % 2 == 0) {
             posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
 
-        } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && this.turno % 2 != 0) {
+        } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.NEGRO) && this.turno % 2 != 0) {
             posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
 
         }
@@ -280,7 +277,43 @@ public class Modelo extends Observable {
 
         }
 
+        // Recorre el tablero en busqueda de los reyes para determinar el fin de la partida
+
+        boolean isReyN = false;
+        for (int col = 0; col < 8; col++) {
+            for (int row = 0; row < 8; row++) {
+
+                if (matrizPiezas[col][row]!=null && matrizPiezas[col][row].getNombre().equals("ReyN")) {
+                    isReyN = true;
+                }
+
+            }
+        }
+
+        if (!isReyN) {
+            JOptionPane.showMessageDialog(null,"Gana el jugador blanco");
+        }
+
+        boolean isReyB = false;
+        for (int col = 0; col < 8; col++) {
+            for (int row = 0; row < 8; row++) {
+
+                if (matrizPiezas[col][row]!=null && matrizPiezas[col][row].getNombre().equals("ReyB")) {
+                    isReyB = true;
+                }
+
+            }
+        }
+
+        if (!isReyB) {
+            JOptionPane.showMessageDialog(null,"Gana el jugador negro");
+        }
+
         return true;
+    }
+
+    public void cambiarTurno() {
+        turno ++;
     }
 
     public void turnoMaquina() {
@@ -289,12 +322,42 @@ public class Modelo extends Observable {
         automata.Minimax(turno,matrizPiezas,alfa,beta,true);
     }
 
-    public void iniciarSesion(String nickName) {
-        bd.conectar();
-        String[] sesionIniciada = new String[5];
-        sesionIniciada = bd.consultar("SELECT * FROM jugadores WHERE nombre = '"+nickName+"';");
-        jugador = new Jugador(sesionIniciada[0]);
+    public boolean iniciarSesion(String nickName) {
 
-        System.out.println(jugador.nickName);
+        String[] sesionIniciada = new String[5];
+        sesionIniciada = bd.consultar("SELECT * FROM jugadores WHERE nickName = '"+nickName+"';");
+        jugador = new Jugador(sesionIniciada[0],sesionIniciada[1],sesionIniciada[2],sesionIniciada[3],sesionIniciada[4]);
+
+        if (sesionIniciada[0]==null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean registrarUsuario(String nickName) {
+
+        return bd.registrar("INSERT INTO jugadores (NickName) VALUES ('"+nickName+"');");
+    }
+
+    public String[] obtenerDatos() {
+        return jugador.obtenerDatos();
+    }
+
+    public void guardarPartida() {
+        partida = new Partida();
+
+        partida.nickName = jugador.getNickName();
+        partida.estadoPartida = matrizPiezas;
+        partida.turno = turno;
+
+        guardado.guardarPartida(partida);
+
+        partida = null;
+    }
+
+    public void cargarPartida() {
+        partida = guardado.cargarPartida(jugador.getNickName());
+        matrizPiezas = partida.estadoPartida;
     }
 }

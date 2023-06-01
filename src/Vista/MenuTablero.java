@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
-import java.util.TimerTask;
 
 /**
  * Ventana de la partida
@@ -33,28 +31,26 @@ public class MenuTablero {
         JPanel tablero = MenuTablero.generarTablero(0);
         JPanel informacionExtra = new JPanel(new GridLayout(6,1));
         tablero = MenuTablero.generarTablero(modo);
-        informacionExtra = new JPanel(new GridLayout(2, 1));
+        informacionExtra = new JPanel(new GridLayout(3, 1));
 
         //Aquí iría la funcionalidad de generar tablero
         EtiquetaTemporizador = new JLabel();
-        JButton IniciarTemporizador = new JButton("Iniciar tiempo");
-        IniciarTemporizador.addActionListener(new ActionListener() {
+        JButton iniciarTemporizador = new JButton("Iniciar tiempo");
+        MenuTablero.temporizador(1);
+
+        JButton guardarYSalir = new JButton("Guardar y salir");
+        guardarYSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuTablero.Temporizador(3);
+                Controlador.guardarPartida();
+                partida.setVisible(false);
+                MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);
             }
         });
-        JButton CambiarTurno = new JButton("Cambiar turno");
-        JTextField CasillaInicial = new JTextField("Casilla inicial");
-        JTextField CasillaFinal = new JTextField("Casilla final");
-        JButton GuardarYSalir = new JButton("Guardar y salir");
 
         informacionExtra.add(EtiquetaTemporizador);
-        informacionExtra.add(IniciarTemporizador);
-        informacionExtra.add(CambiarTurno);
-        informacionExtra.add(CasillaInicial);
-        informacionExtra.add(CasillaFinal);
-        informacionExtra.add(GuardarYSalir);
+        informacionExtra.add(iniciarTemporizador);
+        informacionExtra.add(guardarYSalir);
 
         partida.add(informacionExtra, BorderLayout.EAST);
 
@@ -130,9 +126,8 @@ public class MenuTablero {
     }
 
 /** Añadimos la funcionalidad para el temporizador**/
-    public static void Temporizador (int minutos){
-        //declaramos segundos y un contador (debe ser final para que pueda usarse en el método
-        //anónimo)
+    public static void temporizador(int minutos){
+        // declaramos segundos y un contador (debe ser final para que pueda usarse en el métodoanónimo)
         int segundos = minutos * 60;
         final int[] contador = {minutos * 60};
         Timer temporizador = new Timer(1000, new ActionListener() {
@@ -150,6 +145,8 @@ public class MenuTablero {
                     contador[0]--;
                 }else{
                     EtiquetaTemporizador.setText("Siguiente turno");
+                    Controlador.cambiarTurno();
+                    contador[0] = minutos * 60;
                 }
             }
         });
@@ -164,7 +161,7 @@ public class MenuTablero {
      *     visualmnente cuántos segundos quedan de cada minuto.
      *
      * @param segundos
-     * @return
+     * @return TODO Que retorna
      */
     public static String ModificarVisual(int segundos){
         /*

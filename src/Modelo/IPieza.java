@@ -5,11 +5,8 @@ package Modelo;
  */
 public interface IPieza {
 
-    // Quizás innecesario
     Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas);
 
-    // Quizás innecesario
-    boolean destruirPieza();
 
     final Integer BLANCO = 0;
     final Integer NEGRO = 1;
