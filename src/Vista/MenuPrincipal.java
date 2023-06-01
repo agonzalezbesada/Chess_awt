@@ -55,9 +55,6 @@ public class MenuPrincipal {
         iniciarSesion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*
-                Controlador.iniciarSesion("Adrian");
-                 */
 
                 menuPrincipal.setVisible(false);
                 IniciarSesion.inciarSesion();
