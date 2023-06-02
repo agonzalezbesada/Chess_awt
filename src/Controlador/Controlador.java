@@ -64,9 +64,12 @@ public class Controlador {
 
         modelo.moverPieza(posicionInicial, posicionNueva);
 
+        /*
         if (modelo.turno % 2 != 0) {
             turnoAutomata();
         }
+         */
+
     }
 
     public static void cambiarTurno() {
@@ -88,7 +91,7 @@ public class Controlador {
 
     public static void actualizarTablero() {
 
-        vista.actualizarTablero(); // TODO pasar esto a observador
+        vista.actualizarTablero();
 
     }
 }
