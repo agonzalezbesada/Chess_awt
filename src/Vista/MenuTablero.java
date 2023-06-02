@@ -28,7 +28,7 @@ public class MenuTablero {
 
 
 
-        JPanel tablero = MenuTablero.generarTablero(0);
+        JPanel tablero;
         JPanel informacionExtra = new JPanel(new GridLayout(6,1));
         tablero = MenuTablero.generarTablero(modo);
         informacionExtra = new JPanel(new GridLayout(3, 1));
@@ -186,5 +186,10 @@ public class MenuTablero {
         partida.add(tablero);
         partida.setVisible(true);
 
+    }
+
+    public static void terminarPartida() {
+        partida.setVisible(false);
+        MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);
     }
 }

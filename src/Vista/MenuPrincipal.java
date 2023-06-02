@@ -69,6 +69,18 @@ public class MenuPrincipal {
             }
         });
 
+        estadisticas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (usuarioConectado.equals("Ninguno")) {
+
+                } else {
+                    menuPrincipal.setVisible(false); // Cierra la ventana
+                    Estadisticas.estadisticas();
+                }
+            }
+        });
+
         salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

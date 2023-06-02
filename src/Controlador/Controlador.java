@@ -43,6 +43,10 @@ public class Controlador {
         return modelo.posicionesIniciales();
     }
 
+    public static void terminarPartida() {
+        vista.terminarPartida();
+    }
+
     /**
      * Proporciona las posiciones actuales
      * @return Matriz con las posiciones actuales
@@ -60,9 +64,12 @@ public class Controlador {
 
         modelo.moverPieza(posicionInicial, posicionNueva);
 
+        /*
         if (modelo.turno % 2 != 0) {
             turnoAutomata();
         }
+         */
+
     }
 
     public static void cambiarTurno() {
@@ -84,7 +91,7 @@ public class Controlador {
 
     public static void actualizarTablero() {
 
-        vista.actualizarTablero(); // TODO pasar esto a observador
+        vista.actualizarTablero();
 
     }
 }
