@@ -90,6 +90,30 @@ public class BD {
 
     }
 
+    public boolean registrar(String textoModificacion) {
+
+        conectar();
+
+        Statement consulta = null; // Objeto que permite hacer las consultas
+
+        try {
+
+            consulta = conexion.createStatement();
+            consulta.executeUpdate(textoModificacion); // Método para realizar la consulta
+            System.out.println("Consulta exitosa");
+
+        } catch (SQLException e) {
+
+            System.out.println("Error en la consulta");
+            System.out.println(e.getLocalizedMessage());
+            cerrar();
+            return false;
+        }
+
+        cerrar();
+        return true;
+    }
+
     public void cerrar() {
 
         try {

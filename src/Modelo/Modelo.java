@@ -72,6 +72,7 @@ public class Modelo extends Observable {
     public Pieza alfilN2;
     public Pieza reinaN;
     public Pieza reyN;
+  
     /**
      * Matriz que contiene las posiciones de las piezas
      */
