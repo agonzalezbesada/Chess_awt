@@ -3,7 +3,7 @@ package Modelo;
 /**
  * Clase abstacta de las piezas con atributos y métodos con cuerpo
  */
-public abstract class Pieza implements IPieza {
+public class Pieza implements IPieza {
 
     private String nombre;
     private Integer[] posicion = new Integer[2];
@@ -72,5 +72,10 @@ public abstract class Pieza implements IPieza {
      */
     public void setColor(int color) {
         this.color = color;
+    }
+
+    @Override
+    public Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas) {
+        return new Integer[0];
     }
 }
