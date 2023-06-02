@@ -9,13 +9,33 @@ import java.util.Observable;
  * Modelo
  */
 public class Modelo extends Observable {
-
+    /**
+     * Base de datos que contiene los usuarios y sus estadisticas
+     */
     public BD bd = new BD();
+    /**
+     * Usuario actual
+     */
     public Jugador jugador;
+    /**
+     * Turno de la partida
+     */
     public Integer turno;
+    /**
+     * Datos generales de la partida
+     */
     public Partida partida = null;
+    /**
+     * Clase que se ocupa de guardar y cargar las partidas
+     */
     public Guardado guardado = new Guardado();
+    /**
+     * Máquina contra la que jugar (Futura implementación)
+     */
     public Automata automata = new Automata();
+    /**
+     * Clase que almacena todos los movimientos posibles para la máquina (Futura implementación)
+     */
     public Movimiento movimiento = new Movimiento();
 
     public Pieza peonB1;
@@ -52,11 +72,13 @@ public class Modelo extends Observable {
     public Pieza alfilN2;
     public Pieza reinaN;
     public Pieza reyN;
-
+    /**
+     * Matriz que contiene las posiciones de las piezas
+     */
     public Pieza[][] matrizPiezas;
 
     /**
-     *
+     * Crea una matriz con las posiciones iniciales de la piezas
      * @return Matriz con las piezas
      */
     public Pieza[][] posicionesIniciales() {
@@ -74,6 +96,7 @@ public class Modelo extends Observable {
      */
     public boolean terminarPartida() {
         destruirPiezas();
+        destruirMatriz();
         return true;
     }
 
@@ -171,16 +194,19 @@ public class Modelo extends Observable {
         return matrizPiezas;
     }
 
+    /**
+     * Devuelve la matriz de piezas actual
+     * @return Matriz de piezas actual
+     */
     public Pieza[][] obtenerMatriz() {
         return matrizPiezas;
     }
 
     /**
      * Destruye las piezas
-     * @return
+     * @return Comprobación
      */
     public boolean destruirPiezas() {
-
 
         // Eliminamos peones blancos
         this.peonB1 = null;
@@ -231,15 +257,20 @@ public class Modelo extends Observable {
         return true;
     }
 
-    public Pieza[][] obtenerPiezas() {
-        return matrizPiezas;
+    /**
+     * Destruye la matriz
+     * @return Comprobación
+     */
+    public boolean destruirMatriz() {
+        matrizPiezas = null;
+        return true;
     }
 
     /**
-     * Cambia la posicion de una pieza
+     * Evalúa si el cambio de posición de una pieza es válido y la cambia
      * @param posicionInicial Posicion actual de la pieza
      * @param posicionNueva Posicion final de la pieza
-     * @return Devuelve la pieza
+     * @return Comprobación
      */
     public boolean moverPieza(Integer[] posicionInicial, Integer[] posicionNueva) {
 
@@ -248,35 +279,39 @@ public class Modelo extends Observable {
 
         Integer[] posicionFinal = null;
 
-        /*
-        Comprueba que la pieza seleccionada coincide con las piezas de ese jugador basandose en el color de la pieza y en el turno.
-        Y a su vez comprueba que no se está intentando comer una pieza propia
-         */
-        if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.BLANCO) && this.turno % 2 == 0) {
-            posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
+        try {
+            /*
+            Comprueba que la pieza seleccionada coincide con las piezas de ese jugador basandose en el color de la pieza y en el turno.
+            Y a su vez comprueba que no se está intentando comer una pieza propia
+            */
+            if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.BLANCO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.BLANCO) && this.turno % 2 == 0) {
+                posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
 
-        } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.NEGRO) && this.turno % 2 != 0) {
-            posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
+            } else if ((matrizPiezas[posicionInicial[0]][posicionInicial[1]].getColor() == IPieza.NEGRO) && (matrizPiezas[posicionNueva[0]][posicionNueva[1]] == null || matrizPiezas[posicionNueva[0]][posicionNueva[1]].getColor() != IPieza.NEGRO) && this.turno % 2 != 0) {
+                posicionFinal =  this.matrizPiezas[posicionInicial[0]][posicionInicial[1]].cambiarPosicion(posicionNueva,matrizPiezas);
 
-        }
+            }
 
+            if (posicionFinal != null ) {
 
-        if (posicionFinal != null ) {
+                this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = null;
 
-            this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = null;
+                this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = this.matrizPiezas[posicionInicial[0]][posicionInicial[1]];
 
-            this.matrizPiezas[posicionFinal[0]][posicionFinal[1]] = this.matrizPiezas[posicionInicial[0]][posicionInicial[1]];
+                System.out.println("Despues del =\n"+posicionFinal[0]+" "+posicionFinal[1]);
 
-            System.out.println("Despues del =\n"+posicionFinal[0]+" "+posicionFinal[1]);
+                this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
 
-            this.matrizPiezas[posicionInicial[0]][posicionInicial[1]] = null;
+                setChanged();
 
-            setChanged();
+                notifyObservers();
 
-            notifyObservers();
+                this.turno ++;
 
-            this.turno ++;
+            }
 
+        } catch (NullPointerException e) {
+            System.out.println(e.getLocalizedMessage());
         }
 
         // Recorre el tablero en busqueda de los reyes para determinar el fin de la partida
@@ -299,6 +334,7 @@ public class Modelo extends Observable {
             JOptionPane.showMessageDialog(null,"VICTORIA!");
             modificarEstadisticas(1);
             modificarEstadisticas(2);
+            terminarPartida();
             Controlador.terminarPartida();
 
 
@@ -306,22 +342,34 @@ public class Modelo extends Observable {
             JOptionPane.showMessageDialog(null,"DERROTA");
             modificarEstadisticas(1);
             modificarEstadisticas(3);
+            terminarPartida();
             Controlador.terminarPartida();
         }
 
         return true;
     }
 
+    /**
+     * Cambia de turno
+     */
     public void cambiarTurno() {
         turno ++;
     }
 
+    /**
+     * Llama a la máquina para que haga un movimiento (Futura implementación)
+     */
     public void turnoMaquina() {
         int alfa = Integer.MAX_VALUE;
         int beta = Integer.MIN_VALUE;
         automata.Minimax(turno,matrizPiezas,alfa,beta,true);
     }
 
+    /**
+     * Inicia sesión obteniendo todos los datos de ese usuario de la base de datos
+     * @param nickName Nombre del usuario
+     * @return Comprobación
+     */
     public boolean iniciarSesion(String nickName) {
 
         String[] sesionIniciada = new String[5];
@@ -335,16 +383,29 @@ public class Modelo extends Observable {
         return true;
     }
 
+    /**
+     * Introduce un nuevo usuario en la base de datos
+     * @param nickName Nombre del usuario
+     * @return Comprobación
+     */
     public boolean registrarUsuario(String nickName) {
 
         return bd.modificar("INSERT INTO jugadores (NickName) VALUES ('"+nickName+"');");
     }
 
+    /**
+     * Otorga los datos del usuario
+     * @return Datos del usuario
+     */
     public String[] obtenerDatos() {
         iniciarSesion(jugador.getNickName());
         return jugador.obtenerDatos();
     }
 
+    /**
+     * Modifica las estadísticas del jugador
+     * @param modificacion Qué estadrística modificar
+     */
     public void modificarEstadisticas(int modificacion) {
 
         switch (modificacion) {
@@ -371,6 +432,9 @@ public class Modelo extends Observable {
 
     }
 
+    /**
+     * Método que hace una llamda para serializar una partida teniendo en cuenta el nombre de usuario
+     */
     public void guardarPartida() {
         partida = new Partida();
 
@@ -383,8 +447,13 @@ public class Modelo extends Observable {
         partida = null;
     }
 
+    /**
+     * Método que hace la llamada para deserializar una partida
+     */
     public void cargarPartida() {
-        partida = guardado.cargarPartida(jugador.getNickName());
-        matrizPiezas = partida.estadoPartida;
+        partida = guardado.cargarPartida(jugador.getNickName()); // Deserializa la partida
+        partida.ajustarTipos(); // Ajusta los tipos de objetos de la matriz, ya que la deserializacion castea los objetos a su clase padre
+        matrizPiezas = partida.estadoPartida; // Iguala la matriz actual a la matriz deserializada
+        turno = partida.turno; // Iguala el turno al turno deserializado
     }
 }
