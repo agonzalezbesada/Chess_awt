@@ -17,7 +17,7 @@ public class Controlador {
 
         modelo.addObserver(observerMovimientos);
 
-        vista.LlamadaMenuP("Ninguno");
+        vista.llamadaMenuP("Ninguno");
       
     }
 

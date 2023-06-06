@@ -9,7 +9,7 @@ public class Vista {
     /**
      * Llama a la interfaz
      */
-    public void LlamadaMenuP(String usuarioConectado){
+    public void llamadaMenuP(String usuarioConectado){
         MenuPrincipal principal = new MenuPrincipal();
         principal.GenerarMenu(usuarioConectado);
     }
