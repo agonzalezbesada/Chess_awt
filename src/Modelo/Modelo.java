@@ -453,8 +453,13 @@ public class Modelo extends Observable {
      */
     public void cargarPartida() {
         partida = guardado.cargarPartida(jugador.getNickName()); // Deserializa la partida
-        partida.ajustarTipos(); // Ajusta los tipos de objetos de la matriz, ya que la deserializacion castea los objetos a su clase padre
-        matrizPiezas = partida.estadoPartida; // Iguala la matriz actual a la matriz deserializada
-        turno = partida.turno; // Iguala el turno al turno deserializado
+        try {
+            partida.ajustarTipos(); // Ajusta los tipos de objetos de la matriz, ya que la deserializacion castea los objetos a su clase padre
+            matrizPiezas = partida.estadoPartida; // Iguala la matriz actual a la matriz deserializada
+            turno = partida.turno; // Iguala el turno al turno deserializado
+        } catch (NullPointerException e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+
     }
 }

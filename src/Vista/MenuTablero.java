@@ -23,6 +23,7 @@ public class MenuTablero {
      */
     public static void generarPartida(int modo) {
         partida = new JFrame();
+        partida.setTitle("Partida en curso");
         partida.setBounds(0, 0, 1920, 1050);
         partida.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

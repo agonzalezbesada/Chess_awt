@@ -19,7 +19,7 @@ public class MenuPrincipal {
     public static void GenerarMenu(String usuarioConectado){
 
         JFrame menuPrincipal = new JFrame(); // Pantalla del menu principal
-        menuPrincipal.setTitle("Ajedrez"); // Nombre de la pantalla
+        menuPrincipal.setTitle("Menu Principal"); // Nombre de la pantalla
         menuPrincipal.setBounds(0,0, 1920, 1050); // Proporciones
         menuPrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         // Tras crear el menú principal, generamos un panel donde introducimos un GridLayout con 4 filas y 1 columna
@@ -65,7 +65,13 @@ public class MenuPrincipal {
         cargarPartida.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controlador.cargarPartida(); // Carga una partida guardada en formato JSON
+
+                if (usuarioConectado.equals("Ninguno")) {
+
+                } else {
+                    Controlador.cargarPartida(); // Carga una partida guardada en formato JSON
+                }
+
             }
         });
 
