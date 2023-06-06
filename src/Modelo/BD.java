@@ -101,7 +101,6 @@ public class BD {
 
             seleccion = conexion.createStatement();
             resultado = seleccion.executeQuery(textoConsulta);
-
             while (resultado.next()) {
 
                 resultadoConsulta[0] = resultado.getString("NickName");
