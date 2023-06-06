@@ -12,8 +12,7 @@ import java.awt.event.ActionListener;
  * Ventana de la partida
  */
 public class MenuTablero {
-    private static JLabel EtiquetaTemporizador;
-
+    public static JLabel EtiquetaTemporizador;
     public static JPanel tablero;
     public static JFrame partida;
     public static JLabel[][] label;
