@@ -1,9 +1,10 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * (Futura implementación)
+ */
 public class Automata {
     private static Pieza [][] EstadoTablero;
     private int profundidad = 3;
@@ -44,6 +45,7 @@ public class Automata {
 
     public int Minimax(int profundidad, Pieza[][] TableroActual, int alfa, int beta, boolean esMaximizador) {
         Movimiento moverse = new Movimiento();
+        Movimiento MejorMovimiento = new Movimiento();
         int puntuacion = 0;
         if (profundidad == 0) {
             puntuacion = EvaluarTablero(TableroActual);
@@ -57,6 +59,10 @@ public class Automata {
                 puntuacion = Minimax(profundidad - 1, nuevoTablero, alfa, beta, false);
 
                 mejorPuntuacion = Math.max(mejorPuntuacion, puntuacion);
+                if (puntuacion > mejorPuntuacion){
+                    mejorPuntuacion = puntuacion;
+                     MejorMovimiento = movimiento;
+                }
                 alfa = Math.max(alfa, mejorPuntuacion);
 
                 if (beta <= alfa) {
@@ -66,6 +72,8 @@ public class Automata {
 
                 }
              }
+            Movimiento movimiento = new Movimiento();
+            Pieza[][] nuevoTablero = moverse.realizarMovimiento(TableroActual, MejorMovimiento);
             return mejorPuntuacion;
         } else {
             int mejorPuntuacion = Integer.MAX_VALUE;
@@ -233,18 +241,21 @@ public class Automata {
                 };
 
                 for (int[] posicion : posicionesContiguas){
-                    int fila = posicion[0];
-                    int columna = posicion[1];
-                    Pieza piezaAdyacente = Tablero[fila][columna];
-                    if(piezaAdyacente instanceof Peon){
-                        PuntuacionDefensaRey += 1;
+                    if (posicion[0] >= 0 && posicion[0] < 8 && posicion[1] >= 0 && posicion[1] < 8){
+                        int fila = posicion[0];
+                        int columna = posicion[1];
+                        Pieza piezaAdyacente = Tablero[fila][columna];
+                        if(piezaAdyacente instanceof Peon){
+                            PuntuacionDefensaRey += 1;
+                        }
+                        if (piezaAdyacente instanceof Alfil) {
+                            PuntuacionDefensaRey += 2;
+                        }
+                        if (piezaAdyacente instanceof Torre){
+                            PuntuacionDefensaRey += 3;
+                        }
                     }
-                    if (piezaAdyacente instanceof Alfil) {
-                        PuntuacionDefensaRey += 2;
-                    }
-                    if (piezaAdyacente instanceof Torre){
-                        PuntuacionDefensaRey += 3;
-                    }
+
                 }
             }
 

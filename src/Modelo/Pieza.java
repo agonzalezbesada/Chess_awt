@@ -3,16 +3,12 @@ package Modelo;
 /**
  * Clase abstacta de las piezas con atributos y métodos con cuerpo
  */
-public abstract class Pieza implements IPieza {
+public class Pieza implements IPieza {
 
     private String nombre;
     private Integer[] posicion = new Integer[2];
     private int nMovimientos = 0;
     private Integer color;
-
-    public boolean destruirPieza() {
-        return true;
-    }
 
     /**
      * Devuelve el nombre
@@ -76,5 +72,16 @@ public abstract class Pieza implements IPieza {
      */
     public void setColor(int color) {
         this.color = color;
+    }
+
+    /**
+     * Método que evalúa y realiza el movimiento de la pieza
+     * @param posicionNueva Posición de destino
+     * @param matrizPiezas Matriz de piezas
+     * @return Nueva posición para la pieza
+     */
+    @Override
+    public Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas) {
+        return new Integer[0];
     }
 }

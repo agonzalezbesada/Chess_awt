@@ -3,15 +3,42 @@ package Modelo;
 import java.sql.*;
 public class BD {
 
+    /**
+     * Nombre de la base de datos
+     */
     public String bd = "chess";
+    /**
+     * Nombre de la tabla
+     */
     public String tabla = "jugadores";
+    /**
+     * Objeto que permite hacer la conexión
+     */
     public Connection conexion = null;
-    public String url = "jdbc:mysql://localhost:3306/bd_prueba";
+    /**
+     * URL necesaria para la conexion
+     */
+    public String url = "jdbc:mysql://localhost:3306/chess";
+    /**
+     * Usuario de la base de datos
+     */
     public String user = "root";
+    /**
+     * Contraseña de la base de datos
+     */
     public String password = "root";
+    /**
+     * Objeto que permite hacer la consulta
+     */
     public Statement consulta = null;
+    /**
+     * Objeto que permite hacer la selección
+     */
     public Statement seleccion = null;
 
+    /**
+     * Conecta con la base de datos
+     */
     public void conectar() {
 
         try {
@@ -28,38 +55,52 @@ public class BD {
 
     }
 
-    public void modificar(String texto) {
+    /**
+     * Método que permite hacer una modificación en la base de datos
+     * @param textoModificacion Consulta de modificación
+     * @return Comprobación
+     */
+    public boolean modificar(String textoModificacion) {
+
+        conectar();
 
         consulta = null;
-        String textoConsulta = texto;
 
         try {
 
             consulta = conexion.createStatement();
-            consulta.executeUpdate(textoConsulta);
+            consulta.executeUpdate(textoModificacion);
             System.out.println("Consulta exitosa");
 
         } catch (SQLException e) {
 
             System.out.println("Error en la consulta");
             System.out.println(e.getLocalizedMessage());
-
+            cerrar();
+            return false;
         }
 
+        cerrar();
+        return true;
     }
 
-    public String[] consultar(String texto) {
+    /**
+     * Método que permite hacer una consulta en la base de datos
+     * @param textoConsulta Consulta de seleccion
+     * @return Resultado de la consulta
+     */
+    public String[] consultar(String textoConsulta) {
+
+        conectar();
 
         seleccion = null;
-        String textoSeleccion = texto;
         ResultSet resultado = null;
         String[] resultadoConsulta = new String[5];
 
         try {
 
             seleccion = conexion.createStatement();
-            resultado = seleccion.executeQuery(textoSeleccion);
-
+            resultado = seleccion.executeQuery(textoConsulta);
             while (resultado.next()) {
 
                 resultadoConsulta[0] = resultado.getString("NickName");
@@ -79,10 +120,15 @@ public class BD {
 
         }
 
+        cerrar();
+
         return resultadoConsulta;
 
     }
 
+    /**
+     * Método que cierra la conexión
+     */
     public void cerrar() {
 
         try {

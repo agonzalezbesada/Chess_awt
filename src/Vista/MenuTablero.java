@@ -7,54 +7,51 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
-import java.util.TimerTask;
 
 /**
  * Ventana de la partida
  */
 public class MenuTablero {
-    private static JLabel EtiquetaTemporizador;
-
+    public static JLabel etiquetaTemporizador;
     public static JPanel tablero;
     public static JFrame partida;
     public static JLabel[][] label;
 
     /**
      * Genera la interfaz de la partida
+     * @param modo Manera en la que debe realizarse el método
      */
     public static void generarPartida(int modo) {
         partida = new JFrame();
+        partida.setTitle("Partida en curso");
         partida.setBounds(0, 0, 1920, 1050);
         partida.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
 
-        JPanel tablero = MenuTablero.generarTablero(0);
+        JPanel tablero;
         JPanel informacionExtra = new JPanel(new GridLayout(6,1));
         tablero = MenuTablero.generarTablero(modo);
-        informacionExtra = new JPanel(new GridLayout(2, 1));
+        informacionExtra = new JPanel(new GridLayout(3, 1));
 
         //Aquí iría la funcionalidad de generar tablero
-        EtiquetaTemporizador = new JLabel();
-        JButton IniciarTemporizador = new JButton("Iniciar tiempo");
-        IniciarTemporizador.addActionListener(new ActionListener() {
+        etiquetaTemporizador = new JLabel();
+        JButton iniciarTemporizador = new JButton("Iniciar tiempo");
+        MenuTablero.temporizador(1);
+
+        JButton guardarYSalir = new JButton("Guardar y salir");
+        guardarYSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuTablero.Temporizador(3);
+                Controlador.guardarPartida();
+                partida.setVisible(false);
+                MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);
             }
         });
-        JButton CambiarTurno = new JButton("Cambiar turno");
-        JTextField CasillaInicial = new JTextField("Casilla inicial");
-        JTextField CasillaFinal = new JTextField("Casilla final");
-        JButton GuardarYSalir = new JButton("Guardar y salir");
 
-        informacionExtra.add(EtiquetaTemporizador);
-        informacionExtra.add(IniciarTemporizador);
-        informacionExtra.add(CambiarTurno);
-        informacionExtra.add(CasillaInicial);
-        informacionExtra.add(CasillaFinal);
-        informacionExtra.add(GuardarYSalir);
+        informacionExtra.add(etiquetaTemporizador);
+        informacionExtra.add(iniciarTemporizador);
+        informacionExtra.add(guardarYSalir);
 
         partida.add(informacionExtra, BorderLayout.EAST);
 
@@ -64,6 +61,7 @@ public class MenuTablero {
 
     /**
      * Genera el tablero
+     * @param modo Manera en la que debe realizarse el método
      * @return Devuelve el tablero
      */
     public static JPanel generarTablero(int modo) {
@@ -129,10 +127,12 @@ public class MenuTablero {
         return tablero;
     }
 
-/** Añadimos la funcionalidad para el temporizador**/
-    public static void Temporizador (int minutos){
-        //declaramos segundos y un contador (debe ser final para que pueda usarse en el método
-        //anónimo)
+    /**
+     * Funcionalidad del temporizador
+     * @param minutos Tiempo en minutos
+     */
+    public static void temporizador(int minutos){
+        // declaramos segundos y un contador (debe ser final para que pueda usarse en el métodoanónimo)
         int segundos = minutos * 60;
         final int[] contador = {minutos * 60};
         Timer temporizador = new Timer(1000, new ActionListener() {
@@ -145,11 +145,13 @@ public class MenuTablero {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (contador[0] > 0){
-                    String ModificarTiempoVisual = ModificarVisual(contador[0]);
-                    EtiquetaTemporizador.setText(ModificarTiempoVisual);
+                    String ModificarTiempoVisual = modificarVisual(contador[0]);
+                    etiquetaTemporizador.setText(ModificarTiempoVisual);
                     contador[0]--;
                 }else{
-                    EtiquetaTemporizador.setText("Siguiente turno");
+                    etiquetaTemporizador.setText("Siguiente turno");
+                    Controlador.cambiarTurno();
+                    contador[0] = minutos * 60;
                 }
             }
         });
@@ -164,9 +166,9 @@ public class MenuTablero {
      *     visualmnente cuántos segundos quedan de cada minuto.
      *
      * @param segundos
-     * @return
+     * @return TODO Que retorna
      */
-    public static String ModificarVisual(int segundos){
+    public static String modificarVisual(int segundos){
         /*
          El resto de la división entre los segundos y 60 nos sirve para representar
          visualmnente cuántos segundos quedan de cada minuto.
@@ -180,6 +182,10 @@ public class MenuTablero {
         return String.format("%02d:%02d", minutos, segundosRestantes);
     }
 
+    /**
+     * Actualiza el tablero
+     * @param modo Manera en la que debe realizarse el método
+     */
     public static void actualizarTablero(int modo) {
 
         partida.remove(tablero);
@@ -189,5 +195,13 @@ public class MenuTablero {
         partida.add(tablero);
         partida.setVisible(true);
 
+    }
+
+    /**
+     * Cierra la ventana de la partida y devuelve al usuario al Menu Principal
+     */
+    public static void terminarPartida() {
+        partida.setVisible(false);
+        MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);
     }
 }

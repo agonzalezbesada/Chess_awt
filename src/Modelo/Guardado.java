@@ -6,10 +6,20 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Objeto que maneja partidas en ficheros
+ */
 public class Guardado {
 
+    /**
+     * Objeto que permite tratar JSON
+     */
     public Gson gson = new Gson();
 
+    /**
+     * Guarda el estado de la partida en un fichero en formato JSON
+     * @param partida Valores actuales de la partida
+     */
     public void guardarPartida(Partida partida) {
 
         String jsonPartida = gson.toJson(partida, Partida.class);
@@ -18,7 +28,7 @@ public class Guardado {
 
         try {
 
-            escritorFichero = new FileWriter("src\\PartidaGuardada"+partida.nickName+".json");
+            escritorFichero = new FileWriter("src\\Modelo\\PartidasGuardadas\\PartidaGuardada"+partida.nickName+".json",false);
             escritorFichero.write(jsonPartida);
             escritorFichero.close();
 
@@ -30,6 +40,11 @@ public class Guardado {
 
     }
 
+    /**
+     * Carga el estado de una anterior partida perteneciente al usuario actual
+     * @param jugador Usuario actual
+     * @return Valores de la partida
+     */
     public Partida cargarPartida(String jugador) {
 
         String jsonRecuperado = "";
@@ -37,7 +52,7 @@ public class Guardado {
 
         try {
 
-            lectorFichero = new FileReader("src\\PartidaGuardada"+jugador+".json");
+            lectorFichero = new FileReader("src\\Modelo\\PartidasGuardadas\\PartidaGuardada"+jugador+".json");
             int caracter = lectorFichero.read();
 
             while (caracter!=-1) {
