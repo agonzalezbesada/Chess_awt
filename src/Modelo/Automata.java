@@ -1,9 +1,10 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * (Futura implementación)
+ */
 public class Automata {
     private static Pieza [][] EstadoTablero;
     private int profundidad = 3;

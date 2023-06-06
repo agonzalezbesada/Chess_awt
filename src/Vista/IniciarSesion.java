@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que se ocupa de la ventana para el inicio de sesión
+ */
 public class IniciarSesion {
 
     public static void inciarSesion() {
@@ -55,7 +58,7 @@ public class IniciarSesion {
                         Controlador.iniciarSesion(usuario);
 
                         interfazSesion.setVisible(false);
-                        MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);
+                        Vista.llamadaMenuP(Controlador.usuarioConectado()[0]);
                     }
 
 

@@ -3,6 +3,9 @@ package Controlador;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Observer encargado de actualizar el tablero cuando ocurra un cambio en la matriz de piezas
+ */
 public class ObserverMovimientos implements Observer {
 
     /**

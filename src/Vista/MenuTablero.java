@@ -19,6 +19,7 @@ public class MenuTablero {
 
     /**
      * Genera la interfaz de la partida
+     * @param modo Manera en la que debe realizarse el método
      */
     public static void generarPartida(int modo) {
         partida = new JFrame();
@@ -60,6 +61,7 @@ public class MenuTablero {
 
     /**
      * Genera el tablero
+     * @param modo Manera en la que debe realizarse el método
      * @return Devuelve el tablero
      */
     public static JPanel generarTablero(int modo) {
@@ -125,7 +127,10 @@ public class MenuTablero {
         return tablero;
     }
 
-/** Añadimos la funcionalidad para el temporizador**/
+    /**
+     * Funcionalidad del temporizador
+     * @param minutos Tiempo en minutos
+     */
     public static void temporizador(int minutos){
         // declaramos segundos y un contador (debe ser final para que pueda usarse en el métodoanónimo)
         int segundos = minutos * 60;
@@ -177,6 +182,10 @@ public class MenuTablero {
         return String.format("%02d:%02d", minutos, segundosRestantes);
     }
 
+    /**
+     * Actualiza el tablero
+     * @param modo Manera en la que debe realizarse el método
+     */
     public static void actualizarTablero(int modo) {
 
         partida.remove(tablero);
@@ -188,6 +197,9 @@ public class MenuTablero {
 
     }
 
+    /**
+     * Cierra la ventana de la partida y devuelve al usuario al Menu Principal
+     */
     public static void terminarPartida() {
         partida.setVisible(false);
         MenuPrincipal.GenerarMenu(Controlador.usuarioConectado()[0]);

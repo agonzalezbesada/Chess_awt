@@ -6,11 +6,26 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Objeto que se escucha al ratón
+ */
 public class ManejadorRaton implements MouseListener {
 
+    /**
+     * Posicion inicial seleccionada
+     */
     public static Integer[] posicionInicial = new Integer[2];
+    /**
+     * Posicion final seleccionada
+     */
     public static Integer[] posicionNueva = new Integer[2];
+    /**
+     * Matriz con las casillas
+     */
     public JLabel[][] label;
+    /**
+     * Casilla actual
+     */
     public JLabel celdaActual;
 
     /**

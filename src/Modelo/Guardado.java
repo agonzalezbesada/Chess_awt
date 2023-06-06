@@ -6,10 +6,20 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Objeto que maneja partidas en ficheros
+ */
 public class Guardado {
 
+    /**
+     * Objeto que permite tratar JSON
+     */
     public Gson gson = new Gson();
 
+    /**
+     * Guarda el estado de la partida en un fichero en formato JSON
+     * @param partida Valores actuales de la partida
+     */
     public void guardarPartida(Partida partida) {
 
         String jsonPartida = gson.toJson(partida, Partida.class);
@@ -30,6 +40,11 @@ public class Guardado {
 
     }
 
+    /**
+     * Carga el estado de una anterior partida perteneciente al usuario actual
+     * @param jugador Usuario actual
+     * @return Valores de la partida
+     */
     public Partida cargarPartida(String jugador) {
 
         String jsonRecuperado = "";
@@ -53,7 +68,7 @@ public class Guardado {
             System.out.println(e.toString());
         }
 
-        Partida partidaCargada = gson.fromJson(jsonRecuperado, Partida.class); // TODO No se puede desreializar las Pieza[] porque es una clase abstracta
+        Partida partidaCargada = gson.fromJson(jsonRecuperado, Partida.class);
 
         return partidaCargada;
     }

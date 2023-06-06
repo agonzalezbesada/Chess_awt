@@ -1,7 +1,8 @@
 package Modelo;
 
-import javax.swing.*;
-
+/**
+ * Objeto que almacena datos de la partida
+ */
 public class Partida {
     /**
      * Nombre de usuario
