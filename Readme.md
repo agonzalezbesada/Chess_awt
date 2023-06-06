@@ -277,17 +277,6 @@ classDiagram
 # DIAGRAMA DE SECUENCIA (Movimiento de piezas)
 
 ```mermaid
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -295,10 +296,38 @@ sequenceDiagram
-  
 sequenceDiagram
     actor Usuario
     participant ManejadorRaton
