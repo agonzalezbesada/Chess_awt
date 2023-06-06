@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.util.Observable;
 
 /**
- * Modelo
+ * Modelo, encargado de manejar los datos
  */
 public class Modelo extends Observable {
     /**
@@ -154,6 +154,10 @@ public class Modelo extends Observable {
 
     }
 
+    /**
+     * Método que asigna las piezas a su posición en la matriz
+     * @return Matriz de piezas
+     */
     public Pieza[][] asignarMatriz() {
 
         matrizPiezas = new Pieza[8][8];

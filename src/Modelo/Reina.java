@@ -3,7 +3,7 @@ package Modelo;
 /**
  * Pieza Reina
  */
-public class Reina extends Pieza implements IPieza {
+public class Reina extends Pieza {
 
     /**
      * Constructor vacío
@@ -28,6 +28,12 @@ public class Reina extends Pieza implements IPieza {
         setPosicion(posicion);
     }
 
+    /**
+     * Método que evalúa y realiza el movimiento de la pieza
+     * @param posicionNueva Posición de destino
+     * @param matrizPiezas Matriz de piezas
+     * @return Nueva posición para la pieza
+     */
     @Override
     public Integer[] cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas) {
 

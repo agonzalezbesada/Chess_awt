@@ -8,8 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que se ocupa de la ventana para las estadísticas
+ */
 public class Estadisticas {
 
+    /**
+     * Crea un menú que muestra las estadísticas del jugador habidas en la base de datos
+     */
     public static void estadisticas() {
 
         JFrame estadisticasJugador = new JFrame();

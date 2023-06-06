@@ -3,6 +3,9 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * (Futura implementación)
+ */
 public class Movimiento {
     int filaDestino;
     int columnaDestino;

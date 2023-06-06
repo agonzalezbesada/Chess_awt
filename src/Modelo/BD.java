@@ -3,15 +3,42 @@ package Modelo;
 import java.sql.*;
 public class BD {
 
+    /**
+     * Nombre de la base de datos
+     */
     public String bd = "chess";
+    /**
+     * Nombre de la tabla
+     */
     public String tabla = "jugadores";
+    /**
+     * Objeto que permite hacer la conexión
+     */
     public Connection conexion = null;
+    /**
+     * URL necesaria para la conexion
+     */
     public String url = "jdbc:mysql://localhost:3306/chess";
+    /**
+     * Usuario de la base de datos
+     */
     public String user = "root";
+    /**
+     * Contraseña de la base de datos
+     */
     public String password = "root";
+    /**
+     * Objeto que permite hacer la consulta
+     */
     public Statement consulta = null;
+    /**
+     * Objeto que permite hacer la selección
+     */
     public Statement seleccion = null;
 
+    /**
+     * Conecta con la base de datos
+     */
     public void conectar() {
 
         try {
@@ -28,6 +55,11 @@ public class BD {
 
     }
 
+    /**
+     * Método que permite hacer una modificación en la base de datos
+     * @param textoModificacion Consulta de modificación
+     * @return Comprobación
+     */
     public boolean modificar(String textoModificacion) {
 
         conectar();
@@ -52,6 +84,11 @@ public class BD {
         return true;
     }
 
+    /**
+     * Método que permite hacer una consulta en la base de datos
+     * @param textoConsulta Consulta de seleccion
+     * @return Resultado de la consulta
+     */
     public String[] consultar(String textoConsulta) {
 
         conectar();
@@ -90,30 +127,9 @@ public class BD {
 
     }
 
-    public boolean registrar(String textoModificacion) {
-
-        conectar();
-
-        Statement consulta = null; // Objeto que permite hacer las consultas
-
-        try {
-
-            consulta = conexion.createStatement();
-            consulta.executeUpdate(textoModificacion); // Método para realizar la consulta
-            System.out.println("Consulta exitosa");
-
-        } catch (SQLException e) {
-
-            System.out.println("Error en la consulta");
-            System.out.println(e.getLocalizedMessage());
-            cerrar();
-            return false;
-        }
-
-        cerrar();
-        return true;
-    }
-
+    /**
+     * Método que cierra la conexión
+     */
     public void cerrar() {
 
         try {
