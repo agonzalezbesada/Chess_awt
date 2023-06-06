@@ -3,7 +3,7 @@ package Modelo;
 /**
  * Pieza Peon
  */
-public class Peon extends Pieza implements IPieza {
+public class Peon extends Pieza {
 
     /**
      * Constructor vacío
