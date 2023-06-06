@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  * Ventana de la partida
  */
 public class MenuTablero {
-    public static JLabel EtiquetaTemporizador;
+    public static JLabel etiquetaTemporizador;
     public static JPanel tablero;
     public static JFrame partida;
     public static JLabel[][] label;
@@ -34,7 +34,7 @@ public class MenuTablero {
         informacionExtra = new JPanel(new GridLayout(3, 1));
 
         //Aquí iría la funcionalidad de generar tablero
-        EtiquetaTemporizador = new JLabel();
+        etiquetaTemporizador = new JLabel();
         JButton iniciarTemporizador = new JButton("Iniciar tiempo");
         MenuTablero.temporizador(1);
 
@@ -48,7 +48,7 @@ public class MenuTablero {
             }
         });
 
-        informacionExtra.add(EtiquetaTemporizador);
+        informacionExtra.add(etiquetaTemporizador);
         informacionExtra.add(iniciarTemporizador);
         informacionExtra.add(guardarYSalir);
 
@@ -141,10 +141,10 @@ public class MenuTablero {
             public void actionPerformed(ActionEvent e) {
                 if (contador[0] > 0){
                     String ModificarTiempoVisual = ModificarVisual(contador[0]);
-                    EtiquetaTemporizador.setText(ModificarTiempoVisual);
+                    etiquetaTemporizador.setText(ModificarTiempoVisual);
                     contador[0]--;
                 }else{
-                    EtiquetaTemporizador.setText("Siguiente turno");
+                    etiquetaTemporizador.setText("Siguiente turno");
                     Controlador.cambiarTurno();
                     contador[0] = minutos * 60;
                 }
