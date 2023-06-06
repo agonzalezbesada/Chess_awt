@@ -272,3 +272,40 @@ classDiagram
     Modelo o-- Automata : aggregation
     Modelo o-- Movimiento : aggregation
 ```
+
+
+# DIAGRAMA DE SECUENCIA (Movimiento de piezas)
+
+```mermaid
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -295,10 +296,38 @@ sequenceDiagram
+  
+sequenceDiagram
+    actor Usuario
+    participant ManejadorRaton
+    participant MenuTablero
+    participant Vista    
+    participant Controlador
+    participant ObserverMovimientos
+    participant Modelo
+    participant Pieza
+    Usuario->>ManejadorRaton: Movimiento
+    ManejadorRaton->>Controlador: moverPieza(Integer[] posicionInicial, Integer[] posicionNueva)
+    Controlador->>Modelo: moverPieza()
+    Modelo->>Pieza: cambiarPosicion(Integer[] posicionNueva, Pieza[][] matrizPiezas)
+    Pieza->>Pieza: Evalua el movimiento
+    Pieza-->>Modelo: Integer[] (Nueva posicion de la pieza)
+    Modelo->>ObserverMovimientos: update()
+    Modelo-->>Controlador: boolean
+    ObserverMovimientos->>Vista: actualizarTablero()
+    Vista->>MenuTablero: actualizarTablero(int 1)
+    MenuTablero->>Usuario: Cambio visual
+```
