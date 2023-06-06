@@ -309,3 +309,30 @@ sequenceDiagram
     Vista->>MenuTablero: actualizarTablero(int 1)
     MenuTablero->>Usuario: Cambio visual
 ```
+
+
+# DIAGRAMA DE SECUENCIA (Inicio de sesión)
+
+```mermaid
+sequenceDiagram
+    actor Usuario
+    participant MenuPrincipal
+    participant IniciarSesion
+    participant Vista
+    participant Controlador
+    participant Modelo
+    participant BD
+    Usuario->>MenuPrincipal: Click en Iniciar sesión / Registrarse
+    MenuPrincipal->>IniciarSesion: iniciarSesion()
+    Usuario->>IniciarSesion: Introduce un usuario
+    IniciarSesion->>Controlador: iniciarSesion(String usuario)
+    Controlador->>Modelo: iniciarSesion(nickName)
+    Modelo->>BD: consultar("SELECT * FROM jugadores WHERE nickName = '"+nickName+"'#59;")
+    BD->>BD: Intenta obtener los datos de la bsae de datos
+    BD-->>Modelo: String[] (Resultado de la consulta)
+    Modelo-->>Controlador: boolean
+    Controlador-->>IniciarSesion: boolean
+    IniciarSesion->>Vista: llamadaMenuP(String usuarioConectado)
+    Vista->>MenuPrincipal: GenerarMenu(usuarioConectado)
+    MenuPrincipal->>Usuario: Sesion Iniciada
+```
