@@ -140,7 +140,7 @@ public class MenuTablero {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (contador[0] > 0){
-                    String ModificarTiempoVisual = ModificarVisual(contador[0]);
+                    String ModificarTiempoVisual = modificarVisual(contador[0]);
                     etiquetaTemporizador.setText(ModificarTiempoVisual);
                     contador[0]--;
                 }else{
@@ -163,7 +163,7 @@ public class MenuTablero {
      * @param segundos
      * @return TODO Que retorna
      */
-    public static String ModificarVisual(int segundos){
+    public static String modificarVisual(int segundos){
         /*
          El resto de la división entre los segundos y 60 nos sirve para representar
          visualmnente cuántos segundos quedan de cada minuto.
